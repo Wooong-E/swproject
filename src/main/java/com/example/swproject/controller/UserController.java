@@ -3,15 +3,15 @@ package com.example.swproject.controller;
 import com.example.swproject.dto.UserLoginDTO;
 import com.example.swproject.dto.UserSignupDTO;
 import com.example.swproject.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/api/users")
+@Controller
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
@@ -21,15 +21,58 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/signup")
-    public ResponseEntity<String> signup(@RequestBody UserSignupDTO userSignupDTO) {
-        userService.signup(userSignupDTO);
-        return ResponseEntity.ok("User registered successfully");
+    // 회원가입 폼 화면
+    @GetMapping("/signup")
+    public String signupForm(Model model) {
+        model.addAttribute("userSignupDTO", new UserSignupDTO(null, null, null, null, null, null, null, null, null));
+        return "signup"; // src/main/resources/templates/signup.html
     }
 
+    // 회원가입 처리
+    @PostMapping("/signup")
+    public String signup(@Valid @ModelAttribute UserSignupDTO userSignupDTO,
+                         BindingResult bindingResult,
+                         Model model) {
+
+        if (bindingResult.hasErrors()) {
+            return "signup"; // 에러 있으면 다시 폼 화면
+        }
+
+        try {
+            userService.signup(userSignupDTO);
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            return "signup";
+        }
+
+        return "redirect:/users/login"; // 회원가입 성공 후 로그인 페이지로
+    }
+
+    // 로그인 폼 화면
+    @GetMapping("/login")
+    public String loginForm(Model model) {
+        model.addAttribute("userLoginDTO", new UserLoginDTO(null, null));
+        return "login"; // src/main/resources/templates/login.html
+    }
+
+    // 로그인 처리
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserLoginDTO userLoginDTO) {
-        String token = userService.login(userLoginDTO);
-        return ResponseEntity.ok(token);
+    public String login(@Valid @ModelAttribute UserLoginDTO userLoginDTO,
+                        BindingResult bindingResult,
+                        Model model) {
+
+        if (bindingResult.hasErrors()) {
+            return "login";
+        }
+
+        try {
+            String token = userService.login(userLoginDTO);
+            // 세션/쿠키에 token 저장하거나 Security 연동 가능
+            model.addAttribute("token", token);
+            return "redirect:/"; // 로그인 성공 후 홈 화면
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            return "login";
+        }
     }
 }

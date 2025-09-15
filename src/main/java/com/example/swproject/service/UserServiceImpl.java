@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setId(null); // auto-generated
         user.setLoginId(dto.getLoginId());
-        user.setLoginPw(dto.getLoginPw()); // plain text
+        user.setLoginPw(dto.getLoginPw()); // plain text -> 보안 추가할 예정.
         user.setName(dto.getName());
         user.setEmail(dto.getEmail());
         user.setCountry(dto.getCountry());
