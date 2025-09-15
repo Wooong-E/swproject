@@ -28,6 +28,11 @@ public class User {
   @Column(name = "login_pw", nullable = false, length = 225)
   private String loginPw;
 
+  @Size(max = 225)
+  @NotNull
+  @Column(name = "name", nullable = false, length = 225)
+  private String name;
+
   @Size(max = 30)
   @NotNull
   @Column(name = "email", nullable = false, length = 30)
