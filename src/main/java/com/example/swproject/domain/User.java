@@ -2,6 +2,8 @@ package com.example.swproject.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -15,6 +17,7 @@ import lombok.Setter;
 @Table(name = "users")
 public class User {
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 아이디 생성을 위해 한줄 추가함 나중에 삭제 해도 됨
   @Column(name = "users_id", nullable = false)
   private Long id;
 
