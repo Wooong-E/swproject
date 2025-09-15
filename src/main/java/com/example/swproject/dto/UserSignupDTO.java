@@ -21,6 +21,10 @@ public class UserSignupDTO implements Serializable {
   String loginPw;
 
   @NotNull
+  @Size(max = 225)
+  String name;
+
+  @NotNull
   @Size(max = 30)
   String email;
 
