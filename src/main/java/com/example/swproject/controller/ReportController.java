@@ -1,7 +1,9 @@
 package com.example.swproject.controller;
 
+import com.example.swproject.domain.User;
 import com.example.swproject.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,9 +28,11 @@ public class ReportController {
     public String submitReport(@RequestParam("title") String title,
                                @RequestParam("content") String content,
                                @RequestParam(value = "image", required = false) MultipartFile image,
+                               @AuthenticationPrincipal User user, // 현재 로그인한 사용자의 User 객체를 직접 주입받음
                                Model model) {
         try {
-            reportService.sendReport(title, content, image);
+            // 서비스 호출 시 User 객체를 함께 전달
+            reportService.sendReport(title, content, image, user);
             model.addAttribute("message", "문의가 성공적으로 접수되었습니다.");
         } catch (Exception e) {
             model.addAttribute("error", "문의 접수 중 오류가 발생했습니다: " + e.getMessage());

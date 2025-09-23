@@ -1,5 +1,6 @@
 package com.example.swproject.service;
 
+import com.example.swproject.domain.User;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class ReportService {
     @Value("${upload.path}")
     private String uploadPath;
 
-    public void sendReport(String title, String content, MultipartFile image) {
+    public void sendReport(String title, String content, MultipartFile image, User user) { // User 객체를 파라미터로 추가
         File tempFile = null;
         try {
             // 1. 이미지 파일이 있으면 임시 저장
@@ -46,9 +47,14 @@ public class ReportService {
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
             helper.setTo(adminEmail);
-            helper.setSubject("[문의] " + title);
+            helper.setSubject("[문의] " + title + " (from " + user.getName() + ")"); // 제목에 사용자 이름 추가
 
+            // 이메일 본문에 사용자 정보 추가
             String emailContent = "<h1>문의 내용</h1>" +
+                                  "<hr>" +
+                                  "<p><b>작성자:</b> " + user.getName() + " (" + user.getUsername() + ")</p>" +
+                                  "<p><b>회신할 이메일:</b> " + user.getEmail() + "</p>" +
+                                  "<hr>" +
                                   "<p><b>제목:</b> " + title + "</p>" +
                                   "<p><b>내용:</b> " + content + "</p>";
             helper.setText(emailContent, true);

@@ -12,11 +12,8 @@ import java.time.Instant;
 @Value
 public class UsersBadgeDto implements Serializable {
   @NotNull
-  UserDto user;
+  Long id;
 
   @NotNull
   BadgeDto badge;
-
-  @NotNull
-  Instant dateTime;
 }
