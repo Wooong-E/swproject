@@ -1,10 +1,14 @@
 package com.example.swproject.controller;
 
+import com.example.swproject.dto.UserLoginDTO;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+@Controller
 public class PageController {
+
 
     @GetMapping("/attractions")
     public String showAttractionsPage() {
@@ -79,4 +83,8 @@ public class PageController {
     public String showSuggestPage() {
         return "suggest";
     }
+
+
+
+
 }

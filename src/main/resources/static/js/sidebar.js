@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (loginRegisterButton) {
     loginRegisterButton.addEventListener('click', () => {
       // For now, redirect to login page. In a real app, this might open a modal or offer both login/signup.
-      window.location.href = '/login';
+      window.location.href = '/users/login';
     });
   }
 
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault(); // Prevent default navigation
 
       if (confirm("로그인 시 이용가능합니다. 로그인 페이지로 이동하시겠습니까?")) {
-        window.location.href = '/login';
+        window.location.href = '/users/login';
       }
     });
   });
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!isLoggedIn) {
         if (confirm("로그인 시 이용가능합니다. 로그인 페이지로 이동하시겠습니까?")) {
-          window.location.href = '/login';
+          window.location.href = '/users/login';
         }
         return; // Stop further execution if not logged in
       }
