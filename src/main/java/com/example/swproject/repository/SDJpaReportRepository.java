@@ -1,4 +1,7 @@
 package com.example.swproject.repository;
 
-public interface SDJpaReportRepository extends org.springframework.data.jpa.repository.JpaRepository<com.example.swproject.domain.Report, java.lang.Long> {
-  }
+import com.example.swproject.domain.Report;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SDJpaReportRepository extends JpaRepository<Report, Long> {
+}
