@@ -11,19 +11,19 @@ import lombok.Setter;
 @Entity
 @Table(name = "reviews")
 public class Review {
-  @Id
+  @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "reviews_id", nullable = false)
   private Long id;
 
   @NotNull
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "users_id", nullable = false)
-  private User users;
+  private User user;
 
   @NotNull
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "places_id", nullable = false)
-  private Place places;
+  private Place place;
 
   @Size(max = 500)
   @NotNull
