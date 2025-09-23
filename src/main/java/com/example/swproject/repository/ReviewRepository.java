@@ -1,6 +1,5 @@
 package com.example.swproject.repository;
 
-import com.example.swproject.domain.Place;
 import com.example.swproject.domain.Review;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
