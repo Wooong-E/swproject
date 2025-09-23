@@ -21,6 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();   // a 태그 이동 막기
       event.stopPropagation();  // 부모 a 이벤트 전파 막기
 
+      // Placeholder: replace with actual login check
+      const isLoggedIn = false;
+
+      if (!isLoggedIn) {
+        if (confirm("로그인 시 이용가능합니다. 로그인 페이지로 이동하시겠습니까?")) {
+          window.location.href = '/login';
+        }
+        return; // Stop further execution if not logged in
+      }
+
       console.log("찜하기 버튼 클릭됨!");
 
       // 예: 찜하기 상태 토글 (UI 변화)

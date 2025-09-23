@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Ro:D - 문의/신고 하기</title>
+    <title>Ro:D - 문의하기</title>
     <link rel="stylesheet" th:href="@{/css/global.css}" />
     <link rel="stylesheet" th:href="@{/css/footer.css}" />
     <link rel="stylesheet" th:href="@{/css/report.css}" />
@@ -13,17 +13,10 @@
     <main class="report-main">
         <div th:replace="~{/fragments/header-back :: headerBackFragment}"></div>
 
-        <h2 class="main-title">문의/신고 하기</h2>
+        <h2 class="main-title">문의하기</h2>
 
         <form id="report-form" action="/report" method="post" enctype="multipart/form-data">
-            <section class="form-section">
-                <h3 class="section-title">문의 유형</h3>
-                <div class="type-buttons">
-                    <button type="button" class="type-button active" data-type="inquiry">문의</button>
-                    <button type="button" class="type-button" data-type="report">신고</button>
-                    <input type="hidden" id="reportType" name="reportType" value="inquiry">
-                </div>
-            </section>
+            
 
             <section class="form-section">
                 <h3 class="section-title">제목</h3>

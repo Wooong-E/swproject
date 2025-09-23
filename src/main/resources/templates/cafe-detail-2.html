@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>빈티지 다방 상세</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}" />
+    <link rel="stylesheet" th:href="@{/css/cafe-detail.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+</head>
+<body>
+    <div class="screen">
+        <main class="attraction-detail-main">
+            <div th:replace="~{/fragments/header-back :: headerBackFragment}"></div>
+
+            <!-- Main Image -->
+            <div class="main-image-container">
+                <img src="/images/cafe_vintage.jpg" alt="카페 이미지" class="attraction-main-image" />
+            </div>
+
+            <!-- Title, Description, Heart Button -->
+            <section class="info-section">
+                <div class="title-heart-wrapper">
+                    <h2 class="attraction-title">빈티지 다방</h2>
+                    <button class="heart-button" onclick="toggleHeart()">
+                        <img id="heartIcon" src="/images/tabler_heart_filled.svg" alt="찜하기" />
+                    </button>
+                </div>
+                <p class="attraction-description">레트로 감성이 가득한 아늑한 다방입니다. 직접 로스팅한 원두로 내린 핸드드립 커피와 전통차를 맛볼 수 있습니다. 조용히 책 읽기 좋은 곳입니다.</p>
+            </section>
+
+            <!-- Menu Section -->
+            <section class="menu-section">
+                <h3 class="menu-title">메뉴</h3>
+                <div class="menu-carousel">
+                    <div class="menu-card">
+                        <img src="/images/menu_espresso.jpg" alt="카페 메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">에스프레소</h4>
+                        <p class="menu-price">4,000원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/menu_muffin.jpg" alt="카페 메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">초코 머핀</h4>
+                        <p class="menu-price">4,000원</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Address and Transportation -->
+            <section class="details-section">
+                <p class="detail-item"><strong>주소</strong> <span>경상북도 경산시 골목길 10</span></p>
+                <p class="detail-item"><strong>교통</strong> <span>버스 정류장 인접, 주차 불가</span></p>
+            </section>
+
+            <!-- Reviews Section -->
+            <section class="reviews-section">
+                <h3 class="reviews-title">후기</h3>
+                <div class="reviews-carousel">
+                    <div class="review-card">
+                        <img src="/images/review_placeholder_3.png" alt="후기 이미지" class="review-image" />
+                        <h4 class="review-card-title">분위기가 아늑해요.</h4>
+                        <div class="review-rating">
+                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                            <img src="/images/star_empty.svg" alt="별점" class="star-icon" />
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <img src="/images/review_placeholder_4.png" alt="후기 이미지" class="review-image" />
+                        <h4 class="review-card-title">커피 맛이 좋아요.</h4>
+                        <div class="review-rating">
+                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Write Review Button -->
+            <section class="write-review-section">
+                <button class="write-review-button">
+                    <span class="write-review-text">작성하기</span>
+                    <img src="/images/material-symbols_edit-outline-rounded.svg" alt="작성 아이콘" class="write-review-icon" />
+                </button>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <div th:replace="~{/fragments/footer :: footerFragment}"></div>
+    </div>
+    <script th:src="@{/js/attraction-detail.js}"></script>
+</body>
+</html>

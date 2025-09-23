@@ -1,59 +1,90 @@
-package com.example.SWFRONT;
+package com.example.swproject.controller;
 
+import com.example.swproject.dto.UserLoginDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import java.util.List;
-import com.example.SWFRONT.MenuDto;
-import com.example.SWFRONT.RestaurantDto;
-import com.example.SWFRONT.CafeDto;
 
 @Controller
 public class PageController {
 
+
     @GetMapping("/attractions")
-    public String attractionsPage(){
+    public String showAttractionsPage() {
         return "attractions";
     }
 
-    @GetMapping("/attractions/seoul-sky")
-    public String seoulSkyDetailPage(){
-        return "seoul-sky-detail";
+    @GetMapping("/restaurants")
+    public String showRestaurantsPage() {
+        return "restaurants";
     }
 
-    @GetMapping("/attractions/lotte-world")
-    public String lotteWorldDetailPage(){
-        return "lotte-world-detail";
+    @GetMapping("/cafes")
+    public String showCafesPage() {
+        return "cafes";
     }
 
-    @GetMapping("/attractions/gyeongbokgung")
-    public String gyeongbokgungDetailPage(){
-        return "gyeongbokgung-detail";
+    @GetMapping("/attractions/{id}")
+    public String showAttractionDetail(@PathVariable Long id, Model model) {
+        if (id == 1L) {
+            return "attraction-detail-1";
+        } else if (id == 2L) {
+            return "attraction-detail-2";
+        } else if (id == 3L) {
+            return "attraction-detail-3";
+        } else if (id == 4L) {
+            return "attraction-detail-4";
+        } else if (id == 5L) {
+            return "attraction-detail-5";
+        } else if (id == 6L) {
+            return "attraction-detail-6";
+        }
+        return "attraction-detail-1"; // Default or error page
     }
 
-    @GetMapping("/attractions/n-seoul-tower")
-    public String nSeoulTowerDetailPage(){
-        return "n-seoul-tower-detail";
+    @GetMapping("/restaurants/{id}")
+    public String showRestaurantDetail(@PathVariable Long id, Model model) {
+        if (id == 1L) {
+            return "restaurant-detail-1";
+        } else if (id == 2L) {
+            return "restaurant-detail-2";
+        } else if (id == 3L) {
+            return "restaurant-detail-3";
+        } else if (id == 4L) {
+            return "restaurant-detail-4";
+        } else if (id == 5L) {
+            return "restaurant-detail-5";
+        } else if (id == 6L) {
+            return "restaurant-detail-6";
+        }
+        return "restaurant-detail-1"; // Default or error page
     }
 
-    @GetMapping("/cafe-detail")
-    public String cafeDetailPage(){
-        return "cafe-detail";
-    }
-
-    @GetMapping("/restaurant-detail")
-    public String restaurantDetailPage(){
-        return "restaurant-detail";
-    }
-
-    @GetMapping("/report")
-    public String showReportPage() {
-        return "report";
+    @GetMapping("/cafes/{id}")
+    public String showCafeDetail(@PathVariable Long id, Model model) {
+        if (id == 1L) {
+            return "cafe-detail-1";
+        } else if (id == 2L) {
+            return "cafe-detail-2";
+        } else if (id == 3L) {
+            return "cafe-detail-3";
+        } else if (id == 4L) {
+            return "cafe-detail-4";
+        } else if (id == 5L) {
+            return "cafe-detail-5";
+        } else if (id == 6L) {
+            return "cafe-detail-6";
+        }
+        return "cafe-detail-1"; // Default or error page
     }
 
     @GetMapping("/suggest")
     public String showSuggestPage() {
         return "suggest";
     }
+
+
+
+
 }
