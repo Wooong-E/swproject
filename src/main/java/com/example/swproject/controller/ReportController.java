@@ -21,6 +21,8 @@ public class ReportController {
 
     @GetMapping
     public String showReportForm() {
+        // TODO: 프론트엔드 친구에게: 이 "report"는 src/main/resources/templates/report.html 파일을 의미합니다.
+        // TODO: HTML 파일 이름이 다를 경우, 이 부분을 수정하거나 HTML 파일 이름을 맞춰주세요.
         return "report"; // html
     }
 
@@ -37,6 +39,8 @@ public class ReportController {
         } catch (Exception e) {
             model.addAttribute("error", "문의 접수 중 오류가 발생했습니다: " + e.getMessage());
         }
+        // TODO: 프론트엔드 친구에게: 이 "report-result"는 src/main/resources/templates/report-result.html 파일을 의미합니다.
+        // TODO: HTML 파일 이름이 다를 경우, 이 부분을 수정하거나 HTML 파일 이름을 맞춰주세요.
         return "report-result"; // templates/report-result.html
     }
 }
