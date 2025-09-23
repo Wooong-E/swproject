@@ -5,15 +5,14 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
-
 @Getter
 @Setter
 @Entity
-@Table(name = "users_badges")
-public class UsersBadge {
-  @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "users_badge_id", nullable = false)
+@Table(name = "likes")
+public class Like {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "likes_id", nullable = false)
   private Long id;
 
   @NotNull
@@ -23,11 +22,7 @@ public class UsersBadge {
 
   @NotNull
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "badges_id", nullable = false)
-  private Badge badge;
-
-  @NotNull
-  @Column(name = "date_time", nullable = false)
-  private Instant dateTime;
+  @JoinColumn(name = "places_id", nullable = false)
+  private Place place;
 
 }

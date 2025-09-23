@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Repository
-@Transactional
 public class UserRepository {
 
   @Autowired
