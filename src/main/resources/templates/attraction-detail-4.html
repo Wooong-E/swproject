@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>갓바위 상세</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}" />
+    <link rel="stylesheet" th:href="@{/css/attraction-detail.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+</head>
+<body>
+    <div class="screen">
+        <main class="attraction-detail-main">
+            <div th:replace="~{/fragments/header-back :: headerBackFragment}"></div>
+
+            <!-- Main Image -->
+            <div class="main-image-container">
+                <img src="/images/attraction_gatbawi.jpg" alt="명소 이미지" class="attraction-main-image" />
+            </div>
+
+            <!-- Title, Description, Heart Button -->
+            <section class="info-section">
+                <div class="title-heart-wrapper">
+                    <h2 class="attraction-title">갓바위</h2>
+                    <button class="heart-button" onclick="toggleHeart()">
+                        <img id="heartIcon" src="/images/tabler_heart.svg" alt="찜하기" />
+                    </button>
+                </div>
+                <p class="attraction-description">팔공산 갓바위는 소원을 빌면 한 가지는 꼭 들어준다는 전설이 있는 곳입니다. 많은 사람들이 찾는 기도처입니다.</p>
+            </section>
+
+            <!-- Price and Transportation -->
+            <section class="details-section">
+                <p class="detail-item"><strong>가격</strong> <span>무료</span></p>
+                <p class="detail-item"><strong>교통</strong> <span>주차 가능, 셔틀버스 운행</span></p>
+            </section>
+
+            <!-- Reviews Section -->
+            <section class="reviews-section">
+                <h3 class="reviews-title">후기</h3>
+                <div class="reviews-carousel">
+                    <div class="review-card">
+                        <img src="/images/review_placeholder_2.png" alt="후기 이미지" class="review-image" />
+                        <h4 class="review-card-title">소원 빌러 왔어요!</h4>
+                        <div class="review-rating">
+                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <img src="/images/review_placeholder_3.png" alt="후기 이미지" class="review-image" />
+                        <h4 class="review-card-title">경치가 좋아요.</h4>
+                        <div class="review-rating">
+                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                            <img src="/images/star_empty.svg" alt="별점" class="star-icon" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Write Review Button -->
+            <section class="write-review-section">
+                <button class="write-review-button">
+                    <span class="write-review-text">작성하기</span>
+                    <img src="/images/material-symbols_edit-outline-rounded.svg" alt="작성 아이콘" class="write-review-icon" />
+                </button>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <div th:replace="~{/fragments/footer :: footerFragment}"></div>
+    </div>
+    <script th:src="@{/js/attraction-detail.js}"></script>
+</body>
+</html>
