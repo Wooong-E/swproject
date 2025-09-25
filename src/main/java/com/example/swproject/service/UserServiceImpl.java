@@ -5,6 +5,10 @@ import com.example.swproject.dto.UserLoginDTO;
 import com.example.swproject.dto.UserSignupDTO;
 import com.example.swproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,13 +17,15 @@ import java.util.UUID;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder; // PasswordEncoder 주입
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -38,7 +44,8 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setId(null); // auto-generated
         user.setLoginId(dto.getLoginId());
-        user.setLoginPw(dto.getLoginPw()); // plain text -> 보안 추가할 예정.
+        // 비밀번호를 암호화하여 저장
+        user.setLoginPw(passwordEncoder.encode(dto.getLoginPw()));
         user.setName(dto.getName());
         user.setEmail(dto.getEmail());
         user.setCountry(dto.getCountry());
@@ -52,13 +59,27 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String login(UserLoginDTO dto) {
-        Optional<User> optionalUser = userRepository.findByLoginIdAndPassword(dto.getLoginId(), dto.getLoginPw());
+        // 아이디로 사용자를 먼저 조회
+        User user = userRepository.findByLoginId(dto.getLoginId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid login ID or password"));
 
-        if (optionalUser.isEmpty()) {
+        // 입력된 비밀번호와 DB의 암호화된 비밀번호를 비교
+        if (!passwordEncoder.matches(dto.getLoginPw(), user.getLoginPw())) {
             throw new IllegalArgumentException("Invalid login ID or password");
         }
 
         // UUID 기반 간단 토큰 반환 (테스트용)
         return UUID.randomUUID().toString();
+    }
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // *** 여기가 핵심 ***
+        // 파라미터 이름은 'username'이지만, 실제 내용은 'loginId' 입니다.
+        // 이 변수(username)를 사용해 loginId로 사용자를 찾습니다.
+        User user = userRepository.findByLoginId(username)
+                .orElseThrow(() -> new UsernameNotFoundException("아이디를 찾을 수 없습니다: " + username));
+
+        // 찾은 사용자 정보를 UserDetails 타입으로 반환합니다.
+        return user;
     }
 }
