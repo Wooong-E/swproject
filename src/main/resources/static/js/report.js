@@ -2,18 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const reportForm = document.getElementById('report-form');
     if (!reportForm) return;
 
-    // --- Inquiry/Report Button Toggle ---
-    const typeButtons = document.querySelectorAll('.type-button');
-    const reportTypeInput = document.getElementById('reportType');
-
-    typeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            typeButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            reportTypeInput.value = button.dataset.type;
-        });
-    });
-
     // --- Character Counters ---
     const titleInput = document.getElementById('title');
     const titleCharCount = document.getElementById('title-char-count');
@@ -92,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault(); // Prevent default HTML form submission
 
         const formData = new FormData();
-        formData.append('reportType', reportTypeInput.value);
         formData.append('title', titleInput.value);
         formData.append('content', contentInput.value);
         
@@ -100,29 +87,25 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('images', fileObject.file);
         });
 
-        // Here you would typically use fetch() to send formData to the server
-        console.log('Form data prepared for submission:');
-        for (let [key, value] of formData.entries()) {
-            console.log(key, value);
-        }
-
-        alert('"저장하기" 버튼이 클릭되었습니다. 실제 서버 전송 로직은 여기에 구현해야 합니다.');
-        
-        // Example of how to send the data:
-        /*
         fetch('/report', {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            window.location.href = '/'; // Redirect to homepage on success
+        .then(response => {
+            if (response.ok) {
+                // The form was submitted successfully.
+                // The controller redirects, and the browser should follow it.
+                // We'll show a success message and redirect to home page as a final action.
+                alert('문의가 성공적으로 접수되었습니다.');
+                window.location.href = '/';
+            } else {
+                // Handle HTTP errors
+                alert('문의 접수 중 오류가 발생했습니다. 다시 시도해주세요.');
+            }
         })
         .catch((error) => {
             console.error('Error:', error);
-            alert('오류가 발생했습니다. 다시 시도해주세요.');
+            alert('네트워크 오류가 발생했습니다. 다시 시도해주세요.');
         });
-        */
     });
 });
