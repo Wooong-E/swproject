@@ -3,6 +3,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Ro:D - 명소</title>
     <link rel="stylesheet" th:href="@{/css/global.css}" />
     <link rel="stylesheet" th:href="@{/css/header.css}" />
@@ -28,7 +30,7 @@
         <section class="attractions-list">
             <div class="frame-14">
                 <article class="frame-15">
-                    <a href="/attractions/1" class="img-wrapper">
+                    <a href="/attractions/1" class="img-wrapper" data-place-id="1">
                         <button class="img-2" type="button" aria-label="@@@@ 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
                         </button>
@@ -39,7 +41,7 @@
                     </div>
                 </article>
                 <article class="frame-15">
-                    <a href="/attractions/2" class="img-wrapper">
+                    <a href="/attractions/2" class="img-wrapper" data-place-id="2">
                         <button class="img-2" type="button" aria-label="@@@@ 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
                         </button>
@@ -52,7 +54,7 @@
             </div>
             <div class="frame-14">
                 <article class="frame-15">
-                    <a href="/attractions/3" class="img-wrapper">
+                    <a href="/attractions/3" class="img-wrapper" data-place-id="3">
                         <button class="img-2" type="button" aria-label="@@@@ 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
                         </button>
@@ -63,7 +65,7 @@
                     </div>
                 </article>
                 <article class="frame-17">
-                    <a href="/attractions/4" class="img-wrapper">
+                    <a href="/attractions/4" class="img-wrapper" data-place-id="4">
                         <button class="img-2" type="button" aria-label="@@@@ 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
                         </button>
@@ -76,7 +78,7 @@
             </div>
             <div class="frame-14">
                 <article class="frame-15">
-                    <a href="/attractions/5" class="img-wrapper">
+                    <a href="/attractions/5" class="img-wrapper" data-place-id="5">
                         <button class="img-2" type="button" aria-label="@@@@ 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
                         </button>
@@ -87,7 +89,7 @@
                     </div>
                 </article>
                 <article class="frame-17">
-                    <a href="/attractions/6" class="img-wrapper">
+                    <a href="/attractions/6" class="img-wrapper" data-place-id="6">
                         <button class="img-2" type="button" aria-label="@@@@ 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
                         </button>
