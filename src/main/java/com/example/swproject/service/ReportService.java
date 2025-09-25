@@ -7,12 +7,11 @@ import com.example.swproject.repository.ReportRepository;
 import com.example.swproject.repository.ReportsPostRepository;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -20,87 +19,87 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 @Service
 public class ReportService {
 
-    @Autowired
-    private JavaMailSender mailSender;
+    private final JavaMailSender mailSender;
+    private final ReportRepository reportRepository;
+    private final ReportsPostRepository reportsPostRepository;
+    private final String adminEmail;
+    private final String uploadPath;
 
-    @Autowired
-    private ReportRepository reportRepository;
-    @Autowired
-    private ReportsPostRepository reportsPostRepository;
+    public ReportService(JavaMailSender mailSender, ReportRepository reportRepository, ReportsPostRepository reportsPostRepository, @Value("${admin.email}") String adminEmail, @Value("${upload.path}") String uploadPath) {
+        this.mailSender = mailSender;
+        this.reportRepository = reportRepository;
+        this.reportsPostRepository = reportsPostRepository;
+        this.adminEmail = adminEmail;
+        this.uploadPath = uploadPath;
+    }
 
-    @Value("${admin.email}")
-    private String adminEmail;
-
-    @Value("${upload.path}")
-    private String uploadPath;
-
-    /**
-     * 프론트엔드에서 제출된 문의 데이터를 처리하고, 데이터베이스에 저장하며, 관리자에게 이메일을 발송합니다.
-     * @param title 문의 제목
-     * @param content 문의 내용
-     * @param image 첨부 이미지 파일 (선택 사항)
-     * @param user 현재 로그인한 사용자 정보
-     */
-    @Transactional // 이 어노테이션 추가
-    public void sendReport(String title, String content, MultipartFile image, User user) {
+    @Transactional
+    public void sendReport(String title, String content, List<MultipartFile> images, User user) {
         // 1. Report 객체 생성 및 DB 저장
         Report report = new Report();
         report.setUser(user);
         report.setTitle(title);
         report.setContent(content);
-        Report savedReport = reportRepository.save(report); // DB에 저장하고 저장된 객체를 반환받음
+        Report savedReport = reportRepository.save(report);
 
-        String storedFileName = null;
-        File tempFile = null;
         try {
-            // 2. 이미지 파일이 있으면 로컬에 저장하고 ReportsPost 객체 생성 및 DB 저장
-            if (image != null && !image.isEmpty()) {
-                String originalFileName = image.getOriginalFilename();
-                storedFileName = UUID.randomUUID().toString() + "_" + originalFileName;
-                Path destination = Paths.get(uploadPath, storedFileName);
-                Files.createDirectories(destination.getParent());
-                image.transferTo(destination);
-                tempFile = destination.toFile();
+            // 2. 이미지 파일 영구 저장 및 DB에 메타데이터 저장
+            if (images != null && !images.isEmpty()) {
+                for (MultipartFile image : images) {
+                    if (image.isEmpty()) continue;
 
-                // ReportsPost 객체 생성 및 DB 저장
-                ReportsPost reportsPost = new ReportsPost();
-                reportsPost.setReport(savedReport); // 위에서 저장된 Report 객체와 연결
-                reportsPost.setPostImageUrl(storedFileName); // 파일 이름 또는 경로 저장
-                reportsPostRepository.save(reportsPost);
+                    String originalFileName = image.getOriginalFilename();
+                    String storedFileName = UUID.randomUUID().toString() + "_" + originalFileName;
+                    Path destination = Paths.get(uploadPath, storedFileName);
+                    Files.createDirectories(destination.getParent());
+                    image.transferTo(destination);
+
+                    ReportsPost reportsPost = new ReportsPost();
+                    reportsPost.setReport(savedReport);
+                    reportsPost.setPostImageUrl(storedFileName);
+                    reportsPostRepository.save(reportsPost);
+                }
             }
 
-            // 3. 이메일 메시지 생성
+            // 3. DB에서 정보 불러오기
+            Report fetchedReport = reportRepository.findById(savedReport.getId()) //Repository에 findById 추가 필요
+                    .orElseThrow(() -> new IllegalStateException("저장된 문의를 찾을 수 없습니다."));
+            List<ReportsPost> fetchedImagePosts = reportsPostRepository.findByReportsId(fetchedReport.getId());
+
+            // 4. 불러온 정보를 기반으로 이메일 생성 및 발송
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
             helper.setTo(adminEmail);
-            helper.setSubject("[문의] " + title + " (from " + user.getName() + ")");
+            helper.setSubject("[문의] " + fetchedReport.getTitle() + " (from " + fetchedReport.getUser().getName() + ")");
 
-            // 이메일 본문에 사용자 정보 추가
             String emailContent = "<h1>문의 내용</h1>" +
-                                  "<hr>" +
-                                  "<p><b>작성자:</b> " + user.getName() + " (" + user.getUsername() + ")</p>" +
-                                  "<p><b>회신할 이메일:</b> " + user.getEmail() + "</p>" +
-                                  "<hr>" +
-                                  "<p><b>제목:</b> " + title + "</p>" +
-                                  "<p><b>내용:</b> " + content + "</p>";
+                    "<hr>" +
+                    "<p><b>작성자:</b> " + fetchedReport.getUser().getName() + " (" + fetchedReport.getUser().getUsername() + ")</p>" +
+                    "<p><b>회신할 이메일:</b> " + fetchedReport.getUser().getEmail() + "</p>" +
+                    "<hr>" +
+                    "<p><b>제목:</b> " + fetchedReport.getTitle() + "</p>" +
+                    "<p><b>내용:</b> " + fetchedReport.getContent() + "</p>";
             helper.setText(emailContent, true);
 
-            // 4. 첨부파일 추가
-            if (tempFile != null) {
-                helper.addAttachment(tempFile.getName(), tempFile);
+            // 5. DB에서 불러온 이미지 경로를 사용하여 파일 첨부
+            for (ReportsPost imagePost : fetchedImagePosts) {
+                Path filePath = Paths.get(uploadPath, imagePost.getPostImageUrl());
+                File file = filePath.toFile();
+                if (file.exists()) {
+                    helper.addAttachment(file.getName(), file);
+                }
             }
 
-            // 5. 이메일 발송
             mailSender.send(message);
 
         } catch (MessagingException | IOException e) {
-            e.printStackTrace();
             throw new RuntimeException("메일 발송 또는 파일 처리 중 오류가 발생했습니다.", e);
         }
     }
