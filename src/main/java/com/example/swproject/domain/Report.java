@@ -6,6 +6,9 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -30,5 +33,6 @@ public class Report {
   @NotNull
   @Column(name = "content", nullable = false, length = 500)
   private String content;
+
 
 }
