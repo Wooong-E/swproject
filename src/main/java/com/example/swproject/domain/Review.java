@@ -30,12 +30,13 @@ public class Review {
   @Column(name = "content", nullable = false, length = 500)
   private String content;
 
+  @Size(max = 255)
+  @NotNull
+  @Column(name = "title", nullable = false)
+  private String title;
+
   @NotNull
   @Column(name = "grade", nullable = false)
   private Integer grade;
-
-  @Size(max = 255)
-  @Column(name = "visited_image_url")
-  private String visitedImageUrl;
 
 }
