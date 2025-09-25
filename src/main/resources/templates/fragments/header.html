@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="headerFragment">
+    <div class="header-top-bar">
+        <h1 class="text-wrapper-9">Ro:D</h1>
+        <button id="menu-button" class="mingcute-menu-line" type="button" aria-label="메뉴 열기">
+            <img src="/images/mingcute_menu-line.svg" alt="메뉴" />
+        </button>
+    </div>
+    <nav>
+        <ul id="main-top-nav" role="list">
+            <li class="div-wrapper">
+                <a href="/attractions" class="text-wrapper-10">명소</a>
+            </li>
+            <li class="frame-8">
+                <a href="/restaurants" class="text-wrapper-10">맛집</a>
+            </li>
+            <li class="frame-9">
+                <a href="/cafes" class="text-wrapper-10">카페</a>
+            </li>
+            <li class="frame-10">
+                <a
+                        href="임시_course/course01.html"
+                        class="text-wrapper-10"
+                        type="button"
+                >코스짜기</a
+                >
+            </li>
+            <li class="frame-11">
+                <button class="text-wrapper-10" type="button">월간매거진</button>
+            </li>
+        </ul>
+    </nav>
+
+
+    <!-- 사이드바 시작 -->
+    <aside id="sidebar" class="sidebar" role="complementary" aria-label="사이드바 메뉴">
+        <header class="sidebar-header">
+            <h1 class="text-wrapper">Ro:D</h1>
+            <button id="close-button" class="close-button" type="button" aria-label="사이드바 닫기">
+                <img class="streamline-delete" src="/images/streamline-delete-1-solid.svg" alt="" />
+            </button>
+        </header>
+        <section class="user-section">
+            <button class="login-button" type="button">로그인 및 회원가입</button>
+        </section>
+        <nav class="overlap-group" role="navigation" aria-label="메인 메뉴">
+            <ul class="frame" role="list">
+                <li class="div-wrapper"><a href="#" class="div">나의 코스</a></li>
+                <li class="div-wrapper"><a href="#" class="div">코스 짜기</a></li>
+                <li class="div-wrapper"><a href="#" class="div">찜한 명소</a></li>
+                <li class="div-wrapper"><a href="/suggest" class="div">장소 제보하기</a></li>
+                <li class="div-wrapper"><a href="/report" class="div">문의하기</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <!-- 사이드바 끝 -->
+    <script src="/js/sidebar.js"></script>
+</header>
+</body>
+</html>
+
