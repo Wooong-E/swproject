@@ -22,11 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
       event.stopPropagation();  // 부모 a 이벤트 전파 막기
 
       // Placeholder: replace with actual login check
-      const isLoggedIn = false;
+      //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+      // const isLoggedIn = false; // 로그인 기록을 가져와서 로그인 했냐 안했냐를 통해서 bool 값 반환하게끔...
 
       if (!isLoggedIn) {
         if (confirm("로그인 시 이용가능합니다. 로그인 페이지로 이동하시겠습니까?")) {
-          window.location.href = '/login';
+          window.location.href = '/users/login';
         }
         return; // Stop further execution if not logged in
       }

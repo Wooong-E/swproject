@@ -1,6 +1,9 @@
 package com.example.swproject.controller;
 
 import com.example.swproject.dto.UserLoginDTO;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +14,10 @@ public class PageController {
 
 
     @GetMapping("/attractions")
-    public String showAttractionsPage() {
+    public String showAttractionsPage(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isLoggedIn = authentication != null && authentication.isAuthenticated() && !(authentication instanceof AnonymousAuthenticationToken);
+        model.addAttribute("isLoggedIn", isLoggedIn);
         return "attractions";
     }
 

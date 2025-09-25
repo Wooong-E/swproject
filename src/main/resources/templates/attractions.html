@@ -104,6 +104,9 @@
 
     <div th:replace="~{/fragments/footer :: footerFragment}"></div>
 </div>
+<script th:inline="javascript">
+    var isLoggedIn = false;
+</script>
 <script th:src="@{/js/attractions.js}"></script>
 </body>
 </html>
