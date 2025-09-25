@@ -16,7 +16,7 @@
         <h2 class="main-title">문의하기</h2>
 
         <form id="report-form" action="/report" method="post" enctype="multipart/form-data">
-
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 
             <section class="form-section">
                 <h3 class="section-title">제목</h3>

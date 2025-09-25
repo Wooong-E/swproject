@@ -78,12 +78,12 @@ public class ReportService {
             helper.setSubject("[문의] " + title + " (from " + user.getName() + ")");
 
             String emailContent = "<h1>문의 내용</h1>" +
-                    "<hr>" +
-                    "<p><b>작성자:</b> " + user.getName() + " (" + user.getUsername() + ")</p>" +
-                    "<p><b>회신할 이메일:</b> " + user.getEmail() + "</p>" +
-                    "<hr>" +
-                    "<p><b>제목:</b> " + title + "</p>" +
-                    "<p><b>내용:</b> " + content + "</p>";
+                "<hr>" +
+                "<p><b>작성자:</b> " + user.getName() + " (" + user.getUsername() + ")</p>" +
+                "<p><b>회신할 이메일:</b> " + user.getEmail() + "</p>" +
+                "<hr>" +
+                "<p><b>제목:</b> " + title + "</p>" +
+                "<p><b>내용:</b> " + content + "</p>";
             helper.setText(emailContent, true);
 
             // 5. DB에서 불러온 이미지 경로를 사용하여 파일 첨부
