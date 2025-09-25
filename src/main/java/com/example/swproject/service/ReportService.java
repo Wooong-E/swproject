@@ -67,25 +67,23 @@ public class ReportService {
                 }
             }
 
-            // 3. DB에서 정보 불러오기
-            Report fetchedReport = reportRepository.findById(savedReport.getId()) //Repository에 findById 추가 필요
-                    .orElseThrow(() -> new IllegalStateException("저장된 문의를 찾을 수 없습니다."));
-            List<ReportsPost> fetchedImagePosts = reportsPostRepository.findByReportsId(fetchedReport.getId());
+            // 3. DB에서 이미지 정보 불러오기
+            List<ReportsPost> fetchedImagePosts = reportsPostRepository.findByReportsId(savedReport.getId());
 
-            // 4. 불러온 정보를 기반으로 이메일 생성 및 발송
+            // 4. 파라미터와 불러온 정보를 기반으로 이메일 생성 및 발송
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
             helper.setTo(adminEmail);
-            helper.setSubject("[문의] " + fetchedReport.getTitle() + " (from " + fetchedReport.getUser().getName() + ")");
+            helper.setSubject("[문의] " + title + " (from " + user.getName() + ")");
 
             String emailContent = "<h1>문의 내용</h1>" +
                     "<hr>" +
-                    "<p><b>작성자:</b> " + fetchedReport.getUser().getName() + " (" + fetchedReport.getUser().getUsername() + ")</p>" +
-                    "<p><b>회신할 이메일:</b> " + fetchedReport.getUser().getEmail() + "</p>" +
+                    "<p><b>작성자:</b> " + user.getName() + " (" + user.getUsername() + ")</p>" +
+                    "<p><b>회신할 이메일:</b> " + user.getEmail() + "</p>" +
                     "<hr>" +
-                    "<p><b>제목:</b> " + fetchedReport.getTitle() + "</p>" +
-                    "<p><b>내용:</b> " + fetchedReport.getContent() + "</p>";
+                    "<p><b>제목:</b> " + title + "</p>" +
+                    "<p><b>내용:</b> " + content + "</p>";
             helper.setText(emailContent, true);
 
             // 5. DB에서 불러온 이미지 경로를 사용하여 파일 첨부
