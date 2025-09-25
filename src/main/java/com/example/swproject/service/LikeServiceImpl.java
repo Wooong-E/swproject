@@ -3,6 +3,8 @@ package com.example.swproject.service;
 import com.example.swproject.domain.Like;
 import com.example.swproject.domain.Place;
 import com.example.swproject.domain.User;
+import com.example.swproject.repository.LikeRepository;
+import com.example.swproject.repository.PlaceRepository;
 import com.example.swproject.repository.SDJpaLikeRepository;
 import com.example.swproject.repository.SDJpaPlaceRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,18 +18,18 @@ import java.util.Optional;
 @Transactional
 public class LikeServiceImpl implements LikeService {
 
-    private final SDJpaLikeRepository likeRepository;
-    private final SDJpaPlaceRepository placeRepository;
+    private final LikeRepository likeRepository;
+    private final PlaceRepository placeRepository;
 
     @Override
     public boolean toggleLike(Long placeId, User user) {
         Place place = placeRepository.findById(placeId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid place Id:" + placeId));
 
-        Optional<Like> existingLike = likeRepository.findByUserAndPlace(user, place);
+        Optional<Like> existingLike = likeRepository.findByUserAndPlace(user.getId(), placeId);
 
         if (existingLike.isPresent()) {
-            likeRepository.delete(existingLike.get());
+            likeRepository.delete(user.getId(), placeId);
             return false; // "unliked"
         } else {
             Like newLike = new Like();
