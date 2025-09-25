@@ -124,5 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 // 최종적으로 에러 메시지를 팝업으로 표시
                 alert(error.message);
             });
+
     });
 });
