@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.example.swproject.domain.QLike.like;
 
@@ -35,7 +36,7 @@ public class LikeRepository {
         .fetch();
   }
 
-  public Like findByUserAndPlace(Long userId, Long placeId) {
+  public Optional<Like> findByUserAndPlace(Long userId, Long placeId) {
     return likeRepository.findByUserIdAndPlaceId(userId, placeId);
   }
 
