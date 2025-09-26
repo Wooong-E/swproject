@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -40,5 +42,14 @@ public class LikeServiceImpl implements LikeService {
 
             return true; // "liked"
         }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Set<Long> getLikedPlaceIdsByUser(User user) {
+        return likeRepository.findPlaceByUserId(user.getId())
+            .stream()
+            .map(Place::getId)
+            .collect(Collectors.toSet());
     }
 }
