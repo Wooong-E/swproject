@@ -27,7 +27,7 @@
 
         <section class="attractions-list">
             <div class="frame-14">
-                <article class="frame-15">
+                <article class="frame-15" data-place-id="101">
                     <a href="/restaurants/1" class="img-wrapper">
                         <button class="img-2" type="button" aria-label="맛집 1 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
@@ -38,7 +38,7 @@
                         <p class="text-wrapper-12">맛집 주소 1</p>
                     </div>
                 </article>
-                <article class="frame-17">
+                <article class="frame-17" data-place-id="102">
                     <a href="/restaurants/2" class="img-wrapper">
                         <button class="img-2" type="button" aria-label="맛집 2 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
@@ -51,7 +51,7 @@
                 </article>
             </div>
             <div class="frame-14">
-                <article class="frame-15">
+                <article class="frame-15" data-place-id="103">
                     <a href="/restaurants/3" class="img-wrapper">
                         <button class="img-2" type="button" aria-label="맛집 3 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
@@ -62,7 +62,7 @@
                         <p class="text-wrapper-12">맛집 주소 3</p>
                     </div>
                 </article>
-                <article class="frame-17">
+                <article class="frame-17" data-place-id="104">
                     <a href="/restaurants/4" class="img-wrapper">
                         <button class="img-2" type="button" aria-label="맛집 4 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
@@ -75,7 +75,7 @@
                 </article>
             </div>
             <div class="frame-14">
-                <article class="frame-15">
+                <article class="frame-15" data-place-id="105">
                     <a href="/restaurants/5" class="img-wrapper">
                         <button class="img-2" type="button" aria-label="맛집 5 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
@@ -86,7 +86,7 @@
                         <p class="text-wrapper-12">맛집 주소 5</p>
                     </div>
                 </article>
-                <article class="frame-17">
+                <article class="frame-17" data-place-id="106">
                     <a href="/restaurants/6" class="img-wrapper">
                         <button class="img-2" type="button" aria-label="맛집 6 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
@@ -104,6 +104,9 @@
 
     <div th:replace="~{/fragments/footer :: footerFragment}"></div>
 </div>
+<script th:inline="javascript">
+    var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
+</script>
 <script th:src="@{/js/restaurants.js}"></script>
 </body>
 </html>

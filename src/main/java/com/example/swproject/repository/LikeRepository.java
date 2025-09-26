@@ -42,7 +42,8 @@ public class LikeRepository {
 
   public void delete(Long userId, Long placeId){
     queryFactory.delete(like)
-        .where(like.place.id.eq(placeId), like.user.id.eq(userId));
+        .where(like.place.id.eq(placeId), like.user.id.eq(userId))
+        .execute();
   }
 
 }
