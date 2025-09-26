@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 <header th:fragment="headerFragment">
     <div class="header-top-bar">
@@ -43,7 +43,14 @@
             </button>
         </header>
         <section class="user-section">
-            <button class="login-button" type="button">로그인 및 회원가입</button>
+            <!-- 로그인하지 않은 상태 -->
+            <div sec:authorize="!isAuthenticated()">
+                <button class="login-button" type="button" onclick="location.href='/login'">로그인 및 회원가입</button>
+            </div>
+            <!-- 로그인한 상태 -->
+            <div sec:authorize="isAuthenticated()">
+                <p class="welcome-message"><span sec:authentication="principal.name"></span>님, 환영합니다!</p>
+            </div>
         </section>
         <nav class="overlap-group" role="navigation" aria-label="메인 메뉴">
             <ul class="frame" role="list">
