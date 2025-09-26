@@ -37,12 +37,22 @@ public class ReviewService {
         Place place = placeRepository.findById(placeId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid place Id:" + placeId));
 
+        Long order = reviewRepository.findPlaceMaxOrder(placeId);
+
+        if(order==null){
+            order=0L;
+        }
+        else{
+            order+=1;
+        }
+
         Review review = new Review();
         review.setTitle(title);
         review.setContent(content);
         review.setUser(user);
         review.setPlace(place);
         review.setGrade(0); // 별점 기능은 일단 0으로 고정
+        review.setOrder(order);
         Review savedReview = reviewRepository.save(review);
 
         if (images != null && !images.isEmpty()) {
@@ -75,15 +85,15 @@ public class ReviewService {
     }
 
     @Transactional(readOnly = true)
-    public Review findById(Long order) {
-        Long reviewOrder = reviewRepository.findPlaceMaxOrder(order);
-        return reviewRepository.(review)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid review Id:" + reviewId));
+    public Review findById(Long order,Long placeId) {
+        return reviewRepository.findReviewByPlaceIdAndOrder(placeId,order);
     }
 
     @Transactional(readOnly = true)
-    public List<String> findImageUrlsByReviewId(Long reviewId) {
-        return reviewsPostRepository.findByReviewId(reviewId).stream()
+    public List<String> findImageUrlsByReviewId(Long orderId,Long placeId) {
+        Review review = reviewRepository.findReviewByPlaceIdAndOrder(placeId, orderId);
+
+        return reviewsPostRepository.findByReviewsId(review.getId()).stream()
                 .map(ReviewsPost::getReviewsImageUrl)
                 .collect(Collectors.toList());
     }
