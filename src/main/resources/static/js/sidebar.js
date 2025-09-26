@@ -40,37 +40,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const likeButtons = document.querySelectorAll('.img-2');
-
-  likeButtons.forEach(button => {
-    button.addEventListener('click', (event) => {
-      event.stopPropagation(); // Stop the click from bubbling up to the <a> tag
-
-      // Check if user is logged in (for now, always prompt)
-      // In a real application, you would check a session variable or a token
-      const isLoggedIn = false; // Placeholder: replace with actual login check
-
-      if (!isLoggedIn) {
-        if (confirm("로그인 시 이용가능합니다. 로그인 페이지로 이동하시겠습니까?")) {
-          window.location.href = '/users/login';
-        }
-        return; // Stop further execution if not logged in
-      }
-
-      const img = button.querySelector('img');
-      const isLiked = img.src.includes('tabler_heart_filled.svg');
-
-      if (isLiked) {
-        img.src = '/images/tabler_heart.svg';
-        button.setAttribute('aria-pressed', 'false');
-        const attractionName = button.closest('.frame-15, .frame-17').querySelector('.text-wrapper-3').textContent;
-        button.setAttribute('aria-label', `${attractionName} 찜하기`);
-      } else {
-        img.src = '/images/tabler_heart_filled.svg';
-        button.setAttribute('aria-pressed', 'true');
-        const attractionName = button.closest('.frame-15, .frame-17').querySelector('.text-wrapper-3').textContent;
-        button.setAttribute('aria-label', `${attractionName} 찜 해제하기`);
-      }
-    });
-  });
 });

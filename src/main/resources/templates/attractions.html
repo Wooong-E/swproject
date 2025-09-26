@@ -8,6 +8,9 @@
     <link rel="stylesheet" th:href="@{/css/header.css}" />
     <link rel="stylesheet" th:href="@{/css/footer.css}" />
     <link rel="stylesheet" th:href="@{/css/attractions.css}" />
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
 <div class="screen">
@@ -27,9 +30,9 @@
 
         <section class="attractions-list">
             <div class="frame-14">
-                <article class="frame-15">
+                <article class="frame-15" data-place-id="1">
                     <a href="/attractions/1" class="img-wrapper">
-                        <button class="img-2" type="button" aria-label="@@@@ 찜하기">
+                        <button class="img-2" type="button" aria-label="남매지 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
                         </button>
                     </a>
@@ -38,9 +41,9 @@
                         <p class="text-wrapper-12">경상북도 경산시 동부동 643</p>
                     </div>
                 </article>
-                <article class="frame-15">
+                <article class="frame-15" data-place-id="2">
                     <a href="/attractions/2" class="img-wrapper">
-                        <button class="img-2" type="button" aria-label="@@@@ 찜하기">
+                        <button class="img-2" type="button" aria-label="경산 자연마당 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
                         </button>
                     </a>
@@ -51,33 +54,33 @@
                 </article>
             </div>
             <div class="frame-14">
-                <article class="frame-15">
+                <article class="frame-15" data-place-id="3">
                     <a href="/attractions/3" class="img-wrapper">
-                        <button class="img-2" type="button" aria-label="@@@@ 찜하기">
+                        <button class="img-2" type="button" aria-label="장소3 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
                         </button>
                     </a>
                     <div class="frame-16">
-                        <h3 class="text-wrapper-3">@@@@</h3>
-                        <p class="text-wrapper-12">@@@@@</p>
+                        <h3 class="text-wrapper-3">장소3</h3>
+                        <p class="text-wrapper-12">장소3 설명</p>
                     </div>
                 </article>
-                <article class="frame-17">
+                <article class="frame-17" data-place-id="4">
                     <a href="/attractions/4" class="img-wrapper">
-                        <button class="img-2" type="button" aria-label="@@@@ 찜하기">
+                        <button class="img-2" type="button" aria-label="장소4 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
                         </button>
                     </a>
                     <div class="frame-16">
-                        <h3 class="text-wrapper-3">@@@@</h3>
-                        <p class="text-wrapper-12">@@@@@</p>
+                        <h3 class="text-wrapper-3">장소4</h3>
+                        <p class="text-wrapper-12">장소4 설명</p>
                     </div>
                 </article>
             </div>
             <div class="frame-14">
-                <article class="frame-15">
+                <article class="frame-15" data-place-id="5">
                     <a href="/attractions/5" class="img-wrapper">
-                        <button class="img-2" type="button" aria-label="@@@@ 찜하기">
+                        <button class="img-2" type="button" aria-label="남매지 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
                         </button>
                     </a>
@@ -86,15 +89,15 @@
                         <p class="text-wrapper-12">경상북도 경산시 동부동 643</p>
                     </div>
                 </article>
-                <article class="frame-17">
+                <article class="frame-17" data-place-id="6">
                     <a href="/attractions/6" class="img-wrapper">
-                        <button class="img-2" type="button" aria-label="@@@@ 찜하기">
+                        <button class="img-2" type="button" aria-label="장소6 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
                         </button>
                     </a>
                     <div class="frame-16">
-                        <h3 class="text-wrapper-3">@@@@</h3>
-                        <p class="text-wrapper-12">@@@@@</p>
+                        <h3 class="text-wrapper-3">장소6</h3>
+                        <p class="text-wrapper-12">장소6 설명</p>
                     </div>
                 </article>
             </div>
@@ -104,6 +107,9 @@
 
     <div th:replace="~{/fragments/footer :: footerFragment}"></div>
 </div>
+<script th:inline="javascript">
+    var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
+</script>
 <script th:src="@{/js/attractions.js}"></script>
 </body>
 </html>

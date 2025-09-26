@@ -27,7 +27,7 @@
 
         <section class="attractions-list">
             <div class="frame-14">
-                <article class="frame-15">
+                <article class="frame-15" data-place-id="201">
                     <a href="/cafes/1" class="img-wrapper">
                         <button class="img-2" type="button" aria-label="카페 1 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
@@ -38,7 +38,7 @@
                         <p class="text-wrapper-12">카페 주소 1</p>
                     </div>
                 </article>
-                <article class="frame-17">
+                <article class="frame-17" data-place-id="202">
                     <a href="/cafes/2" class="img-wrapper">
                         <button class="img-2" type="button" aria-label="카페 2 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
@@ -51,7 +51,7 @@
                 </article>
             </div>
             <div class="frame-14">
-                <article class="frame-15">
+                <article class="frame-15" data-place-id="203">
                     <a href="/cafes/3" class="img-wrapper">
                         <button class="img-2" type="button" aria-label="카페 3 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
@@ -62,7 +62,7 @@
                         <p class="text-wrapper-12">카페 주소 3</p>
                     </div>
                 </article>
-                <article class="frame-17">
+                <article class="frame-17" data-place-id="204">
                     <a href="/cafes/4" class="img-wrapper">
                         <button class="img-2" type="button" aria-label="카페 4 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
@@ -75,7 +75,7 @@
                 </article>
             </div>
             <div class="frame-14">
-                <article class="frame-15">
+                <article class="frame-15" data-place-id="205">
                     <a href="/cafes/5" class="img-wrapper">
                         <button class="img-2" type="button" aria-label="카페 5 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
@@ -86,7 +86,7 @@
                         <p class="text-wrapper-12">카페 주소 5</p>
                     </div>
                 </article>
-                <article class="frame-17">
+                <article class="frame-17" data-place-id="206">
                     <a href="/cafes/6" class="img-wrapper">
                         <button class="img-2" type="button" aria-label="카페 6 찜하기">
                             <img src="/images/tabler_heart.svg" alt="" />
@@ -104,6 +104,9 @@
 
     <div th:replace="~{/fragments/footer :: footerFragment}"></div>
 </div>
+<script th:inline="javascript">
+    var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
+</script>
 <script th:src="@{/js/cafes.js}"></script>
 </body>
 </html>
