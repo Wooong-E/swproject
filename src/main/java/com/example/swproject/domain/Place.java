@@ -29,4 +29,9 @@ public class Place {
   @Column(name = "address", nullable = false)
   private String address;
 
+  @Size(max = 255)
+  @NotNull
+  @Column(name = "category", nullable = false)
+  private String category;
+
 }
