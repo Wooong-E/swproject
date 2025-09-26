@@ -12,22 +12,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class PageController {
 
-
-    @GetMapping("/attractions")
-    public String showAttractionsPage(Model model) {
+    private void addLoginStatusToModel(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isLoggedIn = authentication != null && authentication.isAuthenticated() && !(authentication instanceof AnonymousAuthenticationToken);
         model.addAttribute("isLoggedIn", isLoggedIn);
+    }
+
+    @GetMapping("/attractions")
+    public String showAttractionsPage(Model model) {
+        addLoginStatusToModel(model);
         return "attractions";
     }
 
     @GetMapping("/restaurants")
-    public String showRestaurantsPage() {
+    public String showRestaurantsPage(Model model) {
+        addLoginStatusToModel(model);
         return "restaurants";
     }
 
     @GetMapping("/cafes")
-    public String showCafesPage() {
+    public String showCafesPage(Model model) {
+        addLoginStatusToModel(model);
         return "cafes";
     }
 

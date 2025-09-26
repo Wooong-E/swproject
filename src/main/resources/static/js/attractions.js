@@ -21,11 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();   // a 태그 이동 막기
       event.stopPropagation();  // 부모 a 이벤트 전파 막기
 
-      // Placeholder: replace with actual login check
-      //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-      // const isLoggedIn = false; // 로그인 기록을 가져와서 로그인 했냐 안했냐를 통해서 bool 값 반환하게끔...
-
-      if (!isLoggedIn) {
+      if (!window.isLoggedIn) {
         if (confirm("로그인 시 이용가능합니다. 로그인 페이지로 이동하시겠습니까?")) {
           window.location.href = '/users/login';
         }
@@ -34,11 +30,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
       console.log("찜하기 버튼 클릭됨!");
 
-      // 예: 찜하기 상태 토글 (UI 변화)
-      button.classList.toggle("active");
+      // 장소 ID 가져오기 (HTML에서 data-place-id 속성으로 설정해야 함)
+      const placeId = button.closest('.frame-15, .frame-17').getAttribute('data-place-id');
+      
+      if (!placeId) {
+        console.error('장소 ID를 찾을 수 없습니다.');
+        return;
+      }
 
-      // TODO: 여기서 서버로 요청 보내거나 상태 저장 로직 추가 가능
-      // fetch('/wishlist', { method: 'POST', body: JSON.stringify({ id: 5 }) })
+      // 서버에 찜하기 토글 요청
+      fetch(`/api/likes/${placeId}/toggle`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('서버 응답 오류: ' + response.status);
+        }
+        return response.json();
+      })
+      .then(data => {
+        // 서버 응답에 따라 UI 업데이트
+        const img = button.querySelector('img');
+        const attractionName = button.closest('.frame-15, .frame-17').querySelector('.text-wrapper-3').textContent;
+        
+        if (data.liked) {
+          img.src = '/images/tabler_heart_filled.svg';
+          button.setAttribute('aria-pressed', 'true');
+          button.setAttribute('aria-label', `${attractionName} 찜 해제하기`);
+        } else {
+          img.src = '/images/tabler_heart.svg';
+          button.setAttribute('aria-pressed', 'false');
+          button.setAttribute('aria-label', `${attractionName} 찜하기`);
+        }
+        
+        console.log('찜하기 상태 업데이트:', data.liked);
+      })
+      .catch(error => {
+        console.error('찜하기 요청 실패:', error);
+        alert('찜하기 기능에 오류가 발생했습니다. 다시 시도해주세요.');
+      });
     });
   });
 });
