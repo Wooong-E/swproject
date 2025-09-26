@@ -42,4 +42,15 @@ public class ReviewRepository {
         .where(review.place.id.eq(placesId))
         .fetchOne();
   }
+
+  public Long findPlaceMaxOrder(Long placesId){
+    return queryFactory.select(review.order.max())
+        .from(review)
+        .where(place.id.eq(placesId))
+        .fetchOne();
+  }
+
+  public List<Review> findReviewByPlaceId(Long placeId) {
+    return reviewRepository.findReviewByPlaceId(placeId);
+  }
 }
