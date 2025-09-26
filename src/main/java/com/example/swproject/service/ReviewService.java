@@ -71,12 +71,13 @@ public class ReviewService {
 
     @Transactional(readOnly = true)
     public List<Review> getReviewsByPlaceId(Long placeId) {
-        return reviewRepository.findByPlaceId(placeId);
+        return reviewRepository.findReviewByPlaceId(placeId);
     }
 
     @Transactional(readOnly = true)
-    public Review findById(Long reviewId) {
-        return reviewRepository.findById(reviewId)
+    public Review findById(Long order) {
+        Long reviewOrder = reviewRepository.findPlaceMaxOrder(order);
+        return reviewRepository.(review)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid review Id:" + reviewId));
     }
 
