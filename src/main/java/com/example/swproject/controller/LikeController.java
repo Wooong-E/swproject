@@ -24,10 +24,14 @@ public class LikeController {
 
     @PostMapping("/{placeId}/toggle")
     public ResponseEntity<?> toggleLike(@PathVariable Long placeId, @AuthenticationPrincipal User user) {
+        System.out.println("성공");
         if (user == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
         }
         boolean isLiked = likeService.toggleLike(placeId, user);
+
+        System.out.println("isLiked="+isLiked);
+
         return ResponseEntity.ok(Map.of("liked", isLiked));
     }
 }

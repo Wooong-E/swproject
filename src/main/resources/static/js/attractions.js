@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================
   const categoryButtons = document.querySelectorAll('.category-button');
 
+
   categoryButtons.forEach(button => {
     button.addEventListener('click', () => {
       categoryButtons.forEach(btn => btn.classList.remove('active'));
@@ -15,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // 찜하기 버튼 기능
   // =========================
   const heartButtons = document.querySelectorAll('.img-2');
+  const token = document.querySelector("meta[name='_csrf']").getAttribute("content");
+  const header = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
 
   heartButtons.forEach(button => {
     button.addEventListener('click', (event) => {
@@ -42,7 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch(`/api/likes/${placeId}/toggle`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          [header]: token  // CSRF 토큰을 헤더에 추가
         }
       })
       .then(response => {
