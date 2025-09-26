@@ -30,12 +30,14 @@ public class LikeServiceImpl implements LikeService {
 
         if (existingLike.isPresent()) {
             likeRepository.delete(user.getId(), placeId);
+            System.out.println("delete 호출완료");
             return false; // "unliked"
         } else {
             Like newLike = new Like();
             newLike.setUser(user);
             newLike.setPlace(place);
             likeRepository.save(newLike);
+            System.out.println("save 호출완료");
             return true; // "liked"
         }
     }
