@@ -7,10 +7,12 @@
     <link rel="stylesheet" th:href="@{/css/global.css}" />
     <link rel="stylesheet" th:href="@{/css/cafe-detail.css}" />
     <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
     <div class="screen">
-        <main class="attraction-detail-main">
+        <main class="attraction-detail-main" data-place-id="14">
             <div th:replace="~{/fragments/header-back :: headerBackFragment}"></div>
 
             <!-- Main Image -->
@@ -22,8 +24,8 @@
             <section class="info-section">
                 <div class="title-heart-wrapper">
                     <h2 class="attraction-title">빈티지 다방</h2>
-                    <button class="heart-button" onclick="toggleHeart()">
-                        <img id="heartIcon" src="/images/tabler_heart_filled.svg" alt="찜하기" />
+                    <button id="likeButton" class="heart-button" type="button" aria-label="빈티지 다방 찜하기">
+                        <img id="heartIcon" src="/images/tabler_heart.svg" alt="" />
                     </button>
                 </div>
                 <p class="attraction-description">레트로 감성이 가득한 아늑한 다방입니다. 직접 로스팅한 원두로 내린 핸드드립 커피와 전통차를 맛볼 수 있습니다. 조용히 책 읽기 좋은 곳입니다.</p>
@@ -93,6 +95,9 @@
         <!-- Footer -->
         <div th:replace="~{/fragments/footer :: footerFragment}"></div>
     </div>
-    <script th:src="@{/js/attraction-detail.js}"></script>
+    <script th:inline="javascript">
+        var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
+    </script>
+    <script th:src="@{/js/place-detail.js}"></script>
 </body>
 </html>

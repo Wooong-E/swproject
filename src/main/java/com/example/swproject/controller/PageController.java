@@ -38,6 +38,7 @@ public class PageController {
 
     @GetMapping("/attractions/{id}")
     public String showAttractionDetail(@PathVariable Long id, Model model) {
+        addLoginStatusToModel(model);
         if (id == 1L) {
             return "attraction-detail-1";
         } else if (id == 2L) {
@@ -56,6 +57,7 @@ public class PageController {
 
     @GetMapping("/restaurants/{id}")
     public String showRestaurantDetail(@PathVariable Long id, Model model) {
+        addLoginStatusToModel(model);
         if (id == 1L) {
             return "restaurant-detail-1";
         } else if (id == 2L) {
@@ -74,6 +76,7 @@ public class PageController {
 
     @GetMapping("/cafes/{id}")
     public String showCafeDetail(@PathVariable Long id, Model model) {
+        addLoginStatusToModel(model);
         if (id == 1L) {
             return "cafe-detail-1";
         } else if (id == 2L) {
