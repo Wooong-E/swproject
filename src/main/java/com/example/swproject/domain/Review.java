@@ -39,4 +39,8 @@ public class Review {
   @Column(name = "grade", nullable = false)
   private Integer grade;
 
+  @NotNull
+  @Column(name="order", nullable = false)
+  private Long order;
+
 }
