@@ -53,4 +53,11 @@ public class ReviewRepository {
   public List<Review> findReviewByPlaceId(Long placeId) {
     return reviewRepository.findReviewByPlaceId(placeId);
   }
+
+  public Review findReviewByPlaceIdAndOrder(Long placeId, Long order){
+    return queryFactory.select(review)
+        .from(review)
+        .where(review.place.id.eq(placeId), review.order.eq(order))
+        .fetchOne();
+  }
 }
