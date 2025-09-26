@@ -35,4 +35,11 @@ public class ReviewRepository {
         .where(place.name.eq(placeName))
         .fetch();
   }
+
+  public Double findAvgGrade(Long placesId){
+    return queryFactory.select(review.grade.avg())
+        .from(review)
+        .where(review.place.id.eq(placesId))
+        .fetchOne();
+  }
 }
