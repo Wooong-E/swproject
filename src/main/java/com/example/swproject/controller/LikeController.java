@@ -1,5 +1,6 @@
 package com.example.swproject.controller;
 
+import com.example.swproject.domain.Place;
 import com.example.swproject.domain.User;
 import com.example.swproject.service.LikeService;
 import org.springframework.http.HttpStatus;
@@ -7,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -38,5 +40,14 @@ public class LikeController {
         }
         Set<Long> likedPlaceIds = likeService.getLikedPlaceIdsByUser(user);
         return ResponseEntity.ok(likedPlaceIds);
+    }
+
+    @GetMapping("/categorized")
+    public ResponseEntity<Map<String, List<Place>>> getLikedPlacesCategorized(@AuthenticationPrincipal User user) {
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        Map<String, List<Place>> categorizedLikes = likeService.getLikedPlacesCategorized(user);
+        return ResponseEntity.ok(categorizedLikes);
     }
 }
