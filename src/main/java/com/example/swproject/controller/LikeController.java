@@ -5,12 +5,10 @@ import com.example.swproject.service.LikeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/likes")
@@ -30,5 +28,15 @@ public class LikeController {
         boolean isLiked = likeService.toggleLike(placeId, user);
 
         return ResponseEntity.ok(Map.of("liked", isLiked));
+    }
+
+    @GetMapping("/mine")
+    public ResponseEntity<?> getMyLikes(@AuthenticationPrincipal User user) {
+        if (user == null) {
+            // 비로그인 사용자를 위해 빈 목록 반환
+            return ResponseEntity.ok(Set.of());
+        }
+        Set<Long> likedPlaceIds = likeService.getLikedPlaceIdsByUser(user);
+        return ResponseEntity.ok(likedPlaceIds);
     }
 }
