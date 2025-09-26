@@ -16,6 +16,20 @@ public class PageController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isLoggedIn = authentication != null && authentication.isAuthenticated() && !(authentication instanceof AnonymousAuthenticationToken);
         model.addAttribute("isLoggedIn", isLoggedIn);
+        if (isLoggedIn) {
+            Object principal = authentication.getPrincipal();
+            if (principal instanceof com.example.swproject.domain.User) {
+                model.addAttribute("userName", ((com.example.swproject.domain.User) principal).getName());
+            } else {
+                model.addAttribute("userName", authentication.getName()); // fallback
+            }
+        }
+    }
+
+    @GetMapping("/")
+    public String showIndexPage(Model model) {
+        addLoginStatusToModel(model);
+        return "index";
     }
 
     @GetMapping("/attractions")
@@ -94,7 +108,8 @@ public class PageController {
     }
 
     @GetMapping("/suggest")
-    public String showSuggestPage() {
+    public String showSuggestPage(Model model) {
+        addLoginStatusToModel(model);
         return "suggest";
     }
 
