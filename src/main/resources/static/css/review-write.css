@@ -1,0 +1,175 @@
+/* --- Base & Layout --- */
+body {
+    font-family: 'Inter', sans-serif; /* Assuming Inter is the project font */
+}
+
+main {
+    width: 100%;
+    padding: 0 18px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+.review-write-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Place Name --- */
+.place-name {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    width: auto; /* Let it be flexible */
+    height: 42px; /* As per request, maybe line-height is better */
+    line-height: 42px;
+}
+
+/* --- Form Sections --- */
+.form-section {
+    margin-top: 24px;
+}
+
+.form-section > label {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* --- Title Input --- */
+#review-title {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-bottom: 1px solid #D9D9D9;
+    font-size: 16px;
+    padding: 0 5px;
+    background-color: transparent;
+}
+#review-title::placeholder {
+    color: #BDBDBD;
+}
+
+/* --- Star Rating --- */
+.star-rating-container {
+    display: flex;
+}
+.star-rating-container .star-image {
+    width: 30px; /* Adjust size as needed */
+    height: 30px;
+    cursor: pointer;
+}
+
+/* --- Photo Attachment --- */
+.photo-attachment-container {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto; /* Horizontal scroll */
+    padding: 5px 0;
+}
+
+.photo-upload-button, .photo-preview {
+    width: 105px;
+    height: 105px;
+    flex-shrink: 0; /* Prevent shrinking */
+    border-radius: 8px;
+}
+
+.photo-upload-button {
+    background-color: #F1F1F1;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-preview {
+    position: relative;
+}
+
+.photo-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.photo-preview .remove-photo-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* --- Review Content --- */
+#review-content {
+    width: 100%;
+    height: 120px;
+    border: none; /* Remove all borders */
+    border-bottom: 1px solid #D9D9D9; /* Add only bottom border */
+    border-radius: 0; /* Remove border-radius */
+    padding: 10px 5px;
+    resize: vertical;
+    font-size: 14px;
+    background-color: transparent;
+}
+
+/* --- Hashtag Selection --- */
+.hashtag-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.hashtag-button {
+    padding: 8px 16px;
+    border: 1px solid #E0E0E0;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.hashtag-button.selected {
+    background-color: #515151;
+    color: white;
+    border-color: #515151;
+}
+
+/* --- Submit Button --- */
+.submit-button-container {
+    margin-top: 40px;
+    margin-bottom: 40px; /* Space at the end */
+}
+
+#submit-review-button {
+    width: 100%;
+    height: 50px;
+    border-radius: 25px; /* Elliptical */
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#submit-review-button:disabled {
+    background-color: #F1F1F1; /* 연한 색 */
+    color: #BDBDBD;
+    cursor: not-allowed;
+}
+
+#submit-review-button:enabled {
+    background-color: #515151;
+    color: white;
+}
