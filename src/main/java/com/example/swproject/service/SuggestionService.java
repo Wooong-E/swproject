@@ -33,7 +33,7 @@ public class SuggestionService {
     }
 
     @Transactional
-    public void sendSuggestion(String placeName, String address, String placeType, List<MultipartFile> images, User user) {
+    public void sendSuggestion(String placeName, String address, String placeType, String detailCategory, String atmosphere, String features, List<MultipartFile> images, User user) {
         List<String> storedFileNames = new ArrayList<>();
         try {
             // 1. 이미지 파일 영구 저장
@@ -61,15 +61,27 @@ public class SuggestionService {
             helper.setSubject(subject);
 
             // 2-2. 이메일 본문 생성
-            String emailContent = "<h1>장소 제보 내용</h1>"
-                + "<hr>"
-                + "<p><b>제보자:</b> " + user.getName() + " (" + user.getUsername() + ")</p>"
-                + "<p><b>회신할 이메일:</b> " + user.getEmail() + "</p>"
-                + "<hr>"
-                + "<p><b>장소 이름:</b> " + placeName + "</p>"
-                + "<p><b>주소:</b> " + address + "</p>"
-                + "<p><b>장소 유형:</b> " + placeType + "</p>";
-            helper.setText(emailContent, true);
+            StringBuilder emailContent = new StringBuilder();
+            emailContent.append("<h1>장소 제보 내용</h1>");
+            emailContent.append("<hr>");
+            emailContent.append("<p><b>제보자:</b> ").append(user.getName()).append(" (").append(user.getUsername()).append(")</p>");
+            emailContent.append("<p><b>회신할 이메일:</b> ").append(user.getEmail()).append("</p>");
+            emailContent.append("<hr>");
+            emailContent.append("<p><b>장소 이름:</b> ").append(placeName).append("</p>");
+            emailContent.append("<p><b>주소:</b> ").append(address).append("</p>");
+            emailContent.append("<p><b>장소 유형:</b> ").append(placeType).append("</p>");
+
+            if (detailCategory != null && !detailCategory.isBlank()) {
+                emailContent.append("<p><b>세부 카테고리:</b> ").append(detailCategory).append("</p>");
+            }
+            if (atmosphere != null && !atmosphere.isBlank()) {
+                emailContent.append("<p><b>분위기:</b> ").append(atmosphere).append("</p>");
+            }
+            if (features != null && !features.isBlank()) {
+                emailContent.append("<p><b>특이사항:</b> ").append(features).append("</p>");
+            }
+
+            helper.setText(emailContent.toString(), true);
 
             // 3. 저장된 이미지 파일을 이메일에 첨부
             for (String storedFileName : storedFileNames) {
