@@ -43,4 +43,13 @@ public class Review {
   @Column(name = "`order`", nullable = false) // 실행 안돼서 중간에 '' 표시 넣었음 뺄거면 뺴도 됨 - 상범
   private Long order;
 
+  @Size(max = 255)
+  @Column(name = "fhash")
+  private String fhash;
+
+  @Size(max = 255)
+  @Column(name = "shash")
+  private String shash;
+
+
 }
