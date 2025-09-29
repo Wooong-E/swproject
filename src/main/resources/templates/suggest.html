@@ -7,6 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/global.css}" />
     <link rel="stylesheet" th:href="@{/css/footer.css}" />
     <link rel="stylesheet" th:href="@{/css/suggest.css}" />
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 <div class="screen">
@@ -19,7 +20,10 @@
 
             <section class="form-section">
                 <h3 class="section-title">주소 입력하기</h3>
-                <button type="button" class="search-address-button">장소 검색하기</button>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <input type="text" id="address-input" name="address" class="title-input" placeholder="주소를 검색하세요" readonly style="flex-grow: 1; min-width: 0;">
+                    <button type="button" id="search-address-button" class="search-address-button" style="width: auto; flex-shrink: 0;">주소 검색</button>
+                </div>
             </section>
 
             <section class="form-section">
