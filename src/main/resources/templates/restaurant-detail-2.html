@@ -5,28 +5,33 @@
     <meta charset="utf-8" />
     <title>이탈리안 비스트로 상세</title>
     <link rel="stylesheet" th:href="@{/css/global.css}" />
-    <link rel="stylesheet" th:href="@{/css/restaurant-detail.css}" />
+    <link rel="stylesheet" th:href="@{/css/place-detail.css}" />
     <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
     <div class="screen">
-        <main class="attraction-detail-main">
+        <main class="attraction-detail-main" data-place-id="8">
             <div th:replace="~{/fragments/header-back :: headerBackFragment}"></div>
 
             <!-- Main Image -->
             <div class="main-image-container">
-                <img src="/images/restaurant_italian.jpg" alt="맛집 이미지" class="attraction-main-image" />
+                <img src="/images/restaurants/restaurant_2.jpg" alt="맛집 이미지" class="attraction-main-image" />
             </div>
 
             <!-- Title, Description, Heart Button -->
             <section class="info-section">
                 <div class="title-heart-wrapper">
-                    <h2 class="attraction-title">이탈리안 비스트로</h2>
+                    <h2 class="attraction-title">자인식육식당</h2>
                     <button class="heart-button" onclick="toggleHeart()">
                         <img id="heartIcon" src="/images/tabler_heart_filled.svg" alt="찜하기" />
                     </button>
                 </div>
-                <p class="attraction-description">현대적인 분위기에서 즐기는 정통 이탈리안 요리. 신선한 해산물 파스타와 화덕 피자가 인기 메뉴입니다. 데이트 코스로 추천합니다.</p>
+                <p class="attraction-description">
+                    돌판에 직접 한우를 구우며 먹을 수 있고, 느끼한 차돌박이의 맛을 로스구이가 같이 잡아준다.
+                    육회 및 뭉티기 또한 신선도가 뛰어나며, 후식으로는 돌판된장과 볶음밥  모두 인기가 많으며, 그중에서도 돌판된장은 메인메뉴만큼 인기가 상당하다.
+                </p>
             </section>
 
             <!-- Menu Section -->
@@ -34,22 +39,63 @@
                 <h3 class="menu-title">메뉴</h3>
                 <div class="menu-carousel">
                     <div class="menu-card">
-                        <img src="/images/menu_pasta.jpg" alt="메뉴 이미지" class="menu-image" />
-                        <h4 class="menu-name">크림 파스타</h4>
-                        <p class="menu-price">15,000원</p>
+                        <img src="/images/restaurants/restaurant_2/menu_1.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">로스구이(100g)</h4>
+                        <p class="menu-price">13,000원</p>
                     </div>
                     <div class="menu-card">
-                        <img src="/images/menu_pizza.jpg" alt="메뉴 이미지" class="menu-image" />
-                        <h4 class="menu-name">마르게리따 피자</h4>
+                        <img src="/images/restaurants/restaurant_2/menu_2.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">스페샬(100g)</h4>
+                        <p class="menu-price">25,000원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_2/menu_3.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">뭉티기(100g)</h4>
                         <p class="menu-price">18,000원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_2/menu_4.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">갈비살(100g)</h4>
+                        <p class="menu-price">18,000원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_2/menu_5.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">차돌박기(100g)</h4>
+                        <p class="menu-price">16,000원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_2/menu_6.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">육회(大)</h4>
+                        <p class="menu-price">38,000원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_2/menu_7.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">돌판된장</h4>
+                        <p class="menu-price">2,000원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_2/menu_8.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">육회비빔밥</h4>
+                        <p class="menu-price">8,000원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_2/menu_9.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">돌판볶음밥</h4>
+                        <p class="menu-price">2,000원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_2/menu_10.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">공기밥</h4>
+                        <p class="menu-price">1,000원</p>
                     </div>
                 </div>
             </section>
 
             <!-- Address and Transportation -->
             <section class="details-section">
-                <p class="detail-item"><strong>주소</strong> <span>경상북도 경산시 중앙로 456</span></p>
-                <p class="detail-item"><strong>교통</strong> <span>지하철역 도보 10분, 발렛 파킹 가능</span></p>
+                <p class="detail-item"><strong>주소</strong> <span>경북 경산시 자인면 일연로 56</span></p>
+                <p class="detail-item"><strong>전화번호</strong> <span>053-856-2158</span></p>
+                <p class="detail-item"><strong>운영시간</strong> <span>11:00 - 21:00(명절 3일 휴무)</span></p>
             </section>
 
             <!-- Reviews Section -->
@@ -93,6 +139,9 @@
         <!-- Footer -->
         <div th:replace="~{/fragments/footer :: footerFragment}"></div>
     </div>
+    <script th:inline="javascript">
+        var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
+    </script>
     <script th:src="@{/js/attraction-detail.js}"></script>
 </body>
 </html>

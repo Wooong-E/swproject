@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface SDJpaReviewRepository extends JpaRepository<Review, Long> {
 
-  List<Review> findReviewByPlaceName(String placeName);
   List<Review> findReviewByPlaceId(Long placeId);
 }
