@@ -52,7 +52,11 @@ public class ReviewRepository {
   }
 
   public List<Review> findReviewByPlaceId(Long placeId) {
-    return reviewRepository.findReviewByPlaceId(placeId);
+    return queryFactory.select(review)
+        .from(review)
+        .where(review.place.id.eq(placeId))
+        .orderBy(review.order.asc())
+        .fetch();
   }
 
   public Review findReviewByPlaceIdAndOrder(Long placeId, Long order){
