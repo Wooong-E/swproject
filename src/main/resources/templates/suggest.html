@@ -8,6 +8,8 @@
     <link rel="stylesheet" th:href="@{/css/footer.css}" />
     <link rel="stylesheet" th:href="@{/css/suggest.css}" />
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
 <div class="screen">
@@ -17,6 +19,7 @@
         <h2 class="main-title">장소 제보하기</h2>
 
         <form id="suggest-form" action="/suggest" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="placeType" name="placeType" value="">
 
             <section class="form-section">
                 <h3 class="section-title">주소 입력하기</h3>
@@ -41,6 +44,8 @@
                     <button type="button" class="choice-button" data-type="cafe">카페</button>
                 </div>
             </section>
+
+
 
             <section id="category-section" class="form-section hidden">
                 <h3 class="section-title">카테고리를 알려주세요</h3>

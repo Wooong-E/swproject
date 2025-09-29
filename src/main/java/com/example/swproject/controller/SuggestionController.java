@@ -29,6 +29,9 @@ public class SuggestionController {
     public ResponseEntity<String> submitSuggestion(@RequestParam("placeName") String placeName,
                                                    @RequestParam("address") String address,
                                                    @RequestParam("placeType") String placeType,
+                                                   @RequestParam(name = "detailCategory", required = false) String detailCategory,
+                                                   @RequestParam(name = "atmosphere", required = false) String atmosphere,
+                                                   @RequestParam(name = "features", required = false) String features,
                                                    @RequestParam(value = "images", required = false) List<MultipartFile> images,
                                                    @AuthenticationPrincipal User user) {
         // 1. 비로그인 사용자 차단
@@ -38,7 +41,7 @@ public class SuggestionController {
 
         try {
             // 2. 서비스 호출
-            suggestionService.sendSuggestion(placeName, address, placeType, images, user);
+            suggestionService.sendSuggestion(placeName, address, placeType, detailCategory, atmosphere, features, images, user);
             // 3. 성공 응답 반환
             return new ResponseEntity<>("장소가 성공적으로 제보되었습니다.", HttpStatus.OK);
         } catch (Exception e) {
