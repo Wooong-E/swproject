@@ -83,6 +83,11 @@ header[th\:fragment="headerFragment"] {
     border-radius: 8px;
 }
 
+#main-top-nav .text-wrapper-10.active {
+    border-bottom: 1px solid #000;
+    font-weight: 700;
+}
+
 
 /* --- Sidebar Styles (AI-Generated Design Adaptation) --- */
 

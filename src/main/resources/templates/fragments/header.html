@@ -11,21 +11,16 @@
     <nav>
         <ul id="main-top-nav" role="list">
             <li class="div-wrapper">
-                <a href="/attractions" class="text-wrapper-10">명소</a>
+                <a href="/attractions" class="text-wrapper-10" th:classappend="${currentPage == 'attractions'} ? 'active' : ''">명소</a>
             </li>
             <li class="frame-8">
-                <a href="/restaurants" class="text-wrapper-10">맛집</a>
+                <a href="/restaurants" class="text-wrapper-10" th:classappend="${currentPage == 'restaurants'} ? 'active' : ''">맛집</a>
             </li>
             <li class="frame-9">
-                <a href="/cafes" class="text-wrapper-10">카페</a>
+                <a href="/cafes" class="text-wrapper-10" th:classappend="${currentPage == 'cafes'} ? 'active' : ''">카페</a>
             </li>
             <li class="frame-10">
-                <a
-                    href="임시_course/course01.html"
-                    class="text-wrapper-10"
-                    type="button"
-                >코스짜기</a
-                >
+                <a id="course-planning-link" href="/courses/course00" class="text-wrapper-10" th:classappend="${currentPage == 'courses'} ? 'active' : ''" type="button">코스짜기</a>
             </li>
             <li class="frame-11">
                 <button class="text-wrapper-10" type="button">월간매거진</button>
@@ -62,7 +57,9 @@
             </ul>
         </nav>
     </aside>
-    <!-- 사이드바 끝 -->
+    <script th:inline="javascript">
+        var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
+    </script>
     <script src="/js/sidebar.js"></script>
 </header>
 </body>

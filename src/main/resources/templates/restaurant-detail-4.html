@@ -24,7 +24,7 @@
             <section class="info-section">
                 <div class="title-heart-wrapper">
                     <h2 class="attraction-title">장군제육</h2>
-                    <button class="heart-button" onclick="toggleHeart()">
+                    <button id="likeButton" class="heart-button" type="button" aria-label="찜하기">
                         <img id="heartIcon" src="/images/tabler_heart.svg" alt="찜하기" />
                     </button>
                 </div>
@@ -111,6 +111,6 @@
     <script th:inline="javascript">
         var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
     </script>
-    <script th:src="@{/js/attraction-detail.js}"></script>
+    <script th:src="@{/js/place-detail.js}"></script>
 </body>
 </html>

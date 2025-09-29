@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ro:D - 코스짜기 STEP 4</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <link rel="stylesheet" th:href="@{/css/header-courses.css}"/>
+    <link rel="stylesheet" th:href="@{/css/footer.css}"/>
+    <link rel="stylesheet" th:href="@{/css/course04.css}"/>
+    <link rel="stylesheet" th:href="@{/css/place-detail.css}"/>
+
+    <!-- flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+</head>
+<body>
+    <div class="screen">
+        <div th:replace="~{/fragments/header-course :: headerCourseFragment}"></div>
+
+        <main>
+            <div class="progress-bar-container">
+                <div class="progress-bar-inner"></div>
+            </div>
+
+            <div class="content-wrapper">
+                <p class="step-text">STEP4</p>
+                <h1 class="prompt-text">오래 머무시나요?</h1>
+                <p class="sub-prompt-text">경산에서 재밌게 보낼 시간을 정해주세요</p>
+            </div>
+
+            <!-- Date Selection -->
+            <div class="date-selection-group">
+                <p class="date-label">가는 날</p>
+                <div class="date-input-container">
+                    <input type="text" id="start-date-input" class="date-input" placeholder="날짜를 선택해주세요" readonly>
+                    <button id="start-date-button" class="calendar-button">
+                        <img src="/images/calendar.png" alt="달력 열기">
+                    </button>
+                </div>
+            </div>
+
+            <div class="date-selection-group">
+                <p class="date-label">오는 날</p>
+                <div class="date-input-container">
+                    <input type="text" id="end-date-input" class="date-input" placeholder="날짜를 선택해주세요" readonly>
+                    <button id="end-date-button" class="calendar-button">
+                        <img src="/images/calendar.png" alt="달력 열기">
+                    </button>
+                </div>
+            </div>
+
+            <div class="main-next-button-container">
+                <button type="button" id="main-selection-complete-button" disabled>선택 완료</button>
+            </div>
+        </main>
+
+        <div th:replace="~{/fragments/footer :: footerFragment}"></div>
+    </div>
+
+    <!-- Calendar Pop-up -->
+    <div id="calendar-popup" class="calendar-popup">
+        <h2 id="popup-header" class="popup-header"></h2>
+        <div id="calendar-container" class="calendar-container"></div>
+        <button id="popup-confirm-button" class="popup-confirm-button" disabled>선택 완료</button>
+    </div>
+
+    <!-- flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Custom JS -->
+    <script th:src="@{/js/course04.js}"></script>
+</body>
+</html>
