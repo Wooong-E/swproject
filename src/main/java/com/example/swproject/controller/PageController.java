@@ -43,18 +43,21 @@ public class PageController {
     @GetMapping("/attractions")
     public String showAttractionsPage(Model model) {
         addLoginStatusToModel(model);
+        model.addAttribute("currentPage", "attractions");
         return "attractions";
     }
 
     @GetMapping("/restaurants")
     public String showRestaurantsPage(Model model) {
         addLoginStatusToModel(model);
+        model.addAttribute("currentPage", "restaurants");
         return "restaurants";
     }
 
     @GetMapping("/cafes")
     public String showCafesPage(Model model) {
         addLoginStatusToModel(model);
+        model.addAttribute("currentPage", "cafes");
         return "cafes";
     }
 
