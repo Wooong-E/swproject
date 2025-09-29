@@ -87,6 +87,13 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
   border-radius: 8px;
 }
 
+.place-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
 .img-2 {
   position: absolute;
   width: 24px;
