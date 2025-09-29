@@ -127,4 +127,24 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('"장소 제보하기" 버튼이 클릭되었습니다. 실제 서버 전송 로직은 여기에 구현해야 합니다.');
         // Logic to gather all selected data and submit via fetch would go here
     });
+
+    // --- 카카오 주소 검색 API 연동 ---
+    const searchAddressButton = document.getElementById('search-address-button');
+    const addressInput = document.getElementById('address-input');
+
+    if (searchAddressButton) {
+        searchAddressButton.addEventListener('click', () => {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+                    let roadAddr = data.roadAddress; // 도로명 주소 변수
+
+                    // 도로명 주소를 해당 필드에 넣는다.
+                    if(addressInput){
+                        addressInput.value = roadAddr;
+                    }
+                }
+            }).open();
+        });
+    }
 });
