@@ -8,6 +8,8 @@
     <link rel="stylesheet" th:href="@{/css/header.css}" />
     <link rel="stylesheet" th:href="@{/css/footer.css}" />
     <link rel="stylesheet" th:href="@{/css/cafes.css}" />
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
 <div class="screen">
@@ -107,6 +109,6 @@
 <script th:inline="javascript">
     var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
 </script>
-<script th:src="@{/js/cafes.js}"></script>
+<script th:src="@{/js/attractions.js}"></script>
 </body>
 </html>

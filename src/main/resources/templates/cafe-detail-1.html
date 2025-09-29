@@ -5,12 +5,14 @@
     <meta charset="utf-8" />
     <title>모던 브루 상세</title>
     <link rel="stylesheet" th:href="@{/css/global.css}" />
-    <link rel="stylesheet" th:href="@{/css/cafe-detail.css}" />
+    <link rel="stylesheet" th:href="@{/css/place-detail.css}" />
     <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
     <div class="screen">
-        <main class="attraction-detail-main">
+        <main class="attraction-detail-main" data-place-id="13">
             <div th:replace="~{/fragments/header-back :: headerBackFragment}"></div>
 
             <!-- Main Image -->
@@ -22,8 +24,8 @@
             <section class="info-section">
                 <div class="title-heart-wrapper">
                     <h2 class="attraction-title">모던 브루</h2>
-                    <button class="heart-button" onclick="toggleHeart()">
-                        <img id="heartIcon" src="/images/tabler_heart.svg" alt="찜하기" />
+                    <button id="likeButton" class="heart-button" type="button" aria-label="모던 브루 찜하기">
+                        <img id="heartIcon" src="/images/tabler_heart.svg" alt="" />
                     </button>
                 </div>
                 <p class="attraction-description">현대적인 인테리어와 고품질 원두로 내린 커피를 즐길 수 있는 카페입니다. 다양한 디저트와 함께 편안한 시간을 보내세요. 스터디나 작업하기에도 좋습니다.</p>
@@ -93,6 +95,9 @@
         <!-- Footer -->
         <div th:replace="~{/fragments/footer :: footerFragment}"></div>
     </div>
-    <script th:src="@{/js/attraction-detail.js}"></script>
+    <script th:inline="javascript">
+        var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
+    </script>
+    <script th:src="@{/js/place-detail.js}"></script>
 </body>
 </html>
