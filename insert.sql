@@ -1,1 +1,0 @@
-INSERT INTO users (users_id, login_id, login_pw, name, email, country, religion, phone, job, age) VALUES (1, 'qwe123', 'qwe123!@#', 'qwe', 'qwe123@gmail.com', 'china', 'chinaFuk', '010-2009-9809', 'student', 20);

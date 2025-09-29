@@ -1,0 +1,23 @@
+/* --- Base Layout --- */
+.screen {
+  background-color: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 160vh;
+}
+
+.screen .div,
+footer[th\:fragment="footerFragment"] {
+  width: 375px;
+  flex-shrink: 0;
+}
+
+.screen .div {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 30px;
+}

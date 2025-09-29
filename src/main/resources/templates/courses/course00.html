@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Ro:D - 코스짜기</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <link rel="stylesheet" th:href="@{/css/course00.css}" />
+    <link rel="stylesheet" th:href="@{/css/place-detail.css}" />
+</head>
+<body>
+<div class="screen">
+    <main class="div">
+        <div th:replace="~{/fragments/header-course :: headerCourseFragment}"></div>
+
+        <section class="course-start-section">
+            <h2>경산으로 떠날 준비를 해볼까요?</h2>
+            <a href="/courses/course01" class="start-button">코스 짜러 가기</a>
+        </section>
+
+    </main>
+
+    <div th:replace="~{/fragments/footer :: footerFragment}"></div>
+</div>
+</body>
+</html>
