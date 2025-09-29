@@ -136,12 +136,12 @@ public class PageController {
         return "suggest";
     }
     //todo:이쪽 서상범 추가 리뷰 상세보기 위해서
-    @GetMapping("/reviews/{reviewId}")
-    public String showReviewDetail(@PathVariable Long reviewId, Model model) {
+    @GetMapping("/reviews/{placeId}/{orderId}")
+    public String showReviewDetail(@PathVariable Long placeId,  @PathVariable Long orderId, Model model) {
         addLoginStatusToModel(model);
 
-        Review review = reviewService.findById(reviewId);
-        List<String> imageUrls = reviewService.findImageUrlsByReviewId(reviewId);
+        Review review = reviewService.findById(orderId,placeId);
+        List<String> imageUrls = reviewService.findImageUrlsByReviewId(orderId,placeId);
 
         model.addAttribute("review", review);
         model.addAttribute("imageUrls", imageUrls);

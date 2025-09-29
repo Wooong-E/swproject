@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.example.swproject.domain.QPlace.place;
 import static com.example.swproject.domain.QReview.review;
@@ -34,5 +35,30 @@ public class ReviewRepository {
         .join(review.place, place)
         .where(place.name.eq(placeName))
         .fetch();
+  }
+
+  public Double findAvgGrade(Long placesId){
+    return queryFactory.select(review.grade.avg())
+        .from(review)
+        .where(review.place.id.eq(placesId))
+        .fetchOne();
+  }
+
+  public Long findPlaceMaxOrder(Long placesId){
+    return queryFactory.select(review.order.max())
+        .from(review)
+        .where(place.id.eq(placesId))
+        .fetchOne();
+  }
+
+  public List<Review> findReviewByPlaceId(Long placeId) {
+    return reviewRepository.findReviewByPlaceId(placeId);
+  }
+
+  public Review findReviewByPlaceIdAndOrder(Long placeId, Long order){
+    return queryFactory.select(review)
+        .from(review)
+        .where(review.place.id.eq(placeId), review.order.eq(order))
+        .fetchOne();
   }
 }
