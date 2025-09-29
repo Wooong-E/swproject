@@ -40,7 +40,7 @@ public class Review {
   private Integer grade;
 
   @NotNull
-  @Column(name="`order`", nullable = false)
+  @Column(name = "`order`", nullable = false) // 실행 안돼서 중간에 '' 표시 넣었음 뺄거면 뺴도 됨 - 상범
   private Long order;
 
 }
