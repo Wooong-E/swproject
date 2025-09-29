@@ -58,7 +58,7 @@ public class UserController {
     }
 
     // 로그인 처리
-    @PostMapping("/login")
+    /*@PostMapping("/login")
     public String login(@Valid @ModelAttribute UserLoginDTO userLoginDTO,
                         BindingResult bindingResult,
                         Model model) {
@@ -77,5 +77,5 @@ public class UserController {
             log.info("error={}", e.getMessage());
             return "login";
         }
-    }
+    }*/
 }
