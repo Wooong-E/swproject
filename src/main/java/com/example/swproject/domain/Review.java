@@ -56,7 +56,7 @@ public class Review {
   @Column(name = "shash")
   private String shash;
 
-
+  @NotNull
   @Column(name="created", nullable = false)
   private LocalDateTime created;
 

@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Entity
@@ -24,6 +26,19 @@ public class Course {
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "places_id", nullable = false)
   private Place place;
+
+  @NotNull
+  @Column(name = "name", nullable = false)
+  private String name;
+
+  @NotNull
+  @Column(name="startdate", nullable = false)
+  private LocalDateTime startdate;
+
+  @NotNull
+  @Column(name="enddate", nullable = false)
+  private LocalDateTime enddate;
+
 
   @NotNull
   @Column(name = "`order`", nullable = false)
