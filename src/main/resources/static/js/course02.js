@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const moodButtonsContainer = document.querySelector('.mood-buttons-container');
     const moodButtons = document.querySelectorAll('.mood-button');
     const completeButton = document.getElementById('selection-complete-button');
+    const fhashInput = document.getElementById('fhash-input');
+    const course02Form = document.getElementById('course02-form');
 
     if (moodButtonsContainer && completeButton) {
         // 1. 분위기 버튼 선택 로직
@@ -22,19 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
+            // 선택된 분위기 값을 숨겨진 필드에 저장
+            fhashInput.value = clickedButton.dataset.mood;
+
             // '선택 완료' 버튼 활성화
             completeButton.disabled = false;
         });
 
-        // 2. '선택 완료' 버튼 클릭 시 페이지 이동
+        // 2. '선택 완료' 버튼 클릭 시 페이지 이동 (폼 제출로 변경)
         completeButton.addEventListener('click', () => {
             if (!completeButton.disabled) {
-                // 선택된 분위기 값을 다음 페이지로 넘길 수 있습니다 (예: 쿼리 파라미터).
-                // const selectedMood = document.querySelector('.mood-button:not(.inactive)').dataset.mood;
-                // window.location.href = `/courses/course03.html?mood=${selectedMood}`;
-                
-                // 지금은 단순히 페이지 이동만 구현합니다.
-                window.location.href = '/courses/course03';
+                course02Form.submit(); // 폼 제출
             }
         });
     }

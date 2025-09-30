@@ -1,107 +1,87 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const likedPlacesDynamicList = document.getElementById('liked-places-dynamic-list');
-    const createCourseButton = document.getElementById('create-course-button');
-    let selectedPlaceIds = new Set();
+document.addEventListener('DOMContentLoaded', function () {
+  const course05Form = document.getElementById('course05-form');
+  const likedPlacesListContainer = document.getElementById('liked-places-dynamic-list');
+  const selectedPlaceIdsInput = document.getElementById('selectedPlaceIds-input');
+  if (!likedPlacesListContainer) return; // 컨테이너 안전가드
 
-    // Function to update button state
-    function updateCreateCourseButtonState() {
-        if (selectedPlaceIds.size > 0) {
-            createCourseButton.disabled = false;
-        } else {
-            createCourseButton.disabled = true;
-        }
+  let selectedPlaceIds = new Set();
+
+  function getCsrfToken() {
+    return document.querySelector('meta[name="_csrf"]')?.content || '';
+  }
+  function getCsrfHeader() {
+    return document.querySelector('meta[name="_csrf_header"]')?.content || '';
+  }
+
+  // (A) 하트 버튼: 먼저 처리 + 즉시 전파 차단
+  likedPlacesListContainer.addEventListener('click', function (event) {
+    const heartButton = event.target.closest('.heart-button');
+    if (!heartButton) return;
+
+    event.preventDefault();
+    event.stopImmediatePropagation(); // 같은 노드의 다른 click 리스너로 전파 차단
+
+    // 버튼 자체나 가장 가까운 data-place-id 소유 엘리먼트에서 id 확보
+    const card = heartButton.closest('[data-place-id]');
+    const placeIdToUnlike =
+      heartButton.dataset.placeId ||
+      heartButton.getAttribute('data-place-id') ||
+      card?.dataset.placeId;
+
+    if (!placeIdToUnlike) {
+      console.error('placeId를 찾을 수 없습니다. data-place-id 부착 여부 확인');
+      return;
     }
 
-    const fetchAndRenderLikedPlaces = () => {
-        // Assuming isLoggedIn is available globally or passed via meta tag
-        // For now, let's assume user is logged in for fetching
-        // You might need to add a meta tag for _csrf token if POST requests are made
-        // var isLoggedIn = /*[[${isLoggedIn}]]*/ false; // If passed from Thymeleaf
+    const csrfToken = getCsrfToken();
+    const csrfHeader = getCsrfHeader();
 
-        // For simplicity, assuming isLoggedIn is true for fetching
-        // In a real app, check if user is authenticated
-        if (true /* Replace with actual isLoggedIn check */) {
-            fetch('/api/likes/categorized')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('서버에서 찜 목록을 가져오는 데 실패했습니다.');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // Flatten the categorized data into a single list of places
-                    let allLikedPlaces = [];
-                    Object.keys(data).forEach(category => {
-                        allLikedPlaces = allLikedPlaces.concat(data[category]);
-                    });
-
-                    renderLikedPlaces(allLikedPlaces);
-                })
-                .catch(error => {
-                    console.error('찜 목록 로딩 오류:', error);
-                    likedPlacesDynamicList.innerHTML = '<p style="text-align: center; padding: 20px;">찜한 장소를 불러오는 데 실패했습니다.</p>';
-                });
-        } else {
-            likedPlacesDynamicList.innerHTML = '<p style="text-align: center; padding: 20px;">로그인 후 찜한 장소를 확인해보세요.</p>';
+    fetch(`/api/likes/${placeIdToUnlike}/toggle`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        [csrfHeader]: csrfToken
+      }
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('찜 해제 실패');
+        return res.json();
+      })
+      .then((data) => {
+        if (!data.liked) {
+          const unlikedCard = likedPlacesListContainer.querySelector(
+            `[data-place-id="${placeIdToUnlike}"]`
+          );
+          unlikedCard?.remove();
+          selectedPlaceIds.delete(String(placeIdToUnlike));
         }
-    };
+      })
+      .catch((err) => {
+        console.error('Error unliking place:', err);
+        alert('찜 해제 중 오류가 발생했습니다.');
+      });
+  });
 
-    const renderLikedPlaces = (places) => {
-        likedPlacesDynamicList.innerHTML = ''; // Clear loading message
+  // (B) 카드 선택: 하트 클릭이 아닌 경우에만 동작
+  likedPlacesListContainer.addEventListener('click', function (event) {
+    if (event.target.closest('.heart-button')) return; // 하트면 무시
+    const placeCard = event.target.closest('.place-card');
+    if (!placeCard) return;
 
-        if (places.length === 0) {
-            likedPlacesDynamicList.innerHTML = '<p style="text-align: center; padding: 20px;">찜한 장소가 없습니다.</p>';
-            return;
-        }
+    const checkbox = placeCard.querySelector('.place-checkbox');
+    if (!checkbox) return;
 
-        places.forEach(place => {
-            const item = document.createElement('div');
-            item.classList.add('liked-place-item');
-            item.setAttribute('data-place-id', place.id);
+    checkbox.checked = !checkbox.checked;
+    placeCard.classList.toggle('selected', checkbox.checked);
 
-            item.innerHTML = `
-                <div class="place-image-wrapper">
-                    <img src="/images/attractions/attraction_${place.id}.jpg" alt="${place.name}" class="place-image">
-                    <div class="overlay">
-                        <img src="/images/check.png" alt="체크" class="check-icon">
-                    </div>
-                </div>
-                <div class="place-details">
-                    <span class="place-name">${place.name}</span>
-                    <span class="place-address">${place.address}</span>
-                </div>
-                <div class="like-button">
-                    <img src="/images/tabler_heart_filled.svg" alt="찜하기" class="like-icon">
-                </div>
-            `;
-            likedPlacesDynamicList.appendChild(item);
+    const placeId = placeCard.dataset.placeId;
+    if (!placeId) return;
+    if (checkbox.checked) selectedPlaceIds.add(String(placeId));
+    else selectedPlaceIds.delete(String(placeId));
+  });
 
-            // Add click listener for each new item
-            const overlay = item.querySelector('.overlay');
-            item.addEventListener('click', function() {
-                overlay.classList.toggle('active');
-                if (overlay.classList.contains('active')) {
-                    selectedPlaceIds.add(place.id);
-                } else {
-                    selectedPlaceIds.delete(place.id);
-                }
-                updateCreateCourseButtonState();
-            });
-        });
-    };
-
-    // Initial fetch and render
-    fetchAndRenderLikedPlaces();
-
-    // Initial button state
-    updateCreateCourseButtonState();
-
-    // Click listener for the create course button
-    createCourseButton.addEventListener('click', function() {
-        if (selectedPlaceIds.size > 0) {
-            window.location.href = '/courses/course06';
-        } else {
-            alert('코스를 생성하려면 장소를 선택해주세요.');
-        }
-    });
+  // (C) 폼 전송 시 선택 id들 주입
+  course05Form?.addEventListener('submit', function () {
+    selectedPlaceIdsInput.value = Array.from(selectedPlaceIds).join(',');
+  });
 });

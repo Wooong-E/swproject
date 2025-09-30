@@ -69,101 +69,96 @@ main {
 /* --- Liked Places List --- */
 .liked-places-list-container {
     width: 100%;
-    max-height: 400px; /* Adjust as needed for scrollability */
-    overflow-y: auto;
     margin-top: 30px;
     margin-bottom: 30px;
 }
 
-.liked-place-item {
-    width: 100%; /* Will be 338px due to main's padding */
-    height: 96px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    cursor: pointer;
-    padding: 0 10px; /* Inner padding for items */
-    box-sizing: border-box;
-    border-bottom: 0.5px solid #B2B2B2;
+.liked-places-list-container h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
-.place-image-wrapper {
-    width: 96px;
-    height: 96px;
-    position: relative;
-    overflow: hidden;
+.place-list {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between place cards */
+    justify-content: space-between; /* Distribute items evenly */
+}
+
+.place-card {
+    width: calc(50% - 5px); /* Two cards per row with 10px gap */
+    height: 180px; /* Fixed height for consistency */
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Align content to bottom */
+}
+
+.place-card.selected {
+    border: 2px solid #515151; /* Visual feedback for selection */
+    transform: translateY(-3px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .place-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-.overlay {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 1;
+}
+
+.place-info {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+    color: white;
+    padding: 10px;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3); /* Slight gray */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    visibility: hidden; /* Hidden by default */
-    opacity: 0;
-    transition: visibility 0s, opacity 0.3s linear;
+    box-sizing: border-box;
 }
 
-.overlay.active {
-    visibility: visible;
-    opacity: 1;
-}
-
-.check-icon {
-    width: 40px;
-    height: 40px;
-}
-
-.place-details {
-    display: flex;
-    flex-direction: column;
-    margin-left: 15px;
-    flex-grow: 1;
-    justify-content: center;
-}
-
-.place-name {
-    font-size: 16px;
+.place-info h3 {
+    font-size: 14px;
     font-weight: 700;
-    color: #000;
-    margin-bottom: 5px;
+    margin: 0;
 }
 
-.place-address {
-    font-size: 12px;
-    color: #A1A1A1;
+.place-info p {
+    font-size: 10px;
+    margin: 0;
+    opacity: 0.8;
 }
 
-.like-button {
+.place-actions {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 5px;
+    right: 5px;
+    z-index: 3;
+}
+
+.heart-button {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0;
+    padding: 5px;
 }
 
-.like-icon {
+.heart-icon {
     width: 24px;
     height: 24px;
+    filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.5)); /* Make icon stand out */
 }
-
-
 
 /* --- Create Course Button --- */
 .create-course-button-container {
@@ -187,8 +182,9 @@ main {
     transition: background-color 0.3s;
 }
 
-#create-course-button:disabled {
+/* The button is always enabled as per requirement, so no disabled state */
+/* #create-course-button:disabled {
     background-color: #F1F1F1;
     cursor: not-allowed;
     color: #B0B0B0;
-}
+} */
