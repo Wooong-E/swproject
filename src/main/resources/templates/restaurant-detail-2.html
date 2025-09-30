@@ -3,10 +3,11 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>이탈리안 비스트로 상세</title>
+    <title>자인식육식당 상세</title>
     <link rel="stylesheet" th:href="@{/css/global.css}" />
     <link rel="stylesheet" th:href="@{/css/place-detail.css}" />
     <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <link rel="stylesheet" th:href="@{/css/review-carousel.css}" />
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
@@ -24,8 +25,8 @@
             <section class="info-section">
                 <div class="title-heart-wrapper">
                     <h2 class="attraction-title">자인식육식당</h2>
-                    <button class="heart-button" onclick="toggleHeart()">
-                        <img id="heartIcon" src="/images/tabler_heart_filled.svg" alt="찜하기" />
+                    <button id="likeButton" class="heart-button" type="button" aria-label="찜하기">
+                        <img id="heartIcon" src="/images/tabler_heart.svg" alt="찜하기" />
                     </button>
                 </div>
                 <p class="attraction-description">
@@ -102,37 +103,31 @@
             <section class="reviews-section">
                 <h3 class="reviews-title">후기</h3>
                 <div class="reviews-carousel">
-                    <div class="review-card">
-                        <img src="/images/review_placeholder_3.png" alt="후기 이미지" class="review-image" />
-                        <h4 class="review-card-title">분위기가 좋아요.</h4>
-                        <div class="review-rating">
-                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
-                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
-                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
-                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
-                            <img src="/images/star_empty.svg" alt="별점" class="star-icon" />
+                    <!-- Loop through reviews -->
+                    <a th:each="reviewSummary : ${reviews}" th:href="@{/reviews/{placeId}/{order}(placeId=${placeId}, order=${reviewSummary.review.order})}" class="review-card">
+                        <div th:if="${reviewSummary.firstImageUrl != null}">
+                            <img th:src="${reviewSummary.firstImageUrl}" alt="후기 이미지" class="review-image" />
                         </div>
-                    </div>
-                    <div class="review-card">
-                        <img src="/images/review_placeholder_4.png" alt="후기 이미지" class="review-image" />
-                        <h4 class="review-card-title">음식이 맛있어요.</h4>
+                        <div th:unless="${reviewSummary.firstImageUrl != null}" class="review-image-placeholder"></div>
+                        
+                        <h4 class="review-card-title" th:text="${reviewSummary.review.title}">리뷰 제목</h4>
+                        
                         <div class="review-rating">
-                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
-                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
-                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
-                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
-                            <img src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                            <th:block th:each="i : ${#numbers.sequence(1, 5)}">
+                                <img th:if="${i <= reviewSummary.review.grade}" src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                                <img th:if="${i > reviewSummary.review.grade}" src="/images/star_empty.svg" alt="별점" class="star-icon" />
+                            </th:block>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </section>
 
             <!-- Write Review Button -->
             <section class="write-review-section">
-                <button class="write-review-button">
+                <a th:href="@{/places/{placeId}/reviews/new(placeId=${placeId})}" id="write-review-link" class="write-review-button">
                     <span class="write-review-text">작성하기</span>
                     <img src="/images/material-symbols_edit-outline-rounded.svg" alt="작성 아이콘" class="write-review-icon" />
-                </button>
+                </a>
             </section>
         </main>
 
@@ -142,6 +137,6 @@
     <script th:inline="javascript">
         var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
     </script>
-    <script th:src="@{/js/attraction-detail.js}"></script>
+    <script th:src="@{/js/place-detail.js}"></script>
 </body>
 </html>

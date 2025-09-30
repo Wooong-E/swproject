@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
 <body>
 <header th:fragment="headerFragment">
     <div class="header-top-bar">
@@ -11,21 +15,16 @@
     <nav>
         <ul id="main-top-nav" role="list">
             <li class="div-wrapper">
-                <a href="/attractions" class="text-wrapper-10">명소</a>
+                <a href="/attractions" class="text-wrapper-10" th:classappend="${currentPage == 'attractions'} ? 'active' : ''">명소</a>
             </li>
             <li class="frame-8">
-                <a href="/restaurants" class="text-wrapper-10">맛집</a>
+                <a href="/restaurants" class="text-wrapper-10" th:classappend="${currentPage == 'restaurants'} ? 'active' : ''">맛집</a>
             </li>
             <li class="frame-9">
-                <a href="/cafes" class="text-wrapper-10">카페</a>
+                <a href="/cafes" class="text-wrapper-10" th:classappend="${currentPage == 'cafes'} ? 'active' : ''">카페</a>
             </li>
             <li class="frame-10">
-                <a
-                    href="임시_course/course01.html"
-                    class="text-wrapper-10"
-                    type="button"
-                >코스짜기</a
-                >
+                <a id="course-planning-link" href="/courses/course00" class="text-wrapper-10" th:classappend="${currentPage == 'courses'} ? 'active' : ''" type="button">코스짜기</a>
             </li>
             <li class="frame-11">
                 <button class="text-wrapper-10" type="button">월간매거진</button>
@@ -52,17 +51,20 @@
                 <p class="welcome-message" th:text="|${userName}님, 환영합니다!|"></p>
             </div>
         </section>
+        <div class="sidebar-divider"></div>
         <nav class="overlap-group" role="navigation" aria-label="메인 메뉴">
             <ul class="frame" role="list">
                 <li class="div-wrapper"><a href="#" class="div">나의 코스</a></li>
                 <li class="div-wrapper"><a href="#" class="div">코스 짜기</a></li>
-                <li class="div-wrapper"><a href="#" class="div">찜한 명소</a></li>
+                <li class="div-wrapper"><a href="/my-place" class="div">찜한 명소</a></li>
                 <li class="div-wrapper"><a href="/suggest" class="div">장소 제보하기</a></li>
                 <li class="div-wrapper"><a href="/report" class="div">문의하기</a></li>
             </ul>
         </nav>
     </aside>
-    <!-- 사이드바 끝 -->
+    <script th:inline="javascript">
+        var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
+    </script>
     <script src="/js/sidebar.js"></script>
 </header>
 </body>

@@ -96,4 +96,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 페이지 로드 시 초기 찜 상태 업데이트 함수 호출
     initializeLikeStatus();
+
+    // =========================
+    // 리뷰 작성 버튼 클릭 이벤트 (로그인 체크)
+    // =========================
+    const writeReviewLink = document.getElementById('write-review-link');
+    if (writeReviewLink) {
+        writeReviewLink.addEventListener('click', (event) => {
+            if (!window.isLoggedIn) {
+                event.preventDefault(); // Prevent default navigation
+                if (confirm("로그인 시 이용가능합니다. 로그인 페이지로 이동하시겠습니까?")) {
+                    window.location.href = '/users/login';
+                }
+                return;
+            }
+        });
+    }
 });

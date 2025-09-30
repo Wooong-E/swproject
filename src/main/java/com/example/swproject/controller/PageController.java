@@ -1,5 +1,6 @@
 package com.example.swproject.controller;
 
+import com.example.swproject.dto.ReviewSummaryDto;
 import com.example.swproject.service.ReviewService;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class PageController {
@@ -43,28 +45,31 @@ public class PageController {
     @GetMapping("/attractions")
     public String showAttractionsPage(Model model) {
         addLoginStatusToModel(model);
+        model.addAttribute("currentPage", "attractions");
         return "attractions";
     }
 
     @GetMapping("/restaurants")
     public String showRestaurantsPage(Model model) {
         addLoginStatusToModel(model);
+        model.addAttribute("currentPage", "restaurants");
         return "restaurants";
     }
 
     @GetMapping("/cafes")
     public String showCafesPage(Model model) {
         addLoginStatusToModel(model);
+        model.addAttribute("currentPage", "cafes");
         return "cafes";
     }
 
     @GetMapping("/attractions/{id}")
     public String showAttractionDetail(@PathVariable Long id, Model model) {
-        //todo:이쪽 서상범 추가
         addLoginStatusToModel(model);
-        List<Review> reviews = reviewService.getReviewsByPlaceId(id);
-        model.addAttribute("reviews", reviews);
-        //todo:이쪽 서상범 추가
+        List<ReviewSummaryDto> reviewSummaries = reviewService.getReviewSummariesByPlaceId(id);
+        model.addAttribute("reviews", reviewSummaries);
+        model.addAttribute("id", id); // For template selection
+        model.addAttribute("placeId", id); // For correct linking
 
         if (id == 1L) {
             return "attraction-detail-1";
@@ -84,11 +89,12 @@ public class PageController {
 
     @GetMapping("/restaurants/{id}")
     public String showRestaurantDetail(@PathVariable Long id, Model model) {
-        //todo:이쪽 서상범 추가
         addLoginStatusToModel(model);
-        List<Review> reviews = reviewService.getReviewsByPlaceId(id);
-        model.addAttribute("reviews", reviews);
-        //todo:이쪽 서상범 추가
+        Long placeId = id + 6;
+        List<ReviewSummaryDto> reviewSummaries = reviewService.getReviewSummariesByPlaceId(placeId);
+        model.addAttribute("reviews", reviewSummaries);
+        model.addAttribute("id", id);
+        model.addAttribute("placeId", placeId);
 
         if (id == 1L) {
             return "restaurant-detail-1";
@@ -108,11 +114,12 @@ public class PageController {
 
     @GetMapping("/cafes/{id}")
     public String showCafeDetail(@PathVariable Long id, Model model) {
-        //todo:이쪽 내가 추가
         addLoginStatusToModel(model);
-        List<Review> reviews = reviewService.getReviewsByPlaceId(id);
-        model.addAttribute("reviews", reviews);
-        //todo:이쪽 서상범 추가
+        Long placeId = id + 12;
+        List<ReviewSummaryDto> reviewSummaries = reviewService.getReviewSummariesByPlaceId(placeId);
+        model.addAttribute("reviews", reviewSummaries);
+        model.addAttribute("id", id);
+        model.addAttribute("placeId", placeId);
 
         if (id == 1L) {
             return "cafe-detail-1";
@@ -129,23 +136,32 @@ public class PageController {
         }
         return "cafe-detail-1"; // Default or error page
     }
-
-    @GetMapping("/suggest")
-    public String showSuggestPage(Model model) {
-        addLoginStatusToModel(model);
-        return "suggest";
-    }
     //todo:이쪽 서상범 추가 리뷰 상세보기 위해서
     @GetMapping("/reviews/{placeId}/{orderId}")
     public String showReviewDetail(@PathVariable Long placeId,  @PathVariable Long orderId, Model model) {
         addLoginStatusToModel(model);
 
         Review review = reviewService.findById(orderId,placeId);
-        List<String> imageUrls = reviewService.findImageUrlsByReviewId(orderId,placeId);
+        List<String> imageUrls = reviewService.findImageUrlsByReviewId(orderId,placeId).stream()
+                .map(url -> "/uploads/" + url)
+                .collect(Collectors.toList());
 
         model.addAttribute("review", review);
         model.addAttribute("imageUrls", imageUrls);
 
-        return "review-detail"; // 이거 이름 편한대로 바꾸면 됨
+        return "review-detail";
     }
+
+    @GetMapping("/suggest")
+    public String showSuggestPage(Model model){
+        addLoginStatusToModel(model);
+        return "suggest";
+    }
+
+    @GetMapping("/my-place")
+    public String showMyPlacePage(Model model){
+        addLoginStatusToModel(model);
+        return "my-place";
+    }
+
 }

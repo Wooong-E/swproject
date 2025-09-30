@@ -284,3 +284,67 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
     height: 24px;
 }
 
+/* Menu Section 서상범 추가 */
+.menu-section {
+    padding: 0 15px 20px;
+}
+
+.menu-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.menu-carousel {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 15px;
+    padding-bottom: 10px;
+}
+
+.menu-carousel::-webkit-scrollbar {
+    height: 8px;
+}
+
+.menu-carousel::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+.menu-carousel::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+.menu-card {
+    flex: 0 0 auto;
+    width: 120px; /* 카드 너비 조절 */
+    text-align: center;
+}
+
+.menu-image {
+    width: 120px; /* 이미지 너비 고정 */
+    height: 120px; /* 이미지 높이 고정 */
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #eee;
+}
+
+.menu-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+    margin: 0 0 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.menu-price {
+    font-size: 12px;
+    color: #777;
+    margin: 0;
+}
+

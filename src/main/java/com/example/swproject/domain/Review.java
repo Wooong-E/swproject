@@ -5,12 +5,13 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "reviews")
 public class Review {
   @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,6 +56,5 @@ public class Review {
 
   @Column(name="created", nullable = false)
   private LocalDateTime created;
-
 
 }
