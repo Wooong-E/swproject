@@ -58,4 +58,18 @@ public class CourseController {
         model.addAttribute("currentPage", "courses");
         return "courses/course04";
     }
+
+    @GetMapping("/courses/course05")
+    public String showCourse05Page(Model model) {
+        addLoginStatusToModel(model);
+        model.addAttribute("currentPage", "courses");
+        return "courses/course05";
+    }
+
+    @GetMapping("/courses/course06")
+    public String showCourse06Page(Model model) {
+        addLoginStatusToModel(model);
+        model.addAttribute("currentPage", "courses");
+        return "courses/course06";
+    }
 }

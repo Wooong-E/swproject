@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ro:D - 코스짜기 STEP 6</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <link rel="stylesheet" th:href="@{/css/header-courses.css}"/>
+    <link rel="stylesheet" th:href="@{/css/footer.css}"/>
+    <link rel="stylesheet" th:href="@{/css/place-detail.css}"/>
+    <link rel="stylesheet" th:href="@{/css/course05.css}"/>
+</head>
+<body>
+    <div class="screen">
+        <div th:replace="~{/fragments/header-course :: headerCourseFragment}"></div>
+
+        <main>
+            <div class="progress-bar-container">
+                <div class="progress-bar-inner"></div>
+            </div>
+
+            <div class="content-wrapper">
+                <p class="step-text">STEP6</p>
+                <h1 class="prompt-text">원하시는 장소가 있나요?</h1>
+                <p class="sub-prompt-text">이전에 봐두었던 장소에요</p>
+            </div>
+
+            <!-- Liked Places List Container -->
+            <div class="liked-places-list-container" id="liked-places-dynamic-list">
+                <!-- Liked places will be dynamically loaded here by JavaScript -->
+                <p style="text-align: center; padding: 20px;">찜한 장소를 불러오는 중...</p>
+            </div>
+
+            <!-- Create Course Button -->
+            <div class="create-course-button-container">
+                <button type="button" id="create-course-button">코스짜기</button>
+            </div>
+        </main>
+
+        <div th:replace="~{/fragments/footer :: footerFragment}"></div>
+    </div>
+
+    <script th:src="@{/js/course05.js}"></script>
+</body>
+</html>

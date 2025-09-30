@@ -1,0 +1,194 @@
+/* --- Global --- */
+body {
+    font-family: 'Inter-Bold', Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.screen {
+    width: 375px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px; 
+    box-sizing: border-box;
+}
+
+/* --- Progress Bar --- */
+.progress-bar-container {
+    width: 375px;
+    height: 8px;
+    background-color: #D9D9D9;
+    margin-top: 10px;
+}
+
+.progress-bar-inner {
+    width: 320px; /* STEP 6 */
+    height: 8px;
+    background-color: #A1A1A1;
+}
+
+/* --- Content --- */
+.content-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 왼쪽 정렬 */
+    margin-top: 50px;
+    gap: 10px; 
+}
+
+.step-text {
+    font-size: 15px;
+    font-weight: 700;
+    color: #000;
+}
+
+.prompt-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+}
+
+.sub-prompt-text {
+    width: 201px;
+    height: 18px;
+    font-size: 14px; /* 임의의 사이즈 */
+    font-weight: 500; /* Bold가 아닌 일반 폰트가 더 나을 수 있음 */
+    color: #A1A1A1;
+}
+
+/* --- Liked Places List --- */
+.liked-places-list-container {
+    width: 100%;
+    max-height: 400px; /* Adjust as needed for scrollability */
+    overflow-y: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.liked-place-item {
+    width: 100%; /* Will be 338px due to main's padding */
+    height: 96px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    padding: 0 10px; /* Inner padding for items */
+    box-sizing: border-box;
+    border-bottom: 0.5px solid #B2B2B2;
+}
+
+.place-image-wrapper {
+    width: 96px;
+    height: 96px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.place-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Slight gray */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden; /* Hidden by default */
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s linear;
+}
+
+.overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.check-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.place-details {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.place-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.place-address {
+    font-size: 12px;
+    color: #A1A1A1;
+}
+
+.like-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.like-icon {
+    width: 24px;
+    height: 24px;
+}
+
+
+
+/* --- Create Course Button --- */
+.create-course-button-container {
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#create-course-button {
+    width: 343px;
+    height: 50px;
+    background-color: #515151;
+    border: none;
+    border-radius: 25px; /* Half of height for oval shape */
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#create-course-button:disabled {
+    background-color: #F1F1F1;
+    cursor: not-allowed;
+    color: #B0B0B0;
+}
