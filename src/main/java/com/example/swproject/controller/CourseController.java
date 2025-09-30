@@ -1,14 +1,23 @@
 package com.example.swproject.controller;
 
+import com.example.swproject.service.CourseService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 @Controller
+@RequiredArgsConstructor
 public class CourseController {
+
+    private final CourseService courseService;
 
     private void addLoginStatusToModel(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -57,5 +66,18 @@ public class CourseController {
         addLoginStatusToModel(model);
         model.addAttribute("currentPage", "courses");
         return "courses/course04";
+    }
+
+    @PostMapping("/courses/recommend")
+    public String getCourseRecommendations(@RequestParam String fhash, @RequestParam String shash, 
+                                           @RequestParam String startAddress, @RequestParam String startDate, 
+                                           @RequestParam String endDate, Model model) {
+        List<com.example.swproject.domain.Place> recommendedPlaces = courseService.recommendCourses(fhash, shash);
+        model.addAttribute("recommendedPlaces", recommendedPlaces);
+        model.addAttribute("startAddress", startAddress);
+        model.addAttribute("startDate", startDate);
+        model.addAttribute("endDate", endDate);
+        addLoginStatusToModel(model);
+        return "course-recommend";
     }
 }
