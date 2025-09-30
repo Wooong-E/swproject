@@ -10,6 +10,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Entity
@@ -56,10 +58,7 @@ public class Review {
   @Column(name = "shash")
   private String shash;
 
-  // 리뷰 상세 보기에서 작성날짜가 출력되어야 함.
-  @CreatedDate
-  @Column(name = "created_at", updatable = false)
-  private LocalDateTime createdAt;
-
+  @Column(name="created", nullable = false)
+  private LocalDateTime created;
 
 }

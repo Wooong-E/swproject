@@ -16,7 +16,7 @@
             <section class="review-header">
                 <div class="review-title-date">
                     <h1 th:text="${review.title}">리뷰 제목</h1>
-                    <p class="review-date" th:text="${#temporals.format(review.createdAt, 'yyyy.MM.dd')}">2024.07.28</p>
+                    <p class="review-date" th:text="${#temporals.format(review.created, 'yyyy.MM.dd')}">2024.07.28</p>
                 </div>
                 <div class="review-rating-detail">
                     <th:block th:each="i : ${#numbers.sequence(1, 5)}">
