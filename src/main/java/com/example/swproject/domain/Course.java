@@ -2,6 +2,7 @@ package com.example.swproject.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,9 +28,15 @@ public class Course {
   @JoinColumn(name = "places_id", nullable = false)
   private Place place;
 
+  @Size(max = 255)
   @NotNull
   @Column(name = "name", nullable = false)
   private String name;
+
+  @Size(max = 255)
+  @NotNull
+  @Column(name = "startaddress", nullable = false)
+  private String startaddress;
 
   @NotNull
   @Column(name="startdate", nullable = false)
