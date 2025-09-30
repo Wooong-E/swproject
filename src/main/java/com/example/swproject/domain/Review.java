@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Entity
@@ -50,6 +52,9 @@ public class Review {
   @Size(max = 255)
   @Column(name = "shash")
   private String shash;
+
+  @Column(name="created", nullable = false)
+  private LocalDateTime created;
 
 
 }
