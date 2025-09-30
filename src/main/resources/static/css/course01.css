@@ -1,0 +1,112 @@
+/* --- Global --- */
+body {
+    font-family: 'Inter-Bold', Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.screen {
+    width: 375px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px; /* Add some horizontal padding */
+    box-sizing: border-box;
+}
+
+/* --- Progress Bar --- */
+.progress-bar-container {
+    width: 375px;
+    height: 8px;
+    background-color: #D9D9D9;
+    margin-top: 10px; /* 헤더 바로 아래에 위치시키기 위한 마진 */
+}
+
+.progress-bar-inner {
+    width: 40px; /* STEP 1에 해당하는 너비 */
+    height: 8px;
+    background-color: #A1A1A1;
+}
+
+/* --- Content --- */
+.content-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 왼쪽 정렬 */
+    margin-top: 50px;
+    gap: 15px; /* 요소 간 간격 */
+}
+
+.step-text {
+    font-size: 15px; /* 임의의 사이즈, 필요시 조절 */
+    font-weight: 700;
+    color: #000;
+}
+
+.prompt-text {
+    font-size: 20px; /* 임의의 사이즈, 필요시 조절 */
+    font-weight: 700;
+    color: #000;
+}
+
+/* --- Address Search --- */
+.address-search-container {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+#address-input {
+    flex-grow: 1;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid #A1A1A1;
+    border-radius: 5px;
+}
+
+#search-address-button {
+    height: 40px;
+    padding: 0 15px;
+    border: none;
+    background-color: #515151;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Inter-Bold', Helvetica, sans-serif;
+    font-weight: 700;
+}
+
+/* --- Next Button --- */
+.next-button {
+    width: 100%;
+    height: 50px;
+    margin-top: 200px;
+    margin-bottom: 30px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Inter-Bold', Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.next-button:disabled {
+    background-color: #D9D9D9; /* 연한 색 */
+    color: #A1A1A1;
+    cursor: not-allowed;
+}
+
+.next-button:enabled {
+    background-color: #515151; /* 진한 색 */
+    color: white;
+}

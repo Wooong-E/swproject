@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ro:D - 리뷰 작성</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <link rel="stylesheet" th:href="@{/css/place-detail.css}"/>
+    <link rel="stylesheet" th:href="@{/css/review-write.css}"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+    <div class="screen">
+        <div th:replace="~{/fragments/header-back :: headerBackFragment}"></div>
+
+        <main>
+            <form id="review-form" class="review-write-container" method="post" enctype="multipart/form-data">
+                <!-- Hidden input for placeId, to be passed from controller -->
+                <input type="hidden" id="placeId" name="placeId" th:value="${places_id}">
+
+                <h1 class="place-name" th:text="${name}">장소 이름</h1>
+
+                <!-- Review Title -->
+                <div class="form-section">
+                    <input type="text" id="review-title" name="title" placeholder="제목을 입력하세요 (최대 12자)" maxlength="12">
+                </div>
+
+                <!-- Star Rating -->
+                <div class="form-section">
+                    <label>별점</label>
+                    <div id="star-rating-container" class="star-rating-container">
+                        <img class="star-image" src="/images/star_empty.svg" data-value="1" alt="별점 1">
+                        <img class="star-image" src="/images/star_empty.svg" data-value="2" alt="별점 2">
+                        <img class="star-image" src="/images/star_empty.svg" data-value="3" alt="별점 3">
+                        <img class="star-image" src="/images/star_empty.svg" data-value="4" alt="별점 4">
+                        <img class="star-image" src="/images/star_empty.svg" data-value="5" alt="별점 5">
+                    </div>
+                    <input type="hidden" id="review-grade" name="grade" value="0">
+                </div>
+
+                <!-- Photo Attachment -->
+                <div class="form-section">
+                    <label>상세 사진</label>
+                    <div id="photo-attachment-container" class="photo-attachment-container">
+                        <button type="button" id="photo-upload-button" class="photo-upload-button">
+                            <img src="/images/plus.png" alt="사진 추가">
+                        </button>
+                    </div>
+                    <input type="file" id="image-upload-input" name="images" multiple accept="image/*" style="display: none;">
+                </div>
+
+                <!-- Review Content -->
+                <div class="form-section">
+                    <label for="review-content">후기 글</label>
+                    <textarea id="review-content" name="content" placeholder="후기를 작성해주세요 (최소 5자, 최대 80자)" maxlength="80"></textarea>
+                </div>
+
+                <!-- Hashtags -->
+                <div class="form-section">
+                    <label>해쉬태그</label>
+                    <div id="fhash-group" class="hashtag-group">
+                        <button type="button" class="hashtag-button" data-value="#힐링여행">#힐링여행</button>
+                        <button type="button" class="hashtag-button" data-value="#데이트코스">#데이트코스</button>
+                        <button type="button" class="hashtag-button" data-value="#익스트림 여행">#익스트림 여행</button>
+                        <button type="button" class="hashtag-button" data-value="#식도락 여행">#식도락 여행</button>
+                    </div>
+                    <input type="hidden" id="fhash-input" name="fhash">
+                </div>
+                <div class="form-section">
+                    <div id="shash-group" class="hashtag-group">
+                        <button type="button" class="hashtag-button" data-value="#나혼자">#나혼자</button>
+                        <button type="button" class="hashtag-button" data-value="#연인과">#연인과</button>
+                        <button type="button" class="hashtag-button" data-value="#가족과">#가족과</button>
+                        <button type="button" class="hashtag-button" data-value="#친구들">#친구들</button>
+                    </div>
+                    <input type="hidden" id="shash-input" name="shash">
+                </div>
+
+                <!-- Submit Button -->
+                <div class="submit-button-container">
+                    <button type="submit" id="submit-review-button" disabled>등록하기</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script th:inline="javascript">
+        var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
+    </script>
+    <script th:src="@{/js/review-write.js}"></script>
+</body>
+</html>

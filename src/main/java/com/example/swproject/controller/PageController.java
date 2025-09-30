@@ -43,18 +43,21 @@ public class PageController {
     @GetMapping("/attractions")
     public String showAttractionsPage(Model model) {
         addLoginStatusToModel(model);
+        model.addAttribute("currentPage", "attractions");
         return "attractions";
     }
 
     @GetMapping("/restaurants")
     public String showRestaurantsPage(Model model) {
         addLoginStatusToModel(model);
+        model.addAttribute("currentPage", "restaurants");
         return "restaurants";
     }
 
     @GetMapping("/cafes")
     public String showCafesPage(Model model) {
         addLoginStatusToModel(model);
+        model.addAttribute("currentPage", "cafes");
         return "cafes";
     }
 
@@ -129,12 +132,6 @@ public class PageController {
         }
         return "cafe-detail-1"; // Default or error page
     }
-
-    @GetMapping("/suggest")
-    public String showSuggestPage(Model model) {
-        addLoginStatusToModel(model);
-        return "suggest";
-    }
     //todo:이쪽 서상범 추가 리뷰 상세보기 위해서
     @GetMapping("/reviews/{placeId}/{orderId}")
     public String showReviewDetail(@PathVariable Long placeId,  @PathVariable Long orderId, Model model) {
@@ -148,4 +145,11 @@ public class PageController {
 
         return "review-detail"; // 이거 이름 편한대로 바꾸면 됨
     }
+
+    @GetMapping("my/place")
+    public String showMyPlacePage(Model model){
+        addLoginStatusToModel(model);
+        return "my-place";
+    }
+
 }

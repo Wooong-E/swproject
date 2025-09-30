@@ -23,12 +23,13 @@
             <!-- Title, Description, Heart Button -->
             <section class="info-section">
                 <div class="title-heart-wrapper">
-                    <h2 class="attraction-title">일식 전문점</h2>
-                    <button class="heart-button" onclick="toggleHeart()">
+                    <h2 class="attraction-title">장군제육</h2>
+                    <button id="likeButton" class="heart-button" type="button" aria-label="찜하기">
                         <img id="heartIcon" src="/images/tabler_heart.svg" alt="찜하기" />
                     </button>
                 </div>
-                <p class="attraction-description">신선한 재료로 만든 초밥과 사시미를 맛볼 수 있는 일식 전문점입니다. 깔끔하고 정갈한 분위기에서 식사를 즐기세요.</p>
+                <p class="attraction-description">제육이 너무 유명해져 간판까지 장군찜닭에서 장군제육으로 바꾼 유명한 집이다.
+                    맛뿐만 아니라 양도 많아서 최고의 가성비 집이다.</p>
             </section>
 
             <!-- Menu Section -->
@@ -36,22 +37,33 @@
                 <h3 class="menu-title">메뉴</h3>
                 <div class="menu-carousel">
                     <div class="menu-card">
-                        <img src="/images/menu_sushi.jpg" alt="메뉴 이미지" class="menu-image" />
-                        <h4 class="menu-name">모듬 초밥</h4>
-                        <p class="menu-price">20,000원</p>
+                        <img src="/images/restaurants/restaurant_4/menu_1.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">제육볶음(소)</h4>
+                        <p class="menu-price">21,000원</p>
                     </div>
                     <div class="menu-card">
-                        <img src="/images/menu_sashimi.jpg" alt="메뉴 이미지" class="menu-image" />
-                        <h4 class="menu-name">사시미 정식</h4>
-                        <p class="menu-price">35,000원</p>
+                        <img src="/images/restaurants/restaurant_4/menu_2.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">오삼불고기(소)</h4>
+                        <p class="menu-price">22,000원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_4/menu_3.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">장군찜닭(반마리)</h4>
+                        <p class="menu-price">17,000원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_4/menu_4.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">순살찜닭(반마리)</h4>
+                        <p class="menu-price">18,000원</p>
                     </div>
                 </div>
             </section>
 
             <!-- Address and Transportation -->
             <section class="details-section">
-                <p class="detail-item"><strong>주소</strong> <span>경상북도 경산시 대학로 200</span></p>
-                <p class="detail-item"><strong>교통</strong> <span>지하철역 도보 5분, 주차 가능</span></p>
+                <p class="detail-item"><strong>주소</strong> <span>경북 경산시 청운 1로 6-1 라온빌</span></p>
+                <p class="detail-item"><strong>전화번호</strong> <span>0504-0544-3884</span></p>
+                <p class="detail-item"><strong>영업시간</strong> <span>매일 10:00 – 21:30 (매주 토,일 정기휴무)</span></p>
             </section>
 
             <!-- Reviews Section -->
@@ -85,10 +97,10 @@
 
             <!-- Write Review Button -->
             <section class="write-review-section">
-                <button class="write-review-button">
+                <a href="/places/10/reviews/new" id="write-review-link" class="write-review-button">
                     <span class="write-review-text">작성하기</span>
                     <img src="/images/material-symbols_edit-outline-rounded.svg" alt="작성 아이콘" class="write-review-icon" />
-                </button>
+                </a>
             </section>
         </main>
 
@@ -98,6 +110,6 @@
     <script th:inline="javascript">
         var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
     </script>
-    <script th:src="@{/js/attraction-detail.js}"></script>
+    <script th:src="@{/js/place-detail.js}"></script>
 </body>
 </html>
