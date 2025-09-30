@@ -1,9 +1,12 @@
 package com.example.swproject.controller;
 
+import com.example.swproject.domain.User;
 import com.example.swproject.service.CourseService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.time.LocalDate; // 이 import가 있는지 확인
+import java.time.LocalDateTime;
+import java.time.LocalTime; // 이 import가 있는지 확인
 import java.util.List;
 
 @Controller
@@ -21,7 +27,8 @@ public class CourseController {
 
     private void addLoginStatusToModel(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        boolean isLoggedIn = authentication != null && authentication.isAuthenticated() && !(authentication instanceof AnonymousAuthenticationToken);
+        boolean isLoggedIn = authentication != null && authentication.isAuthenticated() &&
+                !(authentication instanceof AnonymousAuthenticationToken);
         model.addAttribute("isLoggedIn", isLoggedIn);
         if (isLoggedIn) {
             Object principal = authentication.getPrincipal();
@@ -69,15 +76,30 @@ public class CourseController {
     }
 
     @PostMapping("/courses/recommend")
-    public String getCourseRecommendations(@RequestParam String fhash, @RequestParam String shash, 
-                                           @RequestParam String startAddress, @RequestParam String startDate, 
+    public String getCourseRecommendations(@RequestParam String fhash, @RequestParam String shash,
+                                           @RequestParam String startAddress, @RequestParam String
+                                                   startDate,
                                            @RequestParam String endDate, Model model) {
-        List<com.example.swproject.domain.Place> recommendedPlaces = courseService.recommendCourses(fhash, shash);
+        List<com.example.swproject.domain.Place> recommendedPlaces = courseService.recommendCourses(fhash,
+                shash);
         model.addAttribute("recommendedPlaces", recommendedPlaces);
         model.addAttribute("startAddress", startAddress);
         model.addAttribute("startDate", startDate);
         model.addAttribute("endDate", endDate);
         addLoginStatusToModel(model);
         return "course-recommend";
+    }
+
+    @PostMapping("/courses/save")
+    public String saveCourse(@RequestParam String courseName, @RequestParam String startAddress,
+                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate
+                                     startDate,
+                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate
+                                     endDate,
+                             @RequestParam List<Long> placeIds, @AuthenticationPrincipal User user) {
+
+        courseService.saveCourse(courseName, startAddress, LocalDateTime.of(startDate,
+                LocalTime.MIDNIGHT), LocalDateTime.of(endDate, LocalTime.MIDNIGHT), placeIds, user);
+        return "redirect:/";
     }
 }
