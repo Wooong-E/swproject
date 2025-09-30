@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Ro:D - 찜한 장소</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <link rel="stylesheet" th:href="@{/css/my-place.css}" />
+    <link rel="stylesheet" th:href="@{/css/place-detail.css}" />
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+<div class="screen">
+    <main class="div">
+        <div th:replace="~{/fragments/header-back :: headerBackFragment}"></div>
+
+        <section class="category-section">
+            <div class="category-buttons">
+                <button class="category-button active" type="button" data-category="attraction">명소</button>
+                <button class="category-button" type="button" data-category="restaurant">맛집</button>
+                <button class="category-button" type="button" data-category="cafe">카페</button>
+            </div>
+        </section>
+
+        <section id="likes-list" class="likes-list">
+            <!-- 찜한 목록이 여기에 동적으로 추가됩니다. -->
+        </section>
+
+    </main>
+
+    <div th:replace="~{/fragments/footer :: footerFragment}"></div>
+</div>
+<script th:inline="javascript">
+    var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
+</script>
+<script th:src="@{/js/my-place.js}"></script>
+</body>
+</html>

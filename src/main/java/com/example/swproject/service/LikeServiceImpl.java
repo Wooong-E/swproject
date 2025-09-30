@@ -5,8 +5,6 @@ import com.example.swproject.domain.Place;
 import com.example.swproject.domain.User;
 import com.example.swproject.repository.LikeRepository;
 import com.example.swproject.repository.PlaceRepository;
-import com.example.swproject.repository.SDJpaLikeRepository;
-import com.example.swproject.repository.SDJpaPlaceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
