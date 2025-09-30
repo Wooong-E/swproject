@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static java.util.stream.IntStream.range;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -48,8 +50,8 @@ public class CourseServiceImpl implements CourseService {
             newNth = 1L;
         }
 
-        // 2. 장소 목록을 순회하며 Course 엔티티 저장 (IntStream으로 변경)
-        java.util.stream.IntStream.range(0, placeIds.size()).forEach(i -> {
+        // 2. 장소 목록을 순회하며 Course 엔티티 저장 (IntStream 으로 변경)
+        range(0, placeIds.size()).forEach(i -> {
             long order = i + 1;
             Long placeId = placeIds.get(i); // 각 반복마다 새로운 변수로 고정
             Place place = placeRepository.findById(placeId)
