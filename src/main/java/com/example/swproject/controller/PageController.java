@@ -68,6 +68,10 @@ public class PageController {
         addLoginStatusToModel(model);
         List<ReviewSummaryDto> reviewSummaries = reviewService.getReviewSummariesByPlaceId(id);
         model.addAttribute("reviews", reviewSummaries);
+        //별점 평균을 구하는 코드
+        Double averageGrade = reviewService.getAverageGrade(id);
+        model.addAttribute("averageGrade", averageGrade != null ? averageGrade : 0.0);
+        //
         model.addAttribute("id", id); // For template selection
         model.addAttribute("placeId", id); // For correct linking
 
@@ -93,6 +97,10 @@ public class PageController {
         Long placeId = id + 6;
         List<ReviewSummaryDto> reviewSummaries = reviewService.getReviewSummariesByPlaceId(placeId);
         model.addAttribute("reviews", reviewSummaries);
+
+        Double averageGrade = reviewService.getAverageGrade(placeId);
+        model.addAttribute("averageGrade", averageGrade != null ? averageGrade : 0.0);
+
         model.addAttribute("id", id);
         model.addAttribute("placeId", placeId);
 
@@ -118,6 +126,10 @@ public class PageController {
         Long placeId = id + 12;
         List<ReviewSummaryDto> reviewSummaries = reviewService.getReviewSummariesByPlaceId(placeId);
         model.addAttribute("reviews", reviewSummaries);
+
+        Double averageGrade = reviewService.getAverageGrade(placeId);
+        model.addAttribute("averageGrade", averageGrade != null ? averageGrade : 0.0);
+
         model.addAttribute("id", id);
         model.addAttribute("placeId", placeId);
 

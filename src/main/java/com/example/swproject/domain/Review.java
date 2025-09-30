@@ -5,7 +5,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.time.LocalDateTime;
 
 @Getter
@@ -54,6 +56,7 @@ public class Review {
   @Column(name = "shash")
   private String shash;
 
+  @CreatedDate //이게 있어야 created 필드에 날짜가 자동으로 들어간다해서 추가함
   @Column(name="created", nullable = false)
   private LocalDateTime created;
 
