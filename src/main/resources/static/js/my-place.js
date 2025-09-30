@@ -36,13 +36,17 @@ document.addEventListener('DOMContentLoaded', () => {
             item.classList.add('like-item');
             item.setAttribute('data-place-id', place.id);
 
+            const detailUrl = `/${category}s/${place.id}`;
+
             // 이미지, 정보, 하트 버튼을 포함하는 HTML 구조 생성
             item.innerHTML = `
-                <img src="/images/attractions/attraction_${place.id}.jpg" alt="${place.name}" class="like-item-image">
-                <div class="like-item-info">
-                    <h3 class="like-item-title">${place.name}</h3>
-                    <p class="like-item-address">${place.address}</p>
-                </div>
+                <a href="${detailUrl}" class="like-item-link">
+                    <img src="/images/attractions/attraction_${place.id}.jpg" alt="${place.name}" class="like-item-image">
+                    <div class="like-item-info">
+                        <h3 class="like-item-title">${place.name}</h3>
+                        <p class="like-item-address">${place.address}</p>
+                    </div>
+                </a>
                 <button class="heart-button" type="button" aria-label="찜 해제하기">
                     <img src="/images/tabler_heart_filled.svg" alt="찜한 상태">
                 </button>
@@ -69,6 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
     likesList.addEventListener('click', (event) => {
         const heartButton = event.target.closest('.heart-button');
         if (!heartButton) return;
+
+        event.preventDefault(); // 링크 이동 방지
 
         const item = heartButton.closest('.like-item');
         const placeId = item.dataset.placeId;

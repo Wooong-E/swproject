@@ -71,9 +71,17 @@ footer[th\:fragment="footerFragment"] {
 .like-item {
     display: flex;
     align-items: flex-start;
-    gap: 15px;
     padding: 20px 0;
     border-bottom: 1px solid #f0f0f0;
+}
+
+.like-item-link {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    flex-grow: 1;
+    text-decoration: none;
+    color: inherit;
 }
 
 .like-item:last-child {
