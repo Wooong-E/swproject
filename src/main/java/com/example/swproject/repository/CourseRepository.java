@@ -29,10 +29,10 @@ public class CourseRepository {
     return courseRepository.save(course);
   }
 
-  public List<Long> findCourseByNth(Long nth){
+  public List<Long> findCourseByNth(Long usersId, Long nth){
     List<Course> nthCourse = queryFactory.select(course)
         .from(course)
-        .where(course.nth.eq(nth))
+        .where(course.user.id.eq(usersId), course.nth.eq(nth))
         .orderBy(course.order.asc())
         .fetch();
 
@@ -45,9 +45,10 @@ public class CourseRepository {
     return placeOrder;
   }
 
-  public Long findMaxNth(){
+  public Long findMaxNth(Long usersId){
     return queryFactory.select(course.nth.max())
         .from(course)
+        .where(course.user.id.eq(usersId))
         .fetchOne();
   }
 
