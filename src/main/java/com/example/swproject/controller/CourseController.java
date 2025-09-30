@@ -102,4 +102,20 @@ public class CourseController {
                 LocalTime.MIDNIGHT), LocalDateTime.of(endDate, LocalTime.MIDNIGHT), placeIds, user);
         return "redirect:/";
     }
+
+    @PostMapping("/courses/preview-map")
+    public String previewCourseMap(@RequestParam String courseName, @RequestParam String startAddress,
+                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+                                   @RequestParam List<Long> placeIds, Model model) {
+
+        model.addAttribute("courseName", courseName);
+        model.addAttribute("startAddress", startAddress);
+        model.addAttribute("startDate", startDate.format(java.time.format.DateTimeFormatter.ISO_DATE));
+        model.addAttribute("endDate", endDate.format(java.time.format.DateTimeFormatter.ISO_DATE));
+        model.addAttribute("placeIds", placeIds);
+
+        addLoginStatusToModel(model);
+        return "course-map-preview";
+    }
 }
