@@ -2,8 +2,11 @@ package com.example.swproject.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -24,6 +27,25 @@ public class Course {
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "places_id", nullable = false)
   private Place place;
+
+  @Size(max = 255)
+  @NotNull
+  @Column(name = "name", nullable = false)
+  private String name;
+
+  @Size(max = 255)
+  @NotNull
+  @Column(name = "startaddress", nullable = false)
+  private String startaddress;
+
+  @NotNull
+  @Column(name="startdate", nullable = false)
+  private LocalDateTime startdate;
+
+  @NotNull
+  @Column(name="enddate", nullable = false)
+  private LocalDateTime enddate;
+
 
   @NotNull
   @Column(name = "`order`", nullable = false)
