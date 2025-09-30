@@ -68,7 +68,7 @@ public class ReviewRepository {
         .fetchOne();
   }
 
-  private List<Long> findTop2EqualHash(String fhash, String shash) {
+  public List<Long> findTop2EqualHash(String fhash, String shash) {
 
     List<Tuple> fReviewCount = queryFactory.select(review.place.category, review.place.id, review.id.count())
         .from(review)

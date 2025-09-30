@@ -104,6 +104,11 @@ public class ReviewService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
+    public Double getAverageGrade(Long placeId) {
+        return reviewRepository.findAvgGrade(placeId);
+    }
+
     // 각 장소에 있는 리뷰들을 가져와서, 보여주기 위한 매서드.
     @Transactional(readOnly = true)
     public List<ReviewSummaryDto> getReviewSummariesByPlaceId(Long placeId) {
