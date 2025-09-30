@@ -27,17 +27,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /*// Links that require login in the sidebar
-  const protectedLinks = document.querySelectorAll(
-    '#sidebar .frame a[href="#"]',
-  );*/
+  // Links that require login in the sidebar
+  const protectedLinks = document.querySelectorAll('.protected-link');
 
   protectedLinks.forEach(link => {
     link.addEventListener('click', (event) => {
-      event.preventDefault(); // Prevent default navigation
-
-      if (confirm("로그인 시 이용가능합니다. 로그인 페이지로 이동하시겠습니까?")) {
-        window.location.href = '/users/login';
+      if (!window.isLoggedIn) {
+        event.preventDefault(); // Stop navigation
+        if (confirm("로그인 시 이용가능합니다. 로그인 페이지로 이동하시겠습니까?")) {
+          window.location.href = '/users/login';
+        }
       }
     });
   });
@@ -48,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
       coursePlanningLink.addEventListener('click', (event) => {
           // The global isLoggedIn variable is set in the HTML template
           if (!window.isLoggedIn) {
-              event.preventDefault(); // Stop navigation
+          event.preventDefault(); // Stop navigation
               if (confirm("로그인 시 이용가능합니다. 로그인 페이지로 이동하시겠습니까?")) {
                   window.location.href = '/users/login';
               }
