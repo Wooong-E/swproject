@@ -152,7 +152,7 @@ public class PageController {
         return "suggest";
     }
 
-    @GetMapping("my/place")
+    @GetMapping("/my-place")
     public String showMyPlacePage(Model model){
         addLoginStatusToModel(model);
         return "my-place";
