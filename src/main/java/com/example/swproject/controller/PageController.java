@@ -146,6 +146,12 @@ public class PageController {
         return "review-detail"; // 이거 이름 편한대로 바꾸면 됨
     }
 
+    @GetMapping("/suggest")
+    public String showSuggestPage(Model model){
+        addLoginStatusToModel(model);
+        return "suggest";
+    }
+
     @GetMapping("my/place")
     public String showMyPlacePage(Model model){
         addLoginStatusToModel(model);
