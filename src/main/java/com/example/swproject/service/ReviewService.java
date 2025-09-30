@@ -4,6 +4,7 @@ import com.example.swproject.domain.Place;
 import com.example.swproject.domain.Review;
 import com.example.swproject.domain.ReviewsPost;
 import com.example.swproject.domain.User;
+import com.example.swproject.dto.ReviewSummaryDto;
 import com.example.swproject.repository.PlaceRepository;
 import com.example.swproject.repository.ReviewRepository;
 import com.example.swproject.repository.ReviewsPostRepository;
@@ -33,7 +34,7 @@ public class ReviewService {
     @Value("${upload.path}")
     private String uploadPath;
 
-    public Review createReview(String title, String content, List<MultipartFile> images, User user, Long placeId) {
+    public Review createReview(String title, String content, Integer grade, String fhash, String shash, List<MultipartFile> images, User user, Long placeId) {
         Place place = placeRepository.findById(placeId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid place Id:" + placeId));
 
@@ -51,7 +52,9 @@ public class ReviewService {
         review.setContent(content);
         review.setUser(user);
         review.setPlace(place);
-        review.setGrade(0); // 별점 기능은 일단 0으로 고정
+        review.setGrade(grade);
+        review.setFhash(fhash);
+        review.setShash(shash);
         review.setOrder(order);
         Review savedReview = reviewRepository.save(review);
 
@@ -96,5 +99,24 @@ public class ReviewService {
         return reviewsPostRepository.findByReviewsId(review.getId()).stream()
                 .map(ReviewsPost::getReviewsImageUrl)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public Double getAverageGrade(Long placeId) {
+        return reviewRepository.findAvgGrade(placeId);
+    }
+
+    // 각 장소에 있는 리뷰들을 가져와서, 보여주기 위한 매서드.
+    @Transactional(readOnly = true)
+    public List<ReviewSummaryDto> getReviewSummariesByPlaceId(Long placeId) {
+        List<Review> reviews = reviewRepository.findReviewByPlaceId(placeId);
+        return reviews.stream().map(review -> {
+            List<ReviewsPost> images = reviewsPostRepository.findByReviewsId(review.getId());
+            String firstImageUrl = null;
+            if (images != null && !images.isEmpty()) {
+                firstImageUrl = "/uploads/" + images.get(0).getReviewsImageUrl();
+            }
+            return new ReviewSummaryDto(review, firstImageUrl);
+        }).collect(Collectors.toList());
     }
 }

@@ -21,12 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkSubmitButtonState = () => {
         const isTitleValid = titleInput.value.length >= 5;
         const isGradeValid = parseInt(gradeInput.value, 10) > 0;
-        const isPhotoValid = uploadedFiles.length >= 1;
         const isContentValid = contentInput.value.length >= 5;
         const isFhashValid = fhashInput.value !== '';
         const isShashValid = shashInput.value !== '';
 
-        if (isTitleValid && isGradeValid && isPhotoValid && isContentValid && isFhashValid && isShashValid) {
+        if (isTitleValid && isGradeValid && isContentValid && isFhashValid && isShashValid) {
             submitButton.disabled = false;
         } else {
             submitButton.disabled = true;
@@ -111,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
     handleHashtagSelection(fhashGroup, fhashInput);
     handleHashtagSelection(shashGroup, shashInput);
 
@@ -120,18 +120,34 @@ document.addEventListener('DOMContentLoaded', () => {
         if (submitButton.disabled) return;
 
         const formData = new FormData(form);
-        // Since file inputs are not part of form data by default when handled like this,
-        // we append them manually.
         uploadedFiles.forEach((file, index) => {
             formData.append('images', file);
         });
 
-        console.log('--- Form Data to be Sent ---');
-        for (let [key, value] of formData.entries()) {
-            console.log(`${key}:`, value);
-        }
+        const placeId = document.getElementById('placeId').value;
+        const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+        const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
 
-        alert('리뷰가 등록되었습니다.');
-        window.location.href = '/';
+        fetch(`/places/${placeId}/reviews`, {
+            method: 'POST',
+            headers: {
+                [csrfHeader]: csrfToken
+            },
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('리뷰가 성공적으로 등록되었습니다.');
+                window.location.href = '/'; // Redirect to homepage
+            } else {
+                response.text().then(text => {
+                    alert('리뷰 등록에 실패했습니다: ' + text);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error submitting review:', error);
+            alert('리뷰 등록 중 오류가 발생했습니다.');
+        });
     });
 });
