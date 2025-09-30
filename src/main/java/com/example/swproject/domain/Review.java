@@ -5,10 +5,15 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "reviews")
 public class Review {
   @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,6 +55,11 @@ public class Review {
   @Size(max = 255)
   @Column(name = "shash")
   private String shash;
+
+  // 리뷰 상세 보기에서 작성날짜가 출력되어야 함.
+  @CreatedDate
+  @Column(name = "created_at", updatable = false)
+  private LocalDateTime createdAt;
 
 
 }

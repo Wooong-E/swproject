@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const sidebar = document.getElementById('sidebar');
   const closeButton = document.getElementById('close-button');
   const loginRegisterButton = document.querySelector('.login-button');
+  const token = document.querySelector("meta[name='_csrf']")?.getAttribute("content");
+  const header = document.querySelector("meta[name='_csrf_header']")?.getAttribute("content");
 
   console.log(menuButton, sidebar, closeButton, loginRegisterButton); // 확인
 
@@ -25,10 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Links that require login in the sidebar
+  /*// Links that require login in the sidebar
   const protectedLinks = document.querySelectorAll(
     '#sidebar .frame a[href="#"]',
-  );
+  );*/
 
   protectedLinks.forEach(link => {
     link.addEventListener('click', (event) => {

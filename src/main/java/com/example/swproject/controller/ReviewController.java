@@ -50,6 +50,9 @@ public class ReviewController {
     public String createReview(@PathVariable Long placeId,
                                @RequestParam String title,
                                @RequestParam String content,
+                               @RequestParam Integer grade,
+                               @RequestParam String fhash,
+                               @RequestParam String shash,
                                @RequestParam(value = "images", required = false) List<MultipartFile> images,
                                @AuthenticationPrincipal User user) {
 
@@ -58,7 +61,7 @@ public class ReviewController {
             return "redirect:/users/login";
         }
 
-        reviewService.createReview(title, content, images, user, placeId);
+        reviewService.createReview(title, content, grade, fhash, shash, images, user, placeId);
 
         // 리뷰 작성 후, 메인 홈으로 리다이렉트
         return "redirect:/";

@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
 <body>
 <header th:fragment="headerFragment">
     <div class="header-top-bar">
@@ -52,7 +56,7 @@
             <ul class="frame" role="list">
                 <li class="div-wrapper"><a href="#" class="div">나의 코스</a></li>
                 <li class="div-wrapper"><a href="#" class="div">코스 짜기</a></li>
-                <li class="div-wrapper"><a href="#" class="div">찜한 명소</a></li>
+                <li class="div-wrapper"><a href="/my-place" class="div">찜한 명소</a></li>
                 <li class="div-wrapper"><a href="/suggest" class="div">장소 제보하기</a></li>
                 <li class="div-wrapper"><a href="/report" class="div">문의하기</a></li>
             </ul>
