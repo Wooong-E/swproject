@@ -68,7 +68,7 @@ public class ReviewRepository {
         .fetchOne();
   }
 
-  private List<Long> findTop2EqualHash(String fhash, String shash) {
+  public List<Long> findTop2EqualHash(String fhash, String shash) {
 
     List<Tuple> fReviewCount = queryFactory.select(review.place.category, review.place.id, review.id.count())
         .from(review)
@@ -94,7 +94,7 @@ public class ReviewRepository {
 
   }
 
-  private Map<String, List<Long>> combineAndRankByCategory(List<Tuple> fReviewCount, List<Tuple> sReviewCount) {
+  public Map<String, List<Long>> combineAndRankByCategory(List<Tuple> fReviewCount, List<Tuple> sReviewCount) {
 
     Map<String, Map<Long, Long>> combinedCounts = new HashMap<>();
 
