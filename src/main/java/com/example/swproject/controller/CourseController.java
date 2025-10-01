@@ -20,6 +20,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.List;
 import java.util.Map; // Import Map
 import com.example.swproject.domain.Place; // Import Place
@@ -143,7 +148,7 @@ public class CourseController {
     }
     */
 
-    @PostMapping("/courses/preview-map")
+    @PostMapping("/courses/09")
     public String previewCourseMap(@RequestParam String courseName, @RequestParam String startAddress,
                                    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
@@ -157,7 +162,7 @@ public class CourseController {
         // You might want to fetch Place objects here to pass more details to the map view
         // For now, just passing IDs
         addLoginStatusToModel(model);
-        return "course-map-preview";
+        return "course/course09";
     }
 
     @PostMapping("/courses/course06")
@@ -181,5 +186,54 @@ public class CourseController {
         model.addAttribute("recommendedPlaces", recommendedPlaces);
 
         return "courses/course06";
+    }
+
+    @PostMapping("/courses/course07")
+    public String showCourse07Page(@RequestParam String startAddress,
+                                   @RequestParam String fhash,
+                                   @RequestParam String shash,
+                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+                                   @RequestParam(required = false) List<Long> placeIds,
+                                   Model model) {
+        addLoginStatusToModel(model);
+        model.addAttribute("startAddress", startAddress);
+        model.addAttribute("fhash", fhash);
+        model.addAttribute("shash", shash);
+        model.addAttribute("startDate", startDate.format(java.time.format.DateTimeFormatter.ISO_DATE));
+        model.addAttribute("endDate", endDate.format(java.time.format.DateTimeFormatter.ISO_DATE));
+        model.addAttribute("placeIds", placeIds);
+
+        return "courses/course07";
+    }
+
+    @PostMapping("/courses/course08")
+    public String showCourse08Page(@RequestParam String startAddress,
+                                   @RequestParam String fhash,
+                                   @RequestParam String shash,
+                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+                                   @RequestParam(required = false) List<Long> placeIds,
+                                   Model model) {
+        addLoginStatusToModel(model);
+
+        List<Place> selectedPlaces = new ArrayList<>();
+        if (placeIds != null && !placeIds.isEmpty()) {
+            selectedPlaces = placeIds.stream()
+                    .map(id -> placeService.findById(id).orElse(null))
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+        }
+
+        model.addAttribute("startAddress", startAddress);
+        model.addAttribute("fhash", fhash);
+        model.addAttribute("shash", shash);
+        model.addAttribute("displayStartDate", startDate.format(DateTimeFormatter.ofPattern("yy.MM.dd")));
+        model.addAttribute("displayEndDate", endDate.format(DateTimeFormatter.ofPattern("yy.MM.dd")));
+        model.addAttribute("rawStartDate", startDate);
+        model.addAttribute("rawEndDate", endDate);
+        model.addAttribute("selectedPlaces", selectedPlaces);
+
+        return "courses/course08";
     }
 }

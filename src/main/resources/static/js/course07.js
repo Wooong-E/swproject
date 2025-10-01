@@ -1,6 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Redirect after 5 seconds
+    // Find the form on the page
+    const form = document.getElementById('course07-form');
+
+    // Redirect after 5 seconds by submitting the form
+
     setTimeout(function() {
-        window.location.href = '/courses/course07';
+        if (form) {
+            form.submit();
+        }
     }, 5000); // 5000 milliseconds = 5 seconds
+
 });

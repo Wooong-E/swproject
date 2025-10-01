@@ -1,4 +1,5 @@
-/* --- Global --- */
+/* course07.css - Absolute Centering Method */
+
 body {
     font-family: 'Inter-Bold', Helvetica, sans-serif;
     display: flex;
@@ -7,56 +8,49 @@ body {
 
 .screen {
     width: 375px;
+    min-height: 100vh;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 main {
-    width: 375px; /* Fixed width as per requirement */
-    height: 720px; /* Fixed height as per requirement */
-    display: absolute;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* Start content from top */
-    box-sizing: border-box;
-    /* No padding here, as content-wrapper will handle centering */
+    width: 100%;
+    flex-grow: 1; /* Keep this so main fills the space between header and footer */
+    position: relative; /* This is the key for absolute positioning of its child */
 }
 
-/* --- Progress Bar --- */
+#course07-form {
+    /* The form itself doesn't need special positioning styles */
+}
+
 .progress-bar {
     width: 375px;
     height: 8px;
-    background-color: #A1A1A1; /* Single bar color */
-    /* No margin-top here, as it's part of the main layout */
+    background-color: #A1A1A1;
 }
 
-/* --- Loading Content (Image and Text) --- */
+/* New, robust centering logic */
 .loading-content {
-    flex-grow: 1; /* Take remaining vertical space */
+    position: absolute;
+    width: 100%; /* Let it take the full width for centering text */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* This perfectly centers the element */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
-    width: 100%; /* Ensure it takes full width to center content */
-    margin-top: 300px;
-    margin-bottom: 300px;
+    align-items: center;
+    gap: 20px; /* This creates the vertical padding the user wanted */
 }
 
 .plane-image {
-    /* Adjust size if needed, but requirement only specifies centering */
-    width: 100px; /* Example size */
+    width: 100px;
     height: auto;
-    margin-bottom: 20px; /* Space between image and text */
 }
 
 .loading-text {
-    width: 158px;
-    height: 24px;
-    font-size: 18px; /* Adjusted to fit 24px height, can be fine-tuned */
+    font-size: 18px;
     font-weight: bold;
     color: #000;
     text-align: center;
-    line-height: 24px; /* Ensure text fits within height */
 }
