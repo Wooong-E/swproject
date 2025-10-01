@@ -42,6 +42,7 @@ main {
 .content-wrapper {
     width: 100%;
     display: flex;
+    padding: 0 20px;
     flex-direction: column;
     align-items: flex-start;
     margin-top: 50px;
@@ -59,7 +60,8 @@ main {
 
 /* --- Date Selection --- */
 .date-selection-group {
-    width: 100%;
+    width: 100%; /* 좌우 20px씩 빼줌 */
+    padding: 0 20px;
     margin-top: 35px;
 }
 
@@ -110,19 +112,22 @@ main {
 
 /* --- Main Next Button --- */
 .main-next-button-container {
-    width: 100%;
+    width: 100%;      /* 화면 전체 */
+    padding: 0 20px;  /* 좌우 여백 */
     margin-top: 80px;
     margin-bottom: 30px;
+    box-sizing: border-box; /* 중요 */
 }
 
 #main-selection-complete-button {
-    width: 100%;
+    width: 100%;      /* 컨테이너 폭 전체, 좌우 padding 반영 */
     height: 50px;
-    border-radius: 25px; /* 타원형 */
+    border-radius: 5px;
     border: none;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
+    box-sizing: border-box; /* 중요 */
 }
 
 #main-selection-complete-button:disabled {
