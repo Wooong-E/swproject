@@ -17,38 +17,43 @@
         <div th:replace="~{/fragments/header-course :: headerCourseFragment}"></div>
 
         <main>
-            <div class="progress-bar-container">
-                <div class="progress-bar-inner"></div>
-            </div>
+            <form id="course02-form" action="/courses/course03" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                <input type="hidden" id="startAddress-input" name="startAddress" th:value="${startAddress}">
+                <input type="hidden" id="fhash-input" name="fhash">
+                <div class="progress-bar-container">
+                    <div class="progress-bar-inner"></div>
+                </div>
 
-            <div class="content-wrapper">
-                <p class="step-text">STEP2</p>
-                <h1 class="prompt-text">어떤 분위기의 여행인가요?</h1>
-                <p class="sub-prompt-text">원하시는 분위기로 구성해드려요</p>
-            </div>
+                <div class="content-wrapper">
+                    <p class="step-text">STEP2</p>
+                    <h1 class="prompt-text">어떤 분위기의 여행인가요?</h1>
+                    <p class="sub-prompt-text">원하시는 분위기로 구성해드려요</p>
+                </div>
 
-            <div class="mood-buttons-container">
-                <button class="mood-button" data-mood="healing">
-                    <img src="/images/healing.png" alt="">
-                    <span>힐링 여행</span>
-                </button>
-                <button class="mood-button" data-mood="date">
-                    <img src="/images/date.png" alt="">
-                    <span>데이트 코스</span>
-                </button>
-                <button class="mood-button" data-mood="extreme">
-                    <img src="/images/extream.png" alt="">
-                    <span>익스트림 여행</span>
-                </button>
-                <button class="mood-button" data-mood="eating">
-                    <img src="/images/eating.png" alt="">
-                    <span>식도락 여행</span>
-                </button>
-            </div>
+                <div class="mood-buttons-container">
+                    <button class="mood-button" type="button" data-mood="#힐링여행">
+                        <img src="/images/healing.png" alt="">
+                        <span>힐링 여행</span>
+                    </button>
+                    <button class="mood-button" type="button" data-mood="#데이트코스">
+                        <img src="/images/date.png" alt="">
+                        <span>데이트 코스</span>
+                    </button>
+                    <button class="mood-button" type="button" data-mood="#익스트림여행">
+                        <img src="/images/extream.png" alt="">
+                        <span>익스트림 여행</span>
+                    </button>
+                    <button class="mood-button" type="button" data-mood="#식도락여행">
+                        <img src="/images/eating.png" alt="">
+                        <span>식도락 여행</span>
+                    </button>
+                </div>
 
-            <div class="next-button-container">
-                <button type="button" id="selection-complete-button" disabled>선택 완료</button>
-            </div>
+                <div class="next-button-container">
+                    <button type="submit" id="selection-complete-button" disabled>선택 완료</button>
+                </div>
+            </form>
         </main>
 
         <div th:replace="~{/fragments/footer :: footerFragment}"></div>
