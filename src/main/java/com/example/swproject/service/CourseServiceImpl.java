@@ -6,12 +6,14 @@ import com.example.swproject.domain.User;
 import com.example.swproject.repository.CourseRepository;
 import com.example.swproject.repository.PlaceRepository;
 import com.example.swproject.repository.ReviewRepository;
+import com.querydsl.core.Tuple;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -78,4 +80,17 @@ public class CourseServiceImpl implements CourseService {
             courseRepository.save(course);
         });
     }
+
+    public List<Course> getCourse(User user, Long nth) {
+        return courseRepository.findCourseByUsersIdAndNth(user.getId(), nth);
+    }
+
+    public List<List<Course>> getAllCourses(User user){
+        return courseRepository.findAllCourseByUsersId(user.getId());
+    }
+
+    public void deleteCourse(User user, Long nth){
+        courseRepository.delete(user.getId(),nth);
+    }
+
 }
