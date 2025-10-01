@@ -31,7 +31,7 @@ main {
 }
 
 .progress-bar-inner {
-    width: 320px; /* STEP 6 */
+    width: 250px; /* STEP 5 */
     height: 8px;
     background-color: #A1A1A1;
 }

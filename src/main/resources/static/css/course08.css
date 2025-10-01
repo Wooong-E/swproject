@@ -1,0 +1,128 @@
+/* course08.css */
+
+body {
+    font-family: 'Inter-Bold', Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.screen {
+    width: 375px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.content-wrapper {
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.prompt-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.course-name-container {
+    margin-bottom: 20px;
+}
+
+.course-name-container label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+#course-name-input {
+    width: 100%;
+    height: 45px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 0 15px;
+    font-size: 16px;
+}
+
+.date-display {
+    text-align: left;
+    font-size: 14px;
+    color: #888; /* Light-colored text */
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee; /* Light line */
+}
+
+.place-list-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.place-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee; /* Light line between items */
+}
+
+.place-info {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline; /* 텍스트 기준선 정렬 */
+    gap: 8px; /* 이름과 카테고리 사이 간격 */
+}
+
+.place-name {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.place-category {
+    font-size: 12px;
+    color: #888; /* Small, light-colored text */
+}
+
+.delete-button {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #888;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 22px; /* Adjust for vertical alignment of '-' */
+}
+
+.next-button-container {
+    width: 100%;
+    margin-top: 300px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#selection-complete-button {
+    width: 100%;
+    max-width: 343px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    background-color: #515151;
+    color: white;
+}
