@@ -12,7 +12,7 @@ import java.util.List;
 
 import static com.example.swproject.domain.QCourse.course;
 
-@Repository
+@Repository()
 public class CourseRepository {
 
   @Autowired
@@ -43,6 +43,13 @@ public class CourseRepository {
     }
 
     return placeOrder;
+  }
+
+  public Course findCourseByUsersIdAndNth(Long usersId,Long nth){
+    return queryFactory.select(course)
+        .from(course)
+        .where(course.user.id.eq(usersId), course.nth.eq(nth))
+        .fetchOne();
   }
 
   public Long findMaxNth(Long usersId){
