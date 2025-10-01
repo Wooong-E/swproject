@@ -56,11 +56,6 @@ public class ReviewController {
                                @RequestParam(value = "images", required = false) List<MultipartFile> images,
                                @AuthenticationPrincipal User user) {
 
-        // todo: 리뷰란을 들어갈 때 이미 로그인했는 지 검증 과정을 거치기에, 불필요한 코드로 추측.
-        if (user == null) {
-            return "redirect:/users/login";
-        }
-
         reviewService.createReview(title, content, grade, fhash, shash, images, user, placeId);
 
         // 리뷰 작성 후, 메인 홈으로 리다이렉트

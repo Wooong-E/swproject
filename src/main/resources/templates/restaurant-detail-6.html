@@ -29,7 +29,19 @@
                         <img id="heartIcon" src="/images/tabler_heart.svg" alt="찜하기" />
                     </button>
                 </div>
-                <p class="attraction-description">닭갈비를 다 먹고 난 후 볶음밥이 필수인 집으로 반찬도 깔끔하게 나오며 적당한 매운 맛이 최고인 곳이다.</p>
+                <p class="attraction-address">경북 경산시 남산면 하대2길 32-17</p>
+            </section>
+
+            <!-- Star Rating Section -->
+            <section class="rating-section">
+                <span class="rating-score" th:text="${#numbers.formatDecimal(averageGrade, 1, 1)}">0.0</span>
+                <div class="stars-wrapper">
+                    <div th:each="i : ${#numbers.sequence(1, 5)}" class="star-container">
+                        <img th:src="@{/images/star_empty.svg}" alt="Empty Star"/>
+                        <img th:if="${averageGrade > (i - 1)}" th:src="@{/images/star_filled.svg}" alt="Filled Star"
+                             th:style="'clip-path: inset(0 ' + (100 - (*{i <= averageGrade} ? 100 : (*{averageGrade - (i-1)} * 100))) + '% 0 0);'"/>
+                    </div>
+                </div>
             </section>
 
             <!-- Menu Section -->
@@ -54,9 +66,25 @@
                 </div>
             </section>
 
+            <!-- Star Rating Section -->
+            <section class="details-section">
+                <div class="detail-item rating-display">
+                    <strong>평균 별점</strong>
+                    <div class="stars-wrapper">
+                        <div th:each="i : ${#numbers.sequence(1, 5)}" class="star-container">
+                            <img th:src="@{/images/star_empty.svg}" alt="Empty Star"/>
+                            <img th:if="${averageGrade > (i - 1)}" th:src="@{/images/star_filled.svg}" alt="Filled Star"
+                                 th:style="'clip-path: inset(0 ' + (100 - (*{i <= averageGrade} ? 100 : (*{averageGrade - (i-1)} * 100))) + '% 0 0);'"/>
+                        </div>
+                    </div>
+                    <span class="rating-score" th:text="${#numbers.formatDecimal(averageGrade, 1, 1)}">0.0</span>
+                </div>
+            </section>
+
             <!-- Address and Transportation -->
             <section class="details-section">
-                <p class="detail-item"><strong>주소</strong> <span>경북 경산시 남산면 하대2길 32-17</span></p>
+                                
+                
                 <p class="detail-item"><strong>전화번호</strong> <span>0507-1383-6684</span></p>
                 <p class="detail-item"><strong>영업시간</strong> <span>매일 11:00~20:30</span></p>
             </section>

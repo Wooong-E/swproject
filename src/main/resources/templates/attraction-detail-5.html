@@ -26,15 +26,26 @@
                 <div class="title-heart-wrapper">
                     <h2 class="attraction-title">삼성현역사문화공원</h2>
                     <button id="likeButton" class="heart-button" type="button" aria-label="찜하기">
-                        <img id="heartIcon" src="/images/tabler_heart.svg" alt="" />
+                        <img id="heartIcon" th:src="@{/images/tabler_heart.svg}" alt="" />
                     </button>
                 </div>
-                <p class="attraction-description">원효, 설총, 일연 세 성현의 정신을 기리고 계승하기 위해 조성된 역사문화공원입니다. 교육과 휴식을 동시에 즐길 수 있습니다.</p>
+                <p class="attraction-address">경북 경산시 남산면 삼성현공원로 59</p>
+            </section>
+
+            <!-- Star Rating Section -->
+            <section class="rating-section">
+                <span class="rating-score" th:text="${#numbers.formatDecimal(averageGrade, 1, 1)}">0.0</span>
+                <div class="stars-wrapper">
+                    <div th:each="i : ${#numbers.sequence(1, 5)}" class="star-container">
+                        <img th:src="@{/images/star_empty.svg}" alt="Empty Star"/>
+                        <img th:if="${averageGrade > (i - 1)}" th:src="@{/images/star_filled.svg}" alt="Filled Star"
+                             th:style="'clip-path: inset(0 ' + (100 - (*{i <= averageGrade} ? 100 : (*{averageGrade - (i-1)} * 100))) + '% 0 0);'"/>
+                    </div>
+                </div>
             </section>
 
             <!-- Price and Transportation -->
             <section class="details-section">
-                <p class="detail-item"><strong>주소</strong> <span>경북 경산시 남산면 삼성현공원로 59</span></p>
                 <p class="detail-item"><strong>영업시간</strong> <span>동절기09:00-17:00 하절기09:00-18:00 (매주 월요일 휴무)</span></p>
                 <p class="detail-item"><strong>전화번호</strong> <span>053-804-7329</span></p>
                 <p class="detail-item"><strong>가격</strong> <span>무료</span></p>

@@ -348,3 +348,72 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
     margin: 0;
 }
 
+/* === Star Rating Display === */
+.rating-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rating-score {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.stars-wrapper {
+    display: flex;
+    gap: 2px;
+}
+
+.star-container {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.star-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.star-filled-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* === Styles for Refactoring === */
+
+.rating-section {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.rating-section .rating-score {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    order: -1; /* Move score before stars */
+}
+
+.rating-section .stars-wrapper {
+    display: flex;
+    gap: 2px;
+}
+
+.attraction-address {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+

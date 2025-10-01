@@ -26,17 +26,26 @@
                 <div class="title-heart-wrapper">
                     <h2 class="attraction-title">경산 스타필드</h2>
                     <button id="likeButton" class="heart-button" type="button" aria-label="찜하기">
-                        <img id="heartIcon" src="/images/tabler_heart.svg" alt="" />
+                        <img id="heartIcon" th:src="@{/images/tabler_heart.svg}" alt="" />
                     </button>
                 </div>
-                <p class="attraction-description">1층에는 이마트를 통해 필요한 장을 볼 수 있는 공간이 크게 있다.
-                    2층에는 매우 큰 스타벅스,영풍문고,탑텐 등 다양한 브랜드들이 입점되어 있을뿐만 아니라 식당 종류도 다양했다.
-                    다양한 매장들이 입점되어 있음에도 불구하고, 스타필드 내 이동 공간이 넓어서 편했다,</p>
+                <p class="attraction-address">경북 경산시 옥산로 227</p>
+            </section>
+
+            <!-- Star Rating Section -->
+            <section class="rating-section">
+                <span class="rating-score" th:text="${#numbers.formatDecimal(averageGrade, 1, 1)}">0.0</span>
+                <div class="stars-wrapper">
+                    <div th:each="i : ${#numbers.sequence(1, 5)}" class="star-container">
+                        <img th:src="@{/images/star_empty.svg}" alt="Empty Star"/>
+                        <img th:if="${averageGrade > (i - 1)}" th:src="@{/images/star_filled.svg}" alt="Filled Star"
+                             th:style="'clip-path: inset(0 ' + (100 - (*{i <= averageGrade} ? 100 : (*{averageGrade - (i-1)} * 100))) + '% 0 0);'"/>
+                    </div>
+                </div>
             </section>
 
             <!-- Price and Transportation -->
             <section class="details-section">
-                <p class="detail-item"><strong>주소</strong> <span>경북 경산시 옥산로 227</span></p>
                 <p class="detail-item"><strong>교통</strong> <span>사월역 3번 출구에서 484m (도보 9분)</span></p>
                 <p class="detail-item"><strong>영업시간</strong> <span>매일 10:00 – 23:00 (매월 둘,넷째 주 수요일 휴무)</span></p>
 

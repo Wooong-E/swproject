@@ -26,16 +26,26 @@
                 <div class="title-heart-wrapper">
                     <h2 class="attraction-title">남매지</h2>
                     <button id="likeButton" class="heart-button" type="button" aria-label="찜하기">
-                        <img id="heartIcon" src="/images/tabler_heart.svg" alt="" />
+                        <img id="heartIcon" th:src="@{/images/tabler_heart.svg}" alt="" />
                     </button>
                 </div>
-                <p class="attraction-description">산책하기에 좋고 뷰가 멋지다.
-                    야외 운동을 하기 좋은 공간이며 주변에 편의 시설이 잘 되어있어 만족스럽다.</p>
+                <p class="attraction-address">경북 경산시 계양동</p>
+            </section>
+
+            <!-- Star Rating Section -->
+            <section class="rating-section">
+                <span class="rating-score" th:text="${#numbers.formatDecimal(averageGrade, 1, 1)}">0.0</span>
+                <div class="stars-wrapper">
+                    <div th:each="i : ${#numbers.sequence(1, 5)}" class="star-container">
+                        <img th:src="@{/images/star_empty.svg}" alt="Empty Star"/>
+                        <img th:if="${averageGrade > (i - 1)}" th:src="@{/images/star_filled.svg}" alt="Filled Star"
+                             th:style="'clip-path: inset(0 ' + (100 - (*{i <= averageGrade} ? 100 : (*{averageGrade - (i-1)} * 100))) + '% 0 0);'"/>
+                    </div>
+                </div>
             </section>
 
             <!-- Price and Transportation -->
             <section class="details-section">
-                <p class="detail-item"><strong>주소</strong> <span>경북 경산시 계양동</span></p>
                 <p class="detail-item"><strong>교통</strong> <span>영남대 역 3번 출구에서 15분, 영남대 앞 버스정류장에서 15분</span></p>
                 <p class="detail-item"><strong>주차장</strong> <span>무료</span></p>
             </section>

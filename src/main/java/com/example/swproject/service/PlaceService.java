@@ -3,6 +3,7 @@ package com.example.swproject.service;
 import com.example.swproject.domain.Place;
 import com.example.swproject.dto.AttractionDto;
 import com.example.swproject.repository.PlaceRepository;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class PlaceService {
 
     private final List<AttractionDto> attractions = new ArrayList<>();
 
-    @jakarta.annotation.PostConstruct
+    @PostConstruct
     public void initAttractionsData() {
         // 실제 장소 데이터
         attractions.add(createAttractionDto(1L, "자인 계정숲", "경북 경산시 자인면 계정길 5", "nature", "/images/attractions/attraction_1.jpg"));

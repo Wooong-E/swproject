@@ -26,17 +26,26 @@
                 <div class="title-heart-wrapper">
                     <h2 class="attraction-title">대구대학교 늘푸른테마 공원</h2>
                     <button id="likeButton" class="heart-button" type="button" aria-label="찜하기">
-                        <img id="heartIcon" src="/images/tabler_heart.svg" alt="" />
+                        <img id="heartIcon" th:src="@{/images/tabler_heart.svg}" alt="" />
                     </button>
                 </div>
-                <p class="attraction-description">
-                    넓은 들판에 청보리밭이 쭉 펼쳐져 있어 자연경관이 아름다운 장소 중 하나이다.
-                    봄, 가을 바람을 통하여 흔들거리는 들판이 아릅다워 산책이나 피크닉을 즐기기 좋은 장소이다.</p>
+                <p class="attraction-address">경북 경산시 진량읍 대구대로 201</p>
+            </section>
+
+            <!-- Star Rating Section -->
+            <section class="rating-section">
+                <span class="rating-score" th:text="${#numbers.formatDecimal(averageGrade, 1, 1)}">0.0</span>
+                <div class="stars-wrapper">
+                    <div th:each="i : ${#numbers.sequence(1, 5)}" class="star-container">
+                        <img th:src="@{/images/star_empty.svg}" alt="Empty Star"/>
+                        <img th:if="${averageGrade > (i - 1)}" th:src="@{/images/star_filled.svg}" alt="Filled Star"
+                             th:style="'clip-path: inset(0 ' + (100 - (*{i <= averageGrade} ? 100 : (*{averageGrade - (i-1)} * 100))) + '% 0 0);'"/>
+                    </div>
+                </div>
             </section>
 
             <!-- Price and Transportation -->
             <section class="details-section">
-                <p class="detail-item"><strong>주소</strong> <span>경북 경산시 진량읍 대구대로 201</span></p>
                 <p class="detail-item"><strong>가격</strong> <span>무료</span></p>
                 <p class="detail-item"><strong>주차장</strong> <span>????????</span></p>
                 <p class="detail-item"><strong>대중교통</strong> <span>대구대 서문건너, 도보 5분</span></p>

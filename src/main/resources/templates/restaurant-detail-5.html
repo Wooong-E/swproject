@@ -29,8 +29,19 @@
                         <img id="heartIcon" src="/images/tabler_heart.svg" alt="찜하기" />
                     </button>
                 </div>
-                <p class="attraction-description">그릴링 서비스를 제공하여 편하고 깔끔하게 먹을 수 있다.
-                    고기질은 보장되어있으며, 친절한 서비스와 깔끔한 맛이 인상적이다.</p>
+                <p class="attraction-address">경북 경산시 하양읍 대학로295길 6-9</p>
+            </section>
+
+            <!-- Star Rating Section -->
+            <section class="rating-section">
+                <span class="rating-score" th:text="${#numbers.formatDecimal(averageGrade, 1, 1)}">0.0</span>
+                <div class="stars-wrapper">
+                    <div th:each="i : ${#numbers.sequence(1, 5)}" class="star-container">
+                        <img th:src="@{/images/star_empty.svg}" alt="Empty Star"/>
+                        <img th:if="${averageGrade > (i - 1)}" th:src="@{/images/star_filled.svg}" alt="Filled Star"
+                             th:style="'clip-path: inset(0 ' + (100 - (*{i <= averageGrade} ? 100 : (*{averageGrade - (i-1)} * 100))) + '% 0 0);'"/>
+                    </div>
+                </div>
             </section>
 
             <!-- Menu Section -->
@@ -60,9 +71,25 @@
                 </div>
             </section>
 
+            <!-- Star Rating Section -->
+            <section class="details-section">
+                <div class="detail-item rating-display">
+                    <strong>평균 별점</strong>
+                    <div class="stars-wrapper">
+                        <div th:each="i : ${#numbers.sequence(1, 5)}" class="star-container">
+                            <img th:src="@{/images/star_empty.svg}" alt="Empty Star"/>
+                            <img th:if="${averageGrade > (i - 1)}" th:src="@{/images/star_filled.svg}" alt="Filled Star"
+                                 th:style="'clip-path: inset(0 ' + (100 - (*{i <= averageGrade} ? 100 : (*{averageGrade - (i-1)} * 100))) + '% 0 0);'"/>
+                        </div>
+                    </div>
+                    <span class="rating-score" th:text="${#numbers.formatDecimal(averageGrade, 1, 1)}">0.0</span>
+                </div>
+            </section>
+
             <!-- Address and Transportation -->
             <section class="details-section">
-                <p class="detail-item"><strong>주소</strong> <span>경북 경산시 하양읍 대학로295길 6-9</span></p>
+                                
+                
                 <p class="detail-item"><strong>전화번호</strong> <span>0507-1348-4207</span></p>
                 <p class="detail-item"><strong>영업시간</strong> <span>매일 16:30~24:00(23:00 라스트 오더)</span></p>
             </section>

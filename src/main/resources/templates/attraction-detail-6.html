@@ -26,16 +26,26 @@
                 <div class="title-heart-wrapper">
                     <h2 class="attraction-title">대부잠수교</h2>
                     <button id="likeButton" class="heart-button" type="button" aria-label="찜하기">
-                        <img id="heartIcon" src="/images/tabler_heart.svg" alt="" />
+                        <img id="heartIcon" th:src="@{/images/tabler_heart.svg}" alt="" />
                     </button>
                 </div>
-                <p class="attraction-description">장미길과 장미터널과 같은 포토존 장소도 있으며 한창 유행일 때 줄을 서가며 사진을 찍기도 한다.
-                    대부잠수교에는 하양유채꽃단지가 있으며 대구 근교 꽃구경 스팟으로 알려져있다.</p>
+                <p class="attraction-address">경북 경산시 하양읍 대조리</p>
+            </section>
+
+            <!-- Star Rating Section -->
+            <section class="rating-section">
+                <span class="rating-score" th:text="${#numbers.formatDecimal(averageGrade, 1, 1)}">0.0</span>
+                <div class="stars-wrapper">
+                    <div th:each="i : ${#numbers.sequence(1, 5)}" class="star-container">
+                        <img th:src="@{/images/star_empty.svg}" alt="Empty Star"/>
+                        <img th:if="${averageGrade > (i - 1)}" th:src="@{/images/star_filled.svg}" alt="Filled Star"
+                             th:style="'clip-path: inset(0 ' + (100 - (*{i <= averageGrade} ? 100 : (*{averageGrade - (i-1)} * 100))) + '% 0 0);'"/>
+                    </div>
+                </div>
             </section>
 
             <!-- Price and Transportation -->
             <section class="details-section">
-                <p class="detail-item"><strong>주소</strong> <span>경북 경산시 하양읍 대조리</span></p>
                 <p class="detail-item"><strong>가격</strong> <span>무료</span></p>
                 <p class="detail-item"><strong>교통</strong> <span>부호역 1번 출구에서 도보 5분</span></p>
             </section>
