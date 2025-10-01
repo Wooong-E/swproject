@@ -29,10 +29,18 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Place> recommendCourses(String fhash, String shash) {
+    public List<Place> recommendCourses(String fhash, String shash, List<Long> excludePlaceIds) {
         List<Long> recommendedPlaceIds = reviewRepository.findTop2EqualHash(fhash, shash);
 
+        // If excludePlaceIds is not null, filter the recommendedPlaceIds
+        if (excludePlaceIds != null && !excludePlaceIds.isEmpty()) {
+            recommendedPlaceIds = recommendedPlaceIds.stream()
+                    .filter(id -> !excludePlaceIds.contains(id))
+                    .collect(Collectors.toList());
+        }
+
         return recommendedPlaceIds.stream()
+                .filter(java.util.Objects::nonNull) // Filter out null IDs
                 .map(placeRepository::findById)
                 .filter(java.util.Optional::isPresent)
                 .map(java.util.Optional::get)

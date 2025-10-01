@@ -1,10 +1,13 @@
-/* --- Global --- */
+/* course06.css - Final Version based on course02.css */
+
+/* This body style centers the entire .screen container */
 body {
     font-family: 'Inter-Bold', Helvetica, sans-serif;
     display: flex;
     justify-content: center;
 }
 
+/* This .screen style sets the fixed width for the mobile view */
 .screen {
     width: 375px;
     background-color: #ffffff;
@@ -14,49 +17,105 @@ body {
 }
 
 main {
-    width: 375px; /* Fixed width as per requirement */
-    height: 720px; /* Fixed height as per requirement */
-    display: absolute;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* Start content from top */
+    width: 100%;
+    padding: 0 20px;
     box-sizing: border-box;
-    /* No padding here, as content-wrapper will handle centering */
 }
 
-/* --- Progress Bar --- */
-.progress-bar {
-    width: 375px;
-    height: 8px;
-    background-color: #A1A1A1; /* Single bar color */
-    /* No margin-top here, as it's part of the main layout */
-}
-
-/* --- Loading Content (Image and Text) --- */
-.loading-content {
-    flex-grow: 1; /* Take remaining vertical space */
+.content-wrapper {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
-    width: 100%; /* Ensure it takes full width to center content */
-    margin-top: 300px;
-    margin-bottom: 300px;
+    align-items: flex-start;
+    margin-top: 50px;
+    gap: 10px;
 }
 
-.plane-image {
-    /* Adjust size if needed, but requirement only specifies centering */
-    width: 100px; /* Example size */
-    height: auto;
-    margin-bottom: 20px; /* Space between image and text */
-}
-
-.loading-text {
-    width: 158px;
-    height: 24px;
-    font-size: 18px; /* Adjusted to fit 24px height, can be fine-tuned */
-    font-weight: bold;
+.prompt-text {
+    font-size: 20px;
+    font-weight: 700;
     color: #000;
-    text-align: center;
-    line-height: 24px; /* Ensure text fits within height */
+}
+
+.recommendations-container {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.category-section {
+    margin-bottom: 30px;
+}
+
+.category-section h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+.place-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.place-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-align: left;
+}
+
+.place-card.selected {
+    background-color: #e7f3ff;
+    border-color: #007bff;
+}
+
+.place-card h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+}
+
+.place-card .category,
+.place-card .hashtags,
+.place-card .address {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.next-button-container {
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#selection-complete-button {
+    width: 100%;
+    max-width: 343px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#selection-complete-button:disabled {
+    background-color: #F1F1F1;
+    color: #A1A1A1;
+    cursor: not-allowed;
+}
+
+#selection-complete-button:enabled {
+    background-color: #515151;
+    color: white;
 }

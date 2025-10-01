@@ -5,6 +5,7 @@ import com.example.swproject.service.CourseService;
 import com.example.swproject.service.LikeService; // Import LikeService
 import com.example.swproject.service.PlaceService;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -112,7 +113,7 @@ public class CourseController {
 
         return "courses/course05";
     }
-
+/*
     @PostMapping("/courses/recommend")
     public String getCourseRecommendations(@RequestParam String fhash, @RequestParam String shash,
                                            @RequestParam String startAddress, 
@@ -140,6 +141,7 @@ public class CourseController {
                 LocalTime.MIDNIGHT), LocalDateTime.of(endDate, LocalTime.MIDNIGHT), placeIds, user);
         return "redirect:/";
     }
+    */
 
     @PostMapping("/courses/preview-map")
     public String previewCourseMap(@RequestParam String courseName, @RequestParam String startAddress,
@@ -156,5 +158,28 @@ public class CourseController {
         // For now, just passing IDs
         addLoginStatusToModel(model);
         return "course-map-preview";
+    }
+
+    @PostMapping("/courses/course06")
+    public String showCourse06Page(@RequestParam String startAddress,
+                                   @RequestParam String fhash,
+                                   @RequestParam String shash,
+                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+                                   @RequestParam(required = false) List<Long> placeIds,
+                                   Model model) {
+        addLoginStatusToModel(model);
+        model.addAttribute("currentPage", "courses");
+        model.addAttribute("startAddress", startAddress);
+        model.addAttribute("fhash", fhash);
+        model.addAttribute("shash", shash);
+        model.addAttribute("startDate", startDate.format(java.time.format.DateTimeFormatter.ISO_DATE));
+        model.addAttribute("endDate", endDate.format(java.time.format.DateTimeFormatter.ISO_DATE));
+        model.addAttribute("selectedPlaceIds", placeIds);
+
+        List<Place> recommendedPlaces = courseService.recommendCourses(fhash, shash, placeIds);
+        model.addAttribute("recommendedPlaces", recommendedPlaces);
+
+        return "courses/course06";
     }
 }
