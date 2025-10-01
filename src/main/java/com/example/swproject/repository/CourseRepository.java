@@ -2,6 +2,7 @@ package com.example.swproject.repository;
 
 import com.example.swproject.domain.Course;
 import com.example.swproject.domain.QCourse;
+import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,12 +46,49 @@ public class CourseRepository {
     return placeOrder;
   }
 
-  public Course findCourseByUsersIdAndNth(Long usersId,Long nth){
+
+  public List<Course> findCourseByUsersIdAndNth(Long usersId,Long nth){
     return queryFactory.select(course)
         .from(course)
         .where(course.user.id.eq(usersId), course.nth.eq(nth))
-        .fetchOne();
+        .orderBy(course.order.asc())
+        .fetch();
   }
+
+  public List<List<Course>> findAllCourseByUsersId(Long usersId){
+    List<Course> courses = queryFactory.select(course)
+        .from(course)
+        .where(course.user.id.eq(usersId))
+        .orderBy(course.nth.asc(), course.order.asc())
+        .fetch();
+
+    if (courses.isEmpty()) {
+      return new ArrayList<>();
+    }
+
+    List<List<Course>> courseList=new ArrayList<>();
+
+    Long nth=courses.get(0).getNth();
+    List<Course> courseListComp=new ArrayList<>();
+
+    for(Course course : courses){
+      if(course.getNth().equals(nth)){
+        courseListComp.add(course);
+      }
+      else{
+        courseList.add(courseListComp);
+
+        courseListComp=new ArrayList<>();
+        courseListComp.add(course);
+        nth=course.getNth();
+      }
+    }
+
+    courseList.add(courseListComp);
+
+    return courseList;
+  }
+  
 
   public Long findMaxNth(Long usersId){
     return queryFactory.select(course.nth.max())
@@ -59,9 +97,9 @@ public class CourseRepository {
         .fetchOne();
   }
 
-  public void delete(Long nth){
+  public void delete(Long userId,Long nth){
     queryFactory.delete(course)
-        .where(course.nth.eq(nth))
+        .where(course.user.id.eq(userId), course.nth.eq(nth))
         .execute();
   }
 

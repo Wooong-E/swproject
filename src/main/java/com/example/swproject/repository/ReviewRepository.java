@@ -94,7 +94,7 @@ public class ReviewRepository {
 
   }
 
-  private Map<String, List<Long>> combineAndRankByCategory(List<Tuple> fReviewCount, List<Tuple> sReviewCount) {
+  public Map<String, List<Long>> combineAndRankByCategory(List<Tuple> fReviewCount, List<Tuple> sReviewCount) {
 
     Map<String, Map<Long, Long>> combinedCounts = new HashMap<>();
 

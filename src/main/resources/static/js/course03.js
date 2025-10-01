@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectionButtonsContainer = document.querySelector('.mood-buttons-container');
     const selectionButtons = document.querySelectorAll('.mood-button');
     const completeButton = document.getElementById('selection-complete-button');
+    const shashInput = document.getElementById('shash-input');
+    const course03Form = document.getElementById('course03-form');
 
     if (selectionButtonsContainer && completeButton) {
         // 1. 버튼 선택 로직
@@ -22,19 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
+            // 선택된 동반자 값을 숨겨진 필드에 저장
+            shashInput.value = clickedButton.dataset.companion;
+
             // '선택 완료' 버튼 활성화
             completeButton.disabled = false;
         });
 
-        // 2. '선택 완료' 버튼 클릭 시 페이지 이동
+        // 2. '선택 완료' 버튼 클릭 시 페이지 이동 (폼 제출로 변경)
         completeButton.addEventListener('click', () => {
             if (!completeButton.disabled) {
-                // 선택된 값을 다음 페이지로 넘길 수 있습니다 (예: 쿼리 파라미터).
-                // const selectedCompanion = document.querySelector('.mood-button:not(.inactive)').dataset.companion;
-                // window.location.href = `/courses/course04?companion=${selectedCompanion}`;
-                
-                // 지금은 단순히 페이지 이동만 구현합니다.
-                window.location.href = '/courses/course04';
+                course03Form.submit(); // 폼 제출
             }
         });
     }

@@ -21,40 +21,48 @@
         <div th:replace="~{/fragments/header-course :: headerCourseFragment}"></div>
 
         <main>
-            <div class="progress-bar-container">
-                <div class="progress-bar-inner"></div>
-            </div>
-
-            <div class="content-wrapper">
-                <p class="step-text">STEP4</p>
-                <h1 class="prompt-text">오래 머무시나요?</h1>
-                <p class="sub-prompt-text">경산에서 재밌게 보낼 시간을 정해주세요</p>
-            </div>
-
-            <!-- Date Selection -->
-            <div class="date-selection-group">
-                <p class="date-label">가는 날</p>
-                <div class="date-input-container">
-                    <input type="text" id="start-date-input" class="date-input" placeholder="날짜를 선택해주세요" readonly>
-                    <button id="start-date-button" class="calendar-button">
-                        <img src="/images/calendar.png" alt="달력 열기">
-                    </button>
+            <form id="course04-form" action="/courses/course05" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                <input type="hidden" id="startAddress-input" name="startAddress" th:value="${startAddress}">
+                <input type="hidden" id="fhash-input" name="fhash" th:value="${fhash}">
+                <input type="hidden" id="shash-input" name="shash" th:value="${shash}">
+                <input type="hidden" id="startDate-hidden-input" name="startDate">
+                <input type="hidden" id="endDate-hidden-input" name="endDate">
+                <div class="progress-bar-container">
+                    <div class="progress-bar-inner"></div>
                 </div>
-            </div>
 
-            <div class="date-selection-group">
-                <p class="date-label">오는 날</p>
-                <div class="date-input-container">
-                    <input type="text" id="end-date-input" class="date-input" placeholder="날짜를 선택해주세요" readonly>
-                    <button id="end-date-button" class="calendar-button">
-                        <img src="/images/calendar.png" alt="달력 열기">
-                    </button>
+                <div class="content-wrapper">
+                    <p class="step-text">STEP4</p>
+                    <h1 class="prompt-text">오래 머무시나요?</h1>
+                    <p class="sub-prompt-text">경산에서 재밌게 보낼 시간을 정해주세요</p>
                 </div>
-            </div>
 
-            <div class="main-next-button-container">
-                <button type="button" id="main-selection-complete-button" disabled>선택 완료</button>
-            </div>
+                <!-- Date Selection -->
+                <div class="date-selection-group">
+                    <p class="date-label">가는 날</p>
+                    <div class="date-input-container">
+                        <input type="text" id="start-date-input" class="date-input" placeholder="날짜를 선택해주세요" readonly>
+                        <button id="start-date-button" class="calendar-button" type="button">
+                            <img src="/images/calendar.png" alt="달력 열기">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="date-selection-group">
+                    <p class="date-label">오는 날</p>
+                    <div class="date-input-container">
+                        <input type="text" id="end-date-input" class="date-input" placeholder="날짜를 선택해주세요" readonly>
+                        <button id="end-date-button" class="calendar-button" type="button">
+                            <img src="/images/calendar.png" alt="달력 열기">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="main-next-button-container">
+                    <button type="submit" id="main-selection-complete-button" disabled>선택 완료</button>
+                </div>
+            </form>
         </main>
 
         <div th:replace="~{/fragments/footer :: footerFragment}"></div>
