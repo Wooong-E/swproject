@@ -46,6 +46,7 @@ public class CourseRepository {
     return placeOrder;
   }
 
+
   public List<Course> findCourseByUsersIdAndNth(Long usersId,Long nth){
     return queryFactory.select(course)
         .from(course)
@@ -87,6 +88,7 @@ public class CourseRepository {
 
     return courseList;
   }
+  
 
   public Long findMaxNth(Long usersId){
     return queryFactory.select(course.nth.max())
