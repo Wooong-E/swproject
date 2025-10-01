@@ -1,0 +1,62 @@
+/* --- Global --- */
+body {
+    font-family: 'Inter-Bold', Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.screen {
+    width: 375px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    width: 375px; /* Fixed width as per requirement */
+    height: 720px; /* Fixed height as per requirement */
+    display: absolute;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Start content from top */
+    box-sizing: border-box;
+    /* No padding here, as content-wrapper will handle centering */
+}
+
+/* --- Progress Bar --- */
+.progress-bar {
+    width: 375px;
+    height: 8px;
+    background-color: #A1A1A1; /* Single bar color */
+    /* No margin-top here, as it's part of the main layout */
+}
+
+/* --- Loading Content (Image and Text) --- */
+.loading-content {
+    flex-grow: 1; /* Take remaining vertical space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    width: 100%; /* Ensure it takes full width to center content */
+    margin-top: 300px;
+    margin-bottom: 300px;
+}
+
+.plane-image {
+    /* Adjust size if needed, but requirement only specifies centering */
+    width: 100px; /* Example size */
+    height: auto;
+    margin-bottom: 20px; /* Space between image and text */
+}
+
+.loading-text {
+    width: 158px;
+    height: 24px;
+    font-size: 18px; /* Adjusted to fit 24px height, can be fine-tuned */
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+    line-height: 24px; /* Ensure text fits within height */
+}

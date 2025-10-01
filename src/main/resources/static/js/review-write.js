@@ -120,6 +120,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (submitButton.disabled) return;
 
         const formData = new FormData(form);
+
+        // Manually append hashtag values to ensure they are included
+        formData.set('fhash', fhashInput.value);
+        formData.set('shash', shashInput.value);
+
         uploadedFiles.forEach((file, index) => {
             formData.append('images', file);
         });
