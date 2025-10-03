@@ -17,89 +17,26 @@
         <div th:replace="~{/fragments/header :: headerFragment}"></div>
 
         <section class="category-section">
-            <div class="category-buttons">
-                <button class="category-button active" type="button">분위기 좋은</button>
-                <button class="category-button" type="button">디저트</button>
-                <button class="category-button" type="button">로스터리</button>
-                <button class="category-button" type="button">작업하기 좋은</button>
-                <button class="category-button" type="button">이색적인</button>
-                <button class="category-button" type="button">기타</button>
+            <div class="main-category-buttons">
+                <button class="main-category-button active" type="button" data-main-category="taste">맛집</button>
+                <button class="main-category-button" type="button" data-main-category="mood">상황·분위기별</button>
+            </div>
+            <div id="taste-sub-categories" class="sub-category-buttons active">
+                <button class="sub-category-button active" type="button" data-sub-category="감성">감성</button>
+                <button class="sub-category-button" type="button" data-sub-category="브런치">브런치</button>
+                <button class="sub-category-button" type="button" data-sub-category="디저트">디저트</button>
+                <button class="sub-category-button" type="button" data-sub-category="테마">테마</button>
+            </div>
+            <div id="mood-sub-categories" class="sub-category-buttons">
+                <button class="sub-category-button" type="button" data-sub-category="데이트">데이트</button>
+                <button class="sub-category-button" type="button" data-sub-category="혼공">혼공</button>
+                <button class="sub-category-button" type="button" data-sub-category="친구/모임">친구/모임</button>
+                <button class="sub-category-button" type="button" data-sub-category="힐링">힐링</button>
             </div>
         </section>
 
-        <section class="attractions-list">
-            <div class="frame-14">
-                <article class="frame-15" data-place-id="13">
-                    <a href="/cafes/1" class="img-wrapper">
-                        <button class="img-2" type="button" aria-label="찜하기">
-                            <img src="/images/tabler_heart.svg" alt="" />
-                        </button>
-                    </a>
-                    <div class="frame-16">
-                        <h3 class="text-wrapper-3">섬섬밀밀</h3>
-                        <p class="text-wrapper-12">경북 경산시 진량읍 대구대로 346</p>
-                    </div>
-                </article>
-                <article class="frame-17" data-place-id="14">
-                    <a href="/cafes/2" class="img-wrapper">
-                        <button class="img-2" type="button" aria-label="찜하기">
-                            <img src="/images/tabler_heart.svg" alt="" />
-                        </button>
-                    </a>
-                    <div class="frame-16">
-                        <h3 class="text-wrapper-3">파라글로우</h3>
-                        <p class="text-wrapper-12">경북 경산시 진량읍 공단 7로3 2층</p>
-                    </div>
-                </article>
-            </div>
-            <div class="frame-14">
-                <article class="frame-15" data-place-id="15">
-                    <a href="/cafes/3" class="img-wrapper">
-                        <button class="img-2" type="button" aria-label="찜하기">
-                            <img src="/images/tabler_heart.svg" alt="" />
-                        </button>
-                    </a>
-                    <div class="frame-16">
-                        <h3 class="text-wrapper-3">브라우니</h3>
-                        <p class="text-wrapper-12">경북 경산시 청운로 14-3</p>
-                    </div>
-                </article>
-                <article class="frame-17" data-place-id="16">
-                    <a href="/cafes/4" class="img-wrapper">
-                        <button class="img-2" type="button" aria-label="찜하기">
-                            <img src="/images/tabler_heart.svg" alt="" />
-                        </button>
-                    </a>
-                    <div class="frame-16">
-                        <h3 class="text-wrapper-3">플라플로</h3>
-                        <p class="text-wrapper-12">경북 경산시 대학로 281-1 7층</p>
-                    </div>
-                </article>
-            </div>
-            <div class="frame-14">
-                <article class="frame-15" data-place-id="17">
-                    <a href="/cafes/5" class="img-wrapper">
-                        <button class="img-2" type="button" aria-label="찜하기">
-                            <img src="/images/tabler_heart.svg" alt="" />
-                        </button>
-                    </a>
-                    <div class="frame-16">
-                        <h3 class="text-wrapper-3">하말</h3>
-                        <p class="text-wrapper-12">경북 경산시 와촌면 대한길 13</p>
-                    </div>
-                </article>
-                <article class="frame-17" data-place-id="18">
-                    <a href="/cafes/6" class="img-wrapper">
-                        <button class="img-2" type="button" aria-label="찜하기">
-                            <img src="/images/tabler_heart.svg" alt="" />
-                        </button>
-                    </a>
-                    <div class="frame-16">
-                        <h3 class="text-wrapper-3">우주주택</h3>
-                        <p class="text-wrapper-12">경북 경산시 하양읍 가마실길 26</p>
-                    </div>
-                </article>
-            </div>
+        <section id="cafe-list" class="attractions-list">
+            <!-- Cafe list will be dynamically inserted here by JavaScript -->
         </section>
 
     </main>
@@ -109,6 +46,6 @@
 <script th:inline="javascript">
     var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
 </script>
-<script th:src="@{/js/attractions.js}"></script>
+<script th:src="@{/js/cafes.js}"></script>
 </body>
 </html>

@@ -18,18 +18,18 @@
         <div th:replace="~{/fragments/header :: headerFragment}"></div>
 
         <section class="category-section">
-            <div class="category-buttons">
-                <button class="category-button active" type="button" data-category="nature">자연</button>
-                <button class="category-button" type="button" data-category="history">역사문화</button>
-                <button class="category-button" type="button" data-category="photospot">포토스팟</button>
-                <button class="category-button" type="button" data-category="nightview">야경·전망</button>
-                <button class="category-button" type="button" data-category="experience">테마파크·체험</button>
-                <button class="category-button" type="button" data-category="market">전통시장·거리</button>
+            <div id="attraction-sub-categories" class="sub-category-buttons active">
+                <button class="sub-category-button active" type="button" data-sub-category="자연">자연</button>
+                <button class="sub-category-button" type="button" data-sub-category="역사문화">역사문화</button>
+                <button class="sub-category-button" type="button" data-sub-category="포토스팟">포토스팟</button>
+                <button class="sub-category-button" type="button" data-sub-category="야경·전망">야경·전망</button>
+                <button class="sub-category-button" type="button" data-sub-category="테마파크·체험">테마파크·체험</button>
+                <button class="sub-category-button" type="button" data-sub-category="전통시장·거리">전통시장·거리</button>
             </div>
         </section>
 
-        <section class="attractions-list">
-            <!-- 장소 목록이 동적으로 여기에 삽입됩니다. -->
+        <section id="attraction-list" class="attractions-list">
+            <!-- Attraction list will be dynamically inserted here by JavaScript -->
         </section>
 
     </main>

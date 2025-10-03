@@ -17,89 +17,26 @@
         <div th:replace="~{/fragments/header :: headerFragment}"></div>
 
         <section class="category-section">
-            <div class="category-buttons">
-                <button class="category-button active" type="button">한식</button>
-                <button class="category-button" type="button">중식</button>
-                <button class="category-button" type="button">일식</button>
-                <button class="category-button" type="button">양식</button>
-                <button class="category-button" type="button">아시안</button>
-                <button class="category-button" type="button">기타</button>
+            <div class="main-category-buttons">
+                <button class="main-category-button active" type="button" data-main-category="taste">맛집</button>
+                <button class="main-category-button" type="button" data-main-category="mood">상황·분위기별</button>
+            </div>
+            <div id="taste-sub-categories" class="sub-category-buttons active">
+                <button class="sub-category-button active" type="button" data-sub-category="로컬">로컬</button>
+                <button class="sub-category-button" type="button" data-sub-category="트렌디">트렌디</button>
+                <button class="sub-category-button" type="button" data-sub-category="가성비">가성비</button>
+                <button class="sub-category-button" type="button" data-sub-category="특산물">특산물</button>
+            </div>
+            <div id="mood-sub-categories" class="sub-category-buttons">
+                <button class="sub-category-button" type="button" data-sub-category="데이트">데이트</button>
+                <button class="sub-category-button" type="button" data-sub-category="혼밥">혼밥</button>
+                <button class="sub-category-button" type="button" data-sub-category="모임/회식">모임/회식</button>
+                <button class="sub-category-button" type="button" data-sub-category="비지니스">비지니스</button>
             </div>
         </section>
 
-        <section class="attractions-list">
-            <div class="frame-14">
-                <article class="frame-15" data-place-id="7">
-                    <a href="/restaurants/1" class="img-wrapper">
-                        <button class="img-2" type="button" aria-label="찜하기">
-                            <img src="/images/tabler_heart.svg" alt="" />
-                        </button>
-                    </a>
-                    <div class="frame-16">
-                        <h3 class="text-wrapper-3">왕이모네식당</h3>
-                        <p class="text-wrapper-12">경북 경산시 진량읍 대구대로 60길 5-10 포시즌</p>
-                    </div>
-                </article>
-                <article class="frame-17" data-place-id="8">
-                    <a href="/restaurants/2" class="img-wrapper">
-                        <button class="img-2" type="button" aria-label="찜하기">
-                            <img src="/images/tabler_heart.svg" alt="" />
-                        </button>
-                    </a>
-                    <div class="frame-16">
-                        <h3 class="text-wrapper-3">자인식육식당</h3>
-                        <p class="text-wrapper-12">경북 경산시 자인면 일연로 56</p>
-                    </div>
-                </article>
-            </div>
-            <div class="frame-14">
-                <article class="frame-15" data-place-id="9">
-                    <a href="/restaurants/3" class="img-wrapper">
-                        <button class="img-2" type="button" aria-label="찜하기">
-                            <img src="/images/tabler_heart.svg" alt="" />
-                        </button>
-                    </a>
-                    <div class="frame-16">
-                        <h3 class="text-wrapper-3">돈우리</h3>
-                        <p class="text-wrapper-12">경북 경산시 청운로 37 봉명빌</p>
-                    </div>
-                </article>
-                <article class="frame-17" data-place-id="10">
-                    <a href="/restaurants/4" class="img-wrapper">
-                        <button class="img-2" type="button" aria-label="찜하기">
-                            <img src="/images/tabler_heart.svg" alt="" />
-                        </button>
-                    </a>
-                    <div class="frame-16">
-                        <h3 class="text-wrapper-3">장군제육</h3>
-                        <p class="text-wrapper-12">경북 경산시 청운 1로 6-1 라온빌</p>
-                    </div>
-                </article>
-            </div>
-            <div class="frame-14">
-                <article class="frame-15" data-place-id="11">
-                    <a href="/restaurants/5" class="img-wrapper">
-                        <button class="img-2" type="button" aria-label="찜하기">
-                            <img src="/images/tabler_heart.svg" alt="" />
-                        </button>
-                    </a>
-                    <div class="frame-16">
-                        <h3 class="text-wrapper-3">듬성 경산하양 본점</h3>
-                        <p class="text-wrapper-12">경북 경산시 하양읍 대학로295길 6-9</p>
-                    </div>
-                </article>
-                <article class="frame-17" data-place-id="12">
-                    <a href="/restaurants/6" class="img-wrapper">
-                        <button class="img-2" type="button" aria-label="찜하기">
-                            <img src="/images/tabler_heart.svg" alt="" />
-                        </button>
-                    </a>
-                    <div class="frame-16">
-                        <h3 class="text-wrapper-3">마당닭갈비</h3>
-                        <p class="text-wrapper-12">경북 경산시 남산면 하대2길 32-17</p>
-                    </div>
-                </article>
-            </div>
+        <section id="restaurant-list" class="attractions-list">
+            <!-- Restaurant list will be dynamically inserted here by JavaScript -->
         </section>
 
     </main>
@@ -109,6 +46,6 @@
 <script th:inline="javascript">
     var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
 </script>
-<script th:src="@{/js/attractions.js}"></script>
+<script th:src="@{/js/restaurants.js}"></script>
 </body>
 </html>

@@ -20,7 +20,7 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
     /* This container holds the header and the main content sections */
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Space between sections inside main */
+    gap: 10px; /* Changed from 20px */
     padding-bottom: 30px; /* Add some space at the bottom of the main content */
 }
 
@@ -28,29 +28,66 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
 .category-section {
     padding: 0 16px;
     box-sizing: border-box;
-}
-
-.category-buttons {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    border-bottom: 1px solid #e0e0e0;
-    padding-bottom: 10px;
+    flex-direction: column;
+    gap: 5px; /* Space between main and sub categories */
 }
 
-.category-button {
+.main-category-buttons {
+    display: flex;
+    justify-content: flex-start; /* Left-aligned */
+    width: 100%;
+    padding-bottom: 10px;
+    gap: 20px; /* Gap between main category buttons */
+}
+
+.main-category-button {
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
     font-family: 'Inter-Regular', Helvetica;
-    font-size: 11px; /* Adjusted font size to fit */
-    color: #888888; /* Gray for unselected */
+    font-size: 11px;
+    color: #888888;
 }
 
-.category-button.active {
-    color: #000000; /* Black for selected */
+.main-category-button.active {
+    color: #000000;
     font-weight: 600;
+}
+
+.sub-category-buttons {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap; /* Allow buttons to wrap */
+    gap: 8px; /* Space between sub-category buttons */
+    width: 100%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0; /* Re-added */
+    display: none; /* Hidden by default, controlled by JS */
+}
+
+.sub-category-buttons.active {
+    display: flex; /* Show when active */
+}
+
+.sub-category-button {
+    background-color: #f0f0f0;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px; /* Rounded buttons */
+    cursor: pointer;
+    padding: 5px 12px;
+    font-family: 'Inter-Regular', Helvetica;
+    font-size: 11px; /* Changed from 12px */
+    color: #555555;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.sub-category-button.active {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #000000;
+    font-weight: 500;
 }
 
 /* --- Attractions List --- */

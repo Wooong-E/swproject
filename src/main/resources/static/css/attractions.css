@@ -20,7 +20,7 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
     /* This container holds the header and the main content sections */
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Space between sections inside main */
+    gap: 10px; /* Space between sections inside main */
     padding-bottom: 30px; /* Add some space at the bottom of the main content */
 }
 
@@ -28,28 +28,35 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
 .category-section {
     padding: 0 16px;
     box-sizing: border-box;
-}
-
-.category-buttons {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    border-bottom: 1px solid #e0e0e0;
-    padding-bottom: 10px;
+    flex-direction: column;
+    gap: 5px; /* Space between main and sub categories */
 }
 
-.category-button {
+/* No main-category-buttons for attractions, as there's only one main category */
+
+.sub-category-buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px; /* Matched to main-category-buttons */
+    width: 100%;
+    padding-bottom: 10px;
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+    white-space: nowrap; /* Ensure it stays on one line */
+}
+
+.sub-category-button {
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
     font-family: 'Inter-Regular', Helvetica;
-    font-size: 11px; /* Adjusted font size to fit */
-    color: #888888; /* Gray for unselected */
+    font-size: 11px; /* Matched to main-category-button */
+    color: #888888; /* Matched to main-category-button */
 }
 
-.category-button.active {
-    color: #000000; /* Black for selected */
+.sub-category-button.active {
+    color: #000000;
     font-weight: 600;
 }
 
