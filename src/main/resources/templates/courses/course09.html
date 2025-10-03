@@ -40,8 +40,8 @@
                     </div>
                 </div>
 
-                <!-- Save Button -->
-                <div class="save-button-container">
+                <!-- Save Button (only shown in preview mode) -->
+                <div class="save-button-container" th:if="${isMyCourseView == null or !isMyCourseView}">
                     <button type="submit" id="save-course-button">코스 저장하기</button>
                 </div>
             </form>

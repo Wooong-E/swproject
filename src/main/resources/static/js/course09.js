@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // These variables are made available by the inline script in the HTML
-    // const startAddress = ...;
-    // const selectedPlaces = ...;
+    // --- DEBUGGING ---
+    console.log('--- My Course Detail Debug ---');
+    console.log('Start Address:', typeof startAddress !== 'undefined' ? startAddress : 'startAddress is not defined');
+    console.log('Selected Places:', typeof selectedPlaces !== 'undefined' ? selectedPlaces : 'selectedPlaces is not defined');
+    // --- END DEBUGGING ---
 
     const mapContainer = document.getElementById('map');
     if (!mapContainer) {
@@ -138,5 +140,36 @@ document.addEventListener('DOMContentLoaded', function () {
         polyline.setMap(map);
 
         map.setBounds(bounds);
+    }
+
+    // --- AJAX for Course Save ---
+    const saveForm = document.getElementById('save-course-form');
+    if (saveForm) {
+        saveForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent normal form submission
+
+            const formData = new FormData(saveForm);
+
+            fetch('/courses/save', {
+                method: 'POST',
+                body: formData
+                // Headers with CSRF token will be automatically handled by Spring Security if configured correctly
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.text(); // Or .json() if the server sends JSON
+                } else {
+                    throw new Error('서버 응답에 실패했습니다.');
+                }
+            })
+            .then(data => {
+                alert('코스가 저장되었습니다.');
+                window.location.href = '/'; // Redirect to home
+            })
+            .catch(error => {
+                console.error('Error saving course:', error);
+                alert('코스 저장 중 오류가 발생했습니다.');
+            });
+        });
     }
 });

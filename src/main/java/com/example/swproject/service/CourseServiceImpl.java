@@ -81,14 +81,17 @@ public class CourseServiceImpl implements CourseService {
         });
     }
 
+    @Override
     public List<Course> getCourse(User user, Long nth) {
         return courseRepository.findCourseByUsersIdAndNth(user.getId(), nth);
     }
+
 
     public List<List<Course>> getAllCourses(User user){
         return courseRepository.findAllCourseByUsersId(user.getId());
     }
 
+    @Override
     public void deleteCourse(User user, Long nth){
         courseRepository.delete(user.getId(),nth);
     }

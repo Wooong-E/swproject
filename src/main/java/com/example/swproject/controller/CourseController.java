@@ -1,5 +1,6 @@
 package com.example.swproject.controller;
 
+import com.example.swproject.domain.Course;
 import com.example.swproject.domain.User;
 import com.example.swproject.service.CourseService;
 import com.example.swproject.service.LikeService; // Import LikeService
@@ -13,9 +14,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -218,12 +217,72 @@ public class CourseController {
     }
 
     @PostMapping("/courses/save")
-    public String saveCourse(@RequestParam String courseName, @RequestParam String startAddress,
-                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
-                             @RequestParam List<Long> placeIds, @AuthenticationPrincipal User user) {
+    @ResponseBody
+    public org.springframework.http.ResponseEntity<String> saveCourse(@RequestParam String courseName, @RequestParam String startAddress,
+                                                                    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                                                    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+                                                                    @RequestParam List<Long> placeIds, @AuthenticationPrincipal User user) {
+        try {
+            courseService.saveCourse(courseName, startAddress, LocalDateTime.of(startDate, LocalTime.MIDNIGHT), LocalDateTime.of(endDate, LocalTime.MIDNIGHT), placeIds, user);
+            return org.springframework.http.ResponseEntity.ok("코스가 성공적으로 저장되었습니다.");
+        } catch (Exception e) {
+            return org.springframework.http.ResponseEntity.status(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR).body("코스 저장 중 오류가 발생했습니다.");
+        }
+    }
 
-        courseService.saveCourse(courseName, startAddress, LocalDateTime.of(startDate, LocalTime.MIDNIGHT), LocalDateTime.of(endDate, LocalTime.MIDNIGHT), placeIds, user);
-        return "redirect:/"; // Redirect to homepage after saving
+    @GetMapping("/my-courses")
+    public String showMyCoursesPage(Model model, @AuthenticationPrincipal User user) {
+        if (user == null) {
+            return "redirect:/users/login";
+        }
+        addLoginStatusToModel(model);
+
+        List<List<Course>> allCourses = courseService.getAllCourses(user);
+        model.addAttribute("allCourses", allCourses);
+
+        return "my-courses";
+    }
+
+    @GetMapping("/my-courses/detail/{nth}")
+    public String showMyCourseDetail(@PathVariable Long nth, Model model, @AuthenticationPrincipal User user) {
+        if (user == null) {
+            return "redirect:/users/login";
+        }
+        addLoginStatusToModel(model);
+
+        List<Course> courseGroup = courseService.getCourse(user, nth);
+        if (courseGroup == null || courseGroup.isEmpty()) {
+            // Handle case where course is not found
+            return "redirect:/my-courses";
+        }
+
+        // Extract data from the course group
+        String courseName = courseGroup.get(0).getName();
+        String startAddress = courseGroup.get(0).getStartaddress();
+        LocalDate startDate = courseGroup.get(0).getStartdate().toLocalDate();
+        LocalDate endDate = courseGroup.get(0).getEnddate().toLocalDate();
+        // Convert Place entities to PlaceDto to avoid serialization issues with Hibernate proxies
+        List<com.example.swproject.dto.PlaceDto> selectedPlacesDto = courseGroup.stream()
+                .map(Course::getPlace)
+                .map(place -> new com.example.swproject.dto.PlaceDto(place.getId(), place.getName(), place.getAddress(), place.getCategory()))
+                .collect(Collectors.toList());
+
+        // Add attributes to the model for the view
+        model.addAttribute("courseName", courseName);
+        model.addAttribute("startAddress", startAddress);
+        model.addAttribute("displayStartDate", startDate.format(DateTimeFormatter.ofPattern("yy.MM.dd")));
+        model.addAttribute("displayEndDate", endDate.format(DateTimeFormatter.ofPattern("yy.MM.dd")));
+        model.addAttribute("selectedPlaces", selectedPlacesDto); // Pass DTO list
+        model.addAttribute("isMyCourseView", true); // Flag to hide the save button
+
+        return "courses/course09";
+    }
+
+    @PostMapping("/my-courses/delete")
+    public String deleteCourse(@RequestParam Long nth, @AuthenticationPrincipal User user) {
+        if (user != null) {
+            courseService.deleteCourse(user, nth);
+        }
+        return "redirect:/my-courses";
     }
 }
