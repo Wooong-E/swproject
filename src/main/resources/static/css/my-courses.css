@@ -1,0 +1,88 @@
+/* my-courses.css */
+
+.screen {
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.my-courses-main {
+    width: 375px;
+    background-color: #ffffff;
+    flex-shrink: 0;
+    padding: 0 20px 30px; /* Add padding */
+    box-sizing: border-box;
+    min-height: calc(100vh - 56px); /* Adjust based on header/footer */
+}
+
+.main-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+}
+
+.course-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.course-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.course-item:last-child {
+    border-bottom: none;
+}
+
+.course-link {
+    text-decoration: none;
+    color: inherit;
+    flex-grow: 1;
+}
+
+.course-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.course-dates {
+    font-size: 13px;
+    color: #888;
+}
+
+.delete-form {
+    margin-left: 15px;
+}
+
+.delete-button {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    color: #aaa;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 26px;
+    text-align: center;
+    padding: 0;
+}
+
+.delete-button:hover {
+    background-color: #f1f1f1;
+    border-color: #ccc;
+}

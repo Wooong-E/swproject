@@ -1,5 +1,6 @@
 package com.example.swproject.controller;
 
+import com.example.swproject.domain.Course;
 import com.example.swproject.domain.User;
 import com.example.swproject.service.CourseService;
 import com.example.swproject.service.LikeService; // Import LikeService
@@ -13,9 +14,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -118,52 +117,6 @@ public class CourseController {
 
         return "courses/course05";
     }
-/*
-    @PostMapping("/courses/recommend")
-    public String getCourseRecommendations(@RequestParam String fhash, @RequestParam String shash,
-                                           @RequestParam String startAddress, 
-                                           @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-                                           @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate, Model model) {
-        List<com.example.swproject.domain.Place> recommendedPlaces = courseService.recommendCourses(fhash,
-                shash);
-        
-        model.addAttribute("recommendedPlaces", recommendedPlaces);
-        model.addAttribute("startAddress", startAddress);
-        model.addAttribute("startDate", startDate.format(java.time.format.DateTimeFormatter.ISO_DATE)); // Pass as String for frontend
-        model.addAttribute("endDate", endDate.format(java.time.format.DateTimeFormatter.ISO_DATE));     // Pass as String for frontend
-        addLoginStatusToModel(model);
-        return "course-recommend";    }
-
-    @PostMapping("/courses/save")
-    public String saveCourse(@RequestParam String courseName, @RequestParam String startAddress,
-                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate
-                                     startDate,
-                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate
-                                     endDate,
-                             @RequestParam List<Long> placeIds, @AuthenticationPrincipal User user) {
-
-        courseService.saveCourse(courseName, startAddress, LocalDateTime.of(startDate,
-                LocalTime.MIDNIGHT), LocalDateTime.of(endDate, LocalTime.MIDNIGHT), placeIds, user);
-        return "redirect:/";
-    }
-    */
-
-    @PostMapping("/courses/09")
-    public String previewCourseMap(@RequestParam String courseName, @RequestParam String startAddress,
-                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
-                                   @RequestParam List<Long> placeIds, Model model) {
-
-        model.addAttribute("courseName", courseName);
-        model.addAttribute("startAddress", startAddress);
-        model.addAttribute("startDate", startDate.format(java.time.format.DateTimeFormatter.ISO_DATE)); // Pass as String for frontend
-        model.addAttribute("endDate", endDate.format(java.time.format.DateTimeFormatter.ISO_DATE));     // Pass as String for frontend
-        model.addAttribute("placeIds", placeIds);
-        // You might want to fetch Place objects here to pass more details to the map view
-        // For now, just passing IDs
-        addLoginStatusToModel(model);
-        return "course/course09";
-    }
 
     @PostMapping("/courses/course06")
     public String showCourse06Page(@RequestParam String startAddress,
@@ -235,5 +188,101 @@ public class CourseController {
         model.addAttribute("selectedPlaces", selectedPlaces);
 
         return "courses/course08";
+    }
+
+    @PostMapping("/courses/09")
+    public String previewCourseMap(@RequestParam String courseName, @RequestParam String startAddress,
+                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+                                   @RequestParam List<Long> placeIds, Model model) {
+
+        // Fetch Place objects to pass full details to the map view
+        List<Place> selectedPlaces = placeIds.stream()
+                .map(placeService::findById)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.toList());
+
+        model.addAttribute("courseName", courseName);
+        model.addAttribute("startAddress", startAddress);
+        // Pass two date formats: one for display and one for the form value
+        model.addAttribute("displayStartDate", startDate.format(DateTimeFormatter.ofPattern("yy.MM.dd")));
+        model.addAttribute("displayEndDate", endDate.format(DateTimeFormatter.ofPattern("yy.MM.dd")));
+        model.addAttribute("formStartDate", startDate.format(DateTimeFormatter.ISO_DATE)); // YYYY-MM-DD
+        model.addAttribute("formEndDate", endDate.format(DateTimeFormatter.ISO_DATE)); // YYYY-MM-DD
+        model.addAttribute("selectedPlaces", selectedPlaces); // Pass the list of Place objects
+
+        addLoginStatusToModel(model);
+        return "courses/course09"; // Corrected path
+    }
+
+    @PostMapping("/courses/save")
+    @ResponseBody
+    public org.springframework.http.ResponseEntity<String> saveCourse(@RequestParam String courseName, @RequestParam String startAddress,
+                                                                    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                                                    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+                                                                    @RequestParam List<Long> placeIds, @AuthenticationPrincipal User user) {
+        try {
+            courseService.saveCourse(courseName, startAddress, LocalDateTime.of(startDate, LocalTime.MIDNIGHT), LocalDateTime.of(endDate, LocalTime.MIDNIGHT), placeIds, user);
+            return org.springframework.http.ResponseEntity.ok("코스가 성공적으로 저장되었습니다.");
+        } catch (Exception e) {
+            return org.springframework.http.ResponseEntity.status(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR).body("코스 저장 중 오류가 발생했습니다.");
+        }
+    }
+
+    @GetMapping("/my-courses")
+    public String showMyCoursesPage(Model model, @AuthenticationPrincipal User user) {
+        if (user == null) {
+            return "redirect:/users/login";
+        }
+        addLoginStatusToModel(model);
+
+        List<List<Course>> allCourses = courseService.getAllCourses(user);
+        model.addAttribute("allCourses", allCourses);
+
+        return "my-courses";
+    }
+
+    @GetMapping("/my-courses/detail/{nth}")
+    public String showMyCourseDetail(@PathVariable Long nth, Model model, @AuthenticationPrincipal User user) {
+        if (user == null) {
+            return "redirect:/users/login";
+        }
+        addLoginStatusToModel(model);
+
+        List<Course> courseGroup = courseService.getCourse(user, nth);
+        if (courseGroup == null || courseGroup.isEmpty()) {
+            // Handle case where course is not found
+            return "redirect:/my-courses";
+        }
+
+        // Extract data from the course group
+        String courseName = courseGroup.get(0).getName();
+        String startAddress = courseGroup.get(0).getStartaddress();
+        LocalDate startDate = courseGroup.get(0).getStartdate().toLocalDate();
+        LocalDate endDate = courseGroup.get(0).getEnddate().toLocalDate();
+        // Convert Place entities to PlaceDto to avoid serialization issues with Hibernate proxies
+        List<com.example.swproject.dto.PlaceDto> selectedPlacesDto = courseGroup.stream()
+                .map(Course::getPlace)
+                .map(place -> new com.example.swproject.dto.PlaceDto(place.getId(), place.getName(), place.getAddress(), place.getCategory()))
+                .collect(Collectors.toList());
+
+        // Add attributes to the model for the view
+        model.addAttribute("courseName", courseName);
+        model.addAttribute("startAddress", startAddress);
+        model.addAttribute("displayStartDate", startDate.format(DateTimeFormatter.ofPattern("yy.MM.dd")));
+        model.addAttribute("displayEndDate", endDate.format(DateTimeFormatter.ofPattern("yy.MM.dd")));
+        model.addAttribute("selectedPlaces", selectedPlacesDto); // Pass DTO list
+        model.addAttribute("isMyCourseView", true); // Flag to hide the save button
+
+        return "courses/course09";
+    }
+
+    @PostMapping("/my-courses/delete")
+    public String deleteCourse(@RequestParam Long nth, @AuthenticationPrincipal User user) {
+        if (user != null) {
+            courseService.deleteCourse(user, nth);
+        }
+        return "redirect:/my-courses";
     }
 }
