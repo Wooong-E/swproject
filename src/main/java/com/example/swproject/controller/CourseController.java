@@ -118,52 +118,6 @@ public class CourseController {
 
         return "courses/course05";
     }
-/*
-    @PostMapping("/courses/recommend")
-    public String getCourseRecommendations(@RequestParam String fhash, @RequestParam String shash,
-                                           @RequestParam String startAddress, 
-                                           @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-                                           @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate, Model model) {
-        List<com.example.swproject.domain.Place> recommendedPlaces = courseService.recommendCourses(fhash,
-                shash);
-        
-        model.addAttribute("recommendedPlaces", recommendedPlaces);
-        model.addAttribute("startAddress", startAddress);
-        model.addAttribute("startDate", startDate.format(java.time.format.DateTimeFormatter.ISO_DATE)); // Pass as String for frontend
-        model.addAttribute("endDate", endDate.format(java.time.format.DateTimeFormatter.ISO_DATE));     // Pass as String for frontend
-        addLoginStatusToModel(model);
-        return "course-recommend";    }
-
-    @PostMapping("/courses/save")
-    public String saveCourse(@RequestParam String courseName, @RequestParam String startAddress,
-                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate
-                                     startDate,
-                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate
-                                     endDate,
-                             @RequestParam List<Long> placeIds, @AuthenticationPrincipal User user) {
-
-        courseService.saveCourse(courseName, startAddress, LocalDateTime.of(startDate,
-                LocalTime.MIDNIGHT), LocalDateTime.of(endDate, LocalTime.MIDNIGHT), placeIds, user);
-        return "redirect:/";
-    }
-    */
-
-    @PostMapping("/courses/09")
-    public String previewCourseMap(@RequestParam String courseName, @RequestParam String startAddress,
-                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
-                                   @RequestParam List<Long> placeIds, Model model) {
-
-        model.addAttribute("courseName", courseName);
-        model.addAttribute("startAddress", startAddress);
-        model.addAttribute("startDate", startDate.format(java.time.format.DateTimeFormatter.ISO_DATE)); // Pass as String for frontend
-        model.addAttribute("endDate", endDate.format(java.time.format.DateTimeFormatter.ISO_DATE));     // Pass as String for frontend
-        model.addAttribute("placeIds", placeIds);
-        // You might want to fetch Place objects here to pass more details to the map view
-        // For now, just passing IDs
-        addLoginStatusToModel(model);
-        return "course/course09";
-    }
 
     @PostMapping("/courses/course06")
     public String showCourse06Page(@RequestParam String startAddress,
@@ -235,5 +189,41 @@ public class CourseController {
         model.addAttribute("selectedPlaces", selectedPlaces);
 
         return "courses/course08";
+    }
+
+    @PostMapping("/courses/09")
+    public String previewCourseMap(@RequestParam String courseName, @RequestParam String startAddress,
+                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+                                   @RequestParam List<Long> placeIds, Model model) {
+
+        // Fetch Place objects to pass full details to the map view
+        List<Place> selectedPlaces = placeIds.stream()
+                .map(placeService::findById)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.toList());
+
+        model.addAttribute("courseName", courseName);
+        model.addAttribute("startAddress", startAddress);
+        // Pass two date formats: one for display and one for the form value
+        model.addAttribute("displayStartDate", startDate.format(DateTimeFormatter.ofPattern("yy.MM.dd")));
+        model.addAttribute("displayEndDate", endDate.format(DateTimeFormatter.ofPattern("yy.MM.dd")));
+        model.addAttribute("formStartDate", startDate.format(DateTimeFormatter.ISO_DATE)); // YYYY-MM-DD
+        model.addAttribute("formEndDate", endDate.format(DateTimeFormatter.ISO_DATE)); // YYYY-MM-DD
+        model.addAttribute("selectedPlaces", selectedPlaces); // Pass the list of Place objects
+
+        addLoginStatusToModel(model);
+        return "courses/course09"; // Corrected path
+    }
+
+    @PostMapping("/courses/save")
+    public String saveCourse(@RequestParam String courseName, @RequestParam String startAddress,
+                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+                             @RequestParam List<Long> placeIds, @AuthenticationPrincipal User user) {
+
+        courseService.saveCourse(courseName, startAddress, LocalDateTime.of(startDate, LocalTime.MIDNIGHT), LocalDateTime.of(endDate, LocalTime.MIDNIGHT), placeIds, user);
+        return "redirect:/"; // Redirect to homepage after saving
     }
 }

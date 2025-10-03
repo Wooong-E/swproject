@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ro:D - 코스 미리보기</title>
+    <!-- Common CSS -->
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <link rel="stylesheet" th:href="@{/css/header-courses.css}"/>
+    <link rel="stylesheet" th:href="@{/css/footer.css}"/>
+    <link rel="stylesheet" th:href="@{/css/place-detail.css}"/>
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" th:href="@{/css/course09.css}"/>
+    <!-- Kakao Maps API -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7848bca557e9c70c527fba62b3953a8c&libraries=services"></script>
+</head>
+<body>
+    <div class="screen">
+        <div th:replace="~{/fragments/header-course :: headerCourseFragment}"></div>
+
+        <main>
+            <!-- Form to save the course -->
+            <form id="save-course-form" action="/courses/save" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                <input type="hidden" name="courseName" th:value="${courseName}">
+                <input type="hidden" name="startAddress" th:value="${startAddress}">
+                <input type="hidden" name="startDate" th:value="${formStartDate}">
+                <input type="hidden" name="endDate" th:value="${formEndDate}">
+                <!-- Loop through selected places to pass their IDs -->
+                <th:block th:each="place : ${selectedPlaces}">
+                    <input type="hidden" name="placeIds" th:value="${place.id}">
+                </th:block>
+
+                <!-- Map Container -->
+                <div id="map-container">
+                    <div id="map"></div> <!-- The actual map -->
+                    <div class="map-overlay">
+                        <h1 class="course-title" th:text="${courseName}">코스 이름</h1>
+                        <p class="course-dates" th:text="${displayStartDate} + ' ~ ' + ${displayEndDate}">날짜</p>
+                    </div>
+                </div>
+
+                <!-- Save Button -->
+                <div class="save-button-container">
+                    <button type="submit" id="save-course-button">코스 저장하기</button>
+                </div>
+            </form>
+        </main>
+
+        <div th:replace="~{/fragments/footer :: footerFragment}"></div>
+    </div>
+
+    <!-- Pass data to JavaScript -->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        const startAddress = /*[[${startAddress}]]*/ 'default start address';
+        const selectedPlaces = /*[[${selectedPlaces}]]*/ [];
+        /*]]>*/
+    </script>
+    <script th:src="@{/js/course09.js}"></script>
+</body>
+</html>
