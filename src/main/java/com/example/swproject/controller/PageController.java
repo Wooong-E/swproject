@@ -2,6 +2,9 @@ package com.example.swproject.controller;
 
 import com.example.swproject.dto.ReviewSummaryDto;
 import com.example.swproject.service.ReviewService;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,11 +13,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller
 public class PageController {
+
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    public static class MagazineItemDto {
+        private String imageUrl;
+        private String title;
+        private String snippet;
+    }
 
     private final ReviewService reviewService;
 
@@ -62,6 +78,45 @@ public class PageController {
         model.addAttribute("currentPage", "cafes");
         return "cafes";
     }
+
+    @GetMapping("/monthly-magazine")
+    public String showMonthlyMagazinePage(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+        addLoginStatusToModel(model);
+        model.addAttribute("currentPage", "monthly-magazine");
+
+        final int TOTAL_ITEMS = 30;
+        final int ITEMS_PER_PAGE = 6;
+
+        List<MagazineItemDto> allItems = IntStream.rangeClosed(1, TOTAL_ITEMS)
+                .mapToObj(i -> new MagazineItemDto(
+                        "/images/monthly-magazine" + i + ".png",
+                        "월간매거진_제목" + i,
+                        "월간매거진_본문" + i
+                ))
+                .collect(Collectors.toList());
+
+        int totalPages = (int) Math.ceil((double) TOTAL_ITEMS / ITEMS_PER_PAGE);
+        int currentPage = Math.max(1, Math.min(page, totalPages));
+
+        int start = (currentPage - 1) * ITEMS_PER_PAGE;
+        int end = Math.min(start + ITEMS_PER_PAGE, TOTAL_ITEMS);
+        List<MagazineItemDto> pageItems = allItems.subList(start, end);
+
+        model.addAttribute("magazineItems", pageItems);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", totalPages);
+
+        return "monthly-magazine";
+    }
+
+
+    @GetMapping("/monthly-magazine/1")
+    public String showMonthlyMagazineDetailPage(Model model) {
+        addLoginStatusToModel(model);
+        model.addAttribute("currentPage", "monthly-magazine"); // To highlight the monthly-magazine link in header
+        return "monthly-magazine-detail";
+    }
+
 
     @GetMapping("/attractions/{id}")
     public String showAttractionDetail(@PathVariable Long id, Model model) {

@@ -1,8 +1,8 @@
 /* --- Main Header Structure --- */
 header[th\:fragment="headerFragment"] {
-    width: 375px;
+    width: 375px !important;
     box-sizing: border-box;
-    background-color: #ffffff;
+    background-color: #ffffff !important;
     border-bottom: 1px solid #eee;
     display: flex;
     flex-direction: column;
@@ -84,8 +84,8 @@ header[th\:fragment="headerFragment"] {
 }
 
 #main-top-nav .text-wrapper-10.active {
-    border-bottom: 1px solid #000;
-    font-weight: 700;
+    border-bottom: 1px solid #000 !important;
+    font-weight: 700 !important;
 }
 
 

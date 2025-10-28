@@ -5,7 +5,7 @@
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
-<header th:fragment="headerFragment">
+<header id="main-header" th:fragment="headerFragment">
     <div class="header-top-bar">
         <a href="/" style="text-decoration: none; color: inherit;"><h1 class="text-wrapper-9">Ro:D</h1></a>
         <button id="menu-button" class="mingcute-menu-line" type="button" aria-label="메뉴 열기">
@@ -27,7 +27,7 @@
                 <a id="course-planning-link" href="/courses/course00" class="text-wrapper-10" th:classappend="${currentPage == 'courses'} ? 'active' : ''" type="button">코스짜기</a>
             </li>
             <li class="frame-11">
-                <button class="text-wrapper-10" type="button">월간매거진</button>
+                <a href="/monthly-magazine" class="text-wrapper-10" th:classappend="${currentPage == 'monthly-magazine'} ? 'active' : ''">월간매거진</a>
             </li>
         </ul>
     </nav>
