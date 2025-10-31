@@ -1,0 +1,137 @@
+/* --- Base Layout --- */
+.screen {
+  background-color: #f7f7f7; /* Light gray background for the whole page */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Re-added to center the app frame */
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Main App Container (the phone screen) */
+.screen .div, /* This is the <main> element */
+footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
+  width: 375px;
+  flex-shrink: 0; /* Prevent from shrinking */
+}
+
+.screen .div {
+    background-color: #ffffff;
+    /* This container holds the header and the main content sections */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between sections inside main */
+    padding-bottom: 30px; /* Add some space at the bottom of the main content */
+}
+
+/* --- Category Buttons --- */
+.category-section {
+    padding: 0 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Space between main and sub categories */
+}
+
+/* No main-category-buttons for attractions, as there's only one main category */
+
+.sub-category-buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px; /* Matched to main-category-buttons */
+    width: 100%;
+    padding-bottom: 10px;
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+    white-space: nowrap; /* Ensure it stays on one line */
+}
+
+.sub-category-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: 'Inter-Regular', Helvetica;
+    font-size: 11px; /* Matched to main-category-button */
+    color: #888888; /* Matched to main-category-button */
+}
+
+.sub-category-button.active {
+    color: #000000;
+    font-weight: 600;
+}
+
+/* --- Attractions List --- */
+.attractions-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+    gap: 20px; /* Space between rows */
+}
+
+/* Copied from index.css for consistency */
+.frame-14 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.frame-15,
+.frame-17 {
+  display: flex;
+  flex-direction: column;
+  width: 160px;
+  gap: 7px;
+}
+
+.img-wrapper {
+  position: relative;
+  width: 160px;
+  height: 145px;
+  background-color: #d9d9d9;
+  border-radius: 8px;
+}
+
+.place-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.img-2 {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 115px;
+  left: 130px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.frame-16 {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.text-wrapper-3 {
+  font-family: 'Inter-SemiBold', Helvetica;
+  font-weight: 600;
+  font-size: 12px;
+  color: #000000;
+}
+
+.text-wrapper-12 {
+  font-family: 'Inter-Regular', Helvetica;
+  font-weight: 400;
+  font-size: 12px;
+  color: #555;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

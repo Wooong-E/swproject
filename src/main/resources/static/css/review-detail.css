@@ -1,0 +1,126 @@
+.detail-screen {
+    background-color: #FFFFFF;
+}
+
+.review-detail-container {
+    /* This container now only holds the image section */
+    padding: 16px;
+}
+
+.review-text-container {
+    /* This new container holds the text content */
+    padding: 0 16px 16px 16px;
+    width: 100%;
+    text-align: left;
+    margin-top: 16px; /* Add space between image and text blocks */
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    width: 100%; /* Ensure it takes full width */
+}
+
+.review-title-date h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.review-date {
+    font-size: 12px;
+    color: #828282;
+    margin-top: 4px;
+}
+
+.review-rating-detail {
+    display: flex;
+    gap: 2px;
+}
+
+.star-icon-large {
+    width: 16px;
+    height: 16px;
+}
+
+.review-images-section {
+    margin-bottom: 16px;
+}
+
+.main-image-container {
+    width: 343px;
+    height: 343px;
+    margin: 0 auto 8px auto; /* Center the container itself */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.image-centering-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF; /* Changed to white */
+}
+
+.main-image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.main-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #D9D9D9;
+    border-radius: 8px;
+}
+
+.thumbnail-images-container {
+    display: flex;
+    gap: 7px;
+    justify-content: center; /* Center the thumbnails block */
+}
+
+.thumbnail-wrapper {
+    width: 72px;
+    height: 72px;
+}
+
+.thumbnail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.thumbnail-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #D9D9D9;
+    border-radius: 4px;
+}
+
+.review-hashtags {
+    margin-bottom: 16px;
+    display: flex;
+    gap: 8px;
+}
+
+.hashtag {
+    background-color: #F1F1F1;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 22px;
+    font-size: 15px;
+    font-weight: 900; /* Bolder font */
+}
+
+.review-content {
+    font-size: 14px;
+    line-height: 1.6;
+}

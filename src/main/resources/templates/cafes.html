@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Ro:D - 카페</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}" />
+    <link rel="stylesheet" th:href="@{/css/header.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <link rel="stylesheet" th:href="@{/css/cafes.css}" />
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+<div class="screen">
+    <main class="div">
+        <div th:replace="~{/fragments/header :: headerFragment}"></div>
+
+        <section class="category-section">
+            <div class="main-category-buttons">
+                <button class="main-category-button active" type="button" data-main-category="taste">맛집</button>
+                <button class="main-category-button" type="button" data-main-category="mood">상황·분위기별</button>
+            </div>
+            <div id="taste-sub-categories" class="sub-category-buttons active">
+                <button class="sub-category-button active" type="button" data-sub-category="감성">감성</button>
+                <button class="sub-category-button" type="button" data-sub-category="브런치">브런치</button>
+                <button class="sub-category-button" type="button" data-sub-category="디저트">디저트</button>
+                <button class="sub-category-button" type="button" data-sub-category="테마">테마</button>
+            </div>
+            <div id="mood-sub-categories" class="sub-category-buttons">
+                <button class="sub-category-button" type="button" data-sub-category="데이트">데이트</button>
+                <button class="sub-category-button" type="button" data-sub-category="혼공">혼공</button>
+                <button class="sub-category-button" type="button" data-sub-category="친구/모임">친구/모임</button>
+                <button class="sub-category-button" type="button" data-sub-category="힐링">힐링</button>
+            </div>
+        </section>
+
+        <section id="cafe-list" class="attractions-list">
+            <!-- Cafe list will be dynamically inserted here by JavaScript -->
+        </section>
+
+    </main>
+
+    <div th:replace="~{/fragments/footer :: footerFragment}"></div>
+</div>
+<script th:inline="javascript">
+    var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
+</script>
+<script th:src="@{/js/cafes.js}"></script>
+</body>
+</html>

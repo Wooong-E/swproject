@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>왕이모네식당 상세</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}" />
+    <link rel="stylesheet" th:href="@{/css/place-detail.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <link rel="stylesheet" th:href="@{/css/review-carousel.css}" />
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+    <div class="screen">
+        <main class="attraction-detail-main" data-place-id="7">
+            <div th:replace="~{/fragments/header-back :: headerBackFragment}"></div>
+
+            <!-- Main Image -->
+            <div class="main-image-container">
+                <img src="/images/restaurants/restaurant_1.jpg" alt="맛집 이미지" class="attraction-main-image" />
+            </div>
+
+            <!-- Title, Description, Heart Button -->
+            <section class="info-section">
+                <div class="title-heart-wrapper">
+                    <h2 class="attraction-title">왕이모네식당</h2>
+                    <button id="likeButton" class="heart-button" type="button" aria-label="찜하기">
+                        <img id="heartIcon" src="/images/tabler_heart.svg" alt="찜하기" />
+                    </button>
+                </div>
+                <p class="attraction-address">경북 경산시 진량읍 대구대로 60길 5-10 포시즌</p>
+            </section>
+
+            <!-- Star Rating Section -->
+            <section class="rating-section">
+                <span class="rating-score" th:text="${#numbers.formatDecimal(averageGrade, 1, 1)}">0.0</span>
+                <div class="stars-wrapper">
+                    <div th:each="i : ${#numbers.sequence(1, 5)}" class="star-container">
+                        <img th:src="@{/images/star_empty.svg}" alt="Empty Star"/>
+                        <img th:if="${averageGrade > (i - 1)}" th:src="@{/images/star_filled.svg}" alt="Filled Star"
+                             th:style="'clip-path: inset(0 ' + (100 - (*{i <= averageGrade} ? 100 : (*{averageGrade - (i-1)} * 100))) + '% 0 0);'"/>
+                    </div>
+                </div>
+            </section>
+
+            <section class="menu-section">
+                <h3 class="menu-title">메뉴</h3>
+                <div class="menu-carousel">
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_1/menu_1.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">된장찌개</h4>
+                        <p class="menu-price">7,500원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_1/menu_2.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">김치찌개</h4>
+                        <p class="menu-price">7,500원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_1/menu_3.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">순두부찌개</h4>
+                        <p class="menu-price">7,500원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_1/menu_4.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">콩비지</h4>
+                        <p class="menu-price">7,500원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_1/menu_5.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">돼지찌개</h4>
+                        <p class="menu-price">8,500원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_1/menu_6.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">제육볶음</h4>
+                        <p class="menu-price">8,500원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_1/menu_7.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">오삼불고기</h4>
+                        <p class="menu-price">9,500원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_1/menu_8.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">육개장</h4>
+                        <p class="menu-price">8,500원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_1/menu_9.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">갈비탕</h4>
+                        <p class="menu-price">8,500원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_1/menu_10.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">소고기국</h4>
+                        <p class="menu-price">8,500원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_1/menu_11.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">추어탕</h4>
+                        <p class="menu-price">8,500원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_1/menu_12.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">소불고기 뚝배기</h4>
+                        <p class="menu-price">9,500원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_1/menu_13.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">고등어 된장정식</h4>
+                        <p class="menu-price">9,500원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_1/menu_14.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">계란찜</h4>
+                        <p class="menu-price">7,500원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_1/menu_15.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">라면</h4>
+                        <p class="menu-price">5,500원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_1/menu_16.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">공깃밥</h4>
+                        <p class="menu-price">1,000원</p>
+                    </div>
+                    <div class="menu-card">
+                        <img src="/images/restaurants/restaurant_1/menu_17.jpg" alt="메뉴 이미지" class="menu-image" />
+                        <h4 class="menu-name">찜닭</h4>
+                        <p class="menu-price">25,000원</p>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Star Rating Section -->
+            <section class="details-section">
+                <div class="detail-item rating-display">
+                    <strong>평균 별점</strong>
+                    <div class="stars-wrapper">
+                        <div th:each="i : ${#numbers.sequence(1, 5)}" class="star-container">
+                            <img th:src="@{/images/star_empty.svg}" alt="Empty Star"/>
+                            <img th:if="${averageGrade > (i - 1)}" th:src="@{/images/star_filled.svg}" alt="Filled Star"
+                                 th:style="'clip-path: inset(0 ' + (100 - (*{i <= averageGrade} ? 100 : (*{averageGrade - (i-1)} * 100))) + '% 0 0);'"/>
+                        </div>
+                    </div>
+                    <span class="rating-score" th:text="${#numbers.formatDecimal(averageGrade, 1, 1)}">0.0</span>
+                </div>
+            </section>
+
+            <!-- Address and Transportation -->
+            <section class="details-section">
+                                
+                
+                <p class="detail-item"><strong>전화번호</strong> <span>053-852-6250</span></p>
+                <p class="detail-item"><strong>운영시간</strong> <span>07:30 - 20:00(19:30 라스트오더)</span></p>
+            </section>
+
+            <!-- Reviews Section -->
+            <section class="reviews-section">
+                <h3 class="reviews-title">후기</h3>
+                <div class="reviews-carousel">
+                    <!-- Loop through reviews -->
+                    <a th:each="reviewSummary : ${reviews}" th:href="@{/reviews/{placeId}/{order}(placeId=${placeId}, order=${reviewSummary.review.order})}" class="review-card">
+                        <div th:if="${reviewSummary.firstImageUrl != null}">
+                            <img th:src="${reviewSummary.firstImageUrl}" alt="후기 이미지" class="review-image" />
+                        </div>
+                        <div th:unless="${reviewSummary.firstImageUrl != null}" class="review-image-placeholder"></div>
+                        
+                        <h4 class="review-card-title" th:text="${reviewSummary.review.title}">리뷰 제목</h4>
+                        
+                        <div class="review-rating">
+                            <th:block th:each="i : ${#numbers.sequence(1, 5)}">
+                                <img th:if="${i <= reviewSummary.review.grade}" src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                                <img th:if="${i > reviewSummary.review.grade}" src="/images/star_empty.svg" alt="별점" class="star-icon" />
+                            </th:block>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Write Review Button -->
+            <section class="write-review-section">
+                <a th:href="@{/places/{placeId}/reviews/new(placeId=${placeId})}" id="write-review-link" class="write-review-button">
+                    <span class="write-review-text">작성하기</span>
+                    <img src="/images/material-symbols_edit-outline-rounded.svg" alt="작성 아이콘" class="write-review-icon" />
+                </a>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <div th:replace="~{/fragments/footer :: footerFragment}"></div>
+    </div>
+    <script th:inline="javascript">
+        var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
+    </script>
+    <script th:src="@{/js/place-detail.js}"></script>
+</body>
+</html>

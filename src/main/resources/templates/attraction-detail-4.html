@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>남매지 상세</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}" />
+    <link rel="stylesheet" th:href="@{/css/place-detail.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <link rel="stylesheet" th:href="@{/css/review-carousel.css}" />
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+    <div class="screen">
+        <main class="attraction-detail-main" data-place-id="4">
+            <div th:replace="~{/fragments/header-back :: headerBackFragment}"></div>
+
+            <!-- Main Image -->
+            <div class="main-image-container">
+                <img src="/images/attraction_gatbawi.jpg" alt="명소 이미지" class="attraction-main-image" />
+            </div>
+
+            <!-- Title, Description, Heart Button -->
+            <section class="info-section">
+                <div class="title-heart-wrapper">
+                    <h2 class="attraction-title">남매지</h2>
+                    <button id="likeButton" class="heart-button" type="button" aria-label="찜하기">
+                        <img id="heartIcon" th:src="@{/images/tabler_heart.svg}" alt="" />
+                    </button>
+                </div>
+                <p class="attraction-address">경북 경산시 계양동</p>
+            </section>
+
+            <!-- Star Rating Section -->
+            <section class="rating-section">
+                <span class="rating-score" th:text="${#numbers.formatDecimal(averageGrade, 1, 1)}">0.0</span>
+                <div class="stars-wrapper">
+                    <div th:each="i : ${#numbers.sequence(1, 5)}" class="star-container">
+                        <img th:src="@{/images/star_empty.svg}" alt="Empty Star"/>
+                        <img th:if="${averageGrade > (i - 1)}" th:src="@{/images/star_filled.svg}" alt="Filled Star"
+                             th:style="'clip-path: inset(0 ' + (100 - (*{i <= averageGrade} ? 100 : (*{averageGrade - (i-1)} * 100))) + '% 0 0);'"/>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Price and Transportation -->
+            <section class="details-section">
+                <p class="detail-item"><strong>교통</strong> <span>영남대 역 3번 출구에서 15분, 영남대 앞 버스정류장에서 15분</span></p>
+                <p class="detail-item"><strong>주차장</strong> <span>무료</span></p>
+            </section>
+
+            <!-- Reviews Section -->
+            <section class="reviews-section">
+                <h3 class="reviews-title">후기</h3>
+                <div class="reviews-carousel">
+                    <!-- Loop through reviews -->
+                    <a th:each="reviewSummary : ${reviews}" th:href="@{/reviews/{placeId}/{order}(placeId=${placeId}, order=${reviewSummary.review.order})}" class="review-card">
+                        <div th:if="${reviewSummary.firstImageUrl != null}">
+                            <img th:src="${reviewSummary.firstImageUrl}" alt="후기 이미지" class="review-image" />
+                        </div>
+                        <div th:unless="${reviewSummary.firstImageUrl != null}" class="review-image-placeholder"></div>
+                        
+                        <h4 class="review-card-title" th:text="${reviewSummary.review.title}">리뷰 제목</h4>
+                        
+                        <div class="review-rating">
+                            <th:block th:each="i : ${#numbers.sequence(1, 5)}">
+                                <img th:if="${i <= reviewSummary.review.grade}" src="/images/star_filled.svg" alt="별점" class="star-icon" />
+                                <img th:if="${i > reviewSummary.review.grade}" src="/images/star_empty.svg" alt="별점" class="star-icon" />
+                            </th:block>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Write Review Button -->
+            <section class="write-review-section">
+                <a th:href="@{/places/{placeId}/reviews/new(placeId=${placeId})}" id="write-review-link" class="write-review-button">
+                    <span class="write-review-text">작성하기</span>
+                    <img src="/images/material-symbols_edit-outline-rounded.svg" alt="작성 아이콘" class="write-review-icon" />
+                </a>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <div th:replace="~{/fragments/footer :: footerFragment}"></div>
+    </div>
+    <script th:inline="javascript">
+        var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
+    </script>
+    <script th:src="@{/js/place-detail.js}"></script>
+</body>
+</html>

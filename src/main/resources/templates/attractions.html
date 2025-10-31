@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Ro:D - 명소</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}" />
+    <link rel="stylesheet" th:href="@{/css/header.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <link rel="stylesheet" th:href="@{/css/attractions.css}" />
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+<div class="screen">
+    <main class="div">
+        <div th:replace="~{/fragments/header :: headerFragment}"></div>
+
+        <section class="category-section">
+            <div id="attraction-sub-categories" class="sub-category-buttons active">
+                <button class="sub-category-button active" type="button" data-sub-category="자연">자연</button>
+                <button class="sub-category-button" type="button" data-sub-category="역사문화">역사문화</button>
+                <button class="sub-category-button" type="button" data-sub-category="포토스팟">포토스팟</button>
+                <button class="sub-category-button" type="button" data-sub-category="야경·전망">야경·전망</button>
+                <button class="sub-category-button" type="button" data-sub-category="테마파크·체험">테마파크·체험</button>
+                <button class="sub-category-button" type="button" data-sub-category="전통시장·거리">전통시장·거리</button>
+            </div>
+        </section>
+
+        <section id="attraction-list" class="attractions-list">
+            <!-- Attraction list will be dynamically inserted here by JavaScript -->
+        </section>
+
+    </main>
+
+    <div th:replace="~{/fragments/footer :: footerFragment}"></div>
+</div>
+<script th:inline="javascript">
+    var isLoggedIn = /*[[${isLoggedIn}]]*/ false;
+</script>
+<script th:src="@{/js/attractions.js}"></script>
+</body>
+</html>

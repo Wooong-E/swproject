@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Ro:D - 월간매거진 상세</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}" />
+    <link rel="stylesheet" th:href="@{/css/place-detail.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <link rel="stylesheet" th:href="@{/css/monthly-magazine-detail.css}" />
+</head>
+<body>
+<div class="screen">
+    <div th:replace="~{/fragments/header-back :: headerBackFragment}"></div>
+
+    <main class="magazine-detail-main">
+        <!-- 3. 최상단 이미지 -->
+        <div class="main-image-container" style="background-image: url('/images/monthly-magazine1-1.png');"></div>
+
+        <section class="content-section">
+            <!-- 4-1. 본문글 상단 제목 -->
+            <h1 class="content-title">길 위에서 02. 경산 치유의 숲</h1>
+
+            <!-- 4-2. 본문 내용 1 -->
+            <p class="content-paragraph">
+                경산의 숨겨진 보석, 치유의 숲에서 자연의 품에 안겨보세요. <br/>
+                일상의 스트레스를 잊고 평온을 되찾을 수 있는 완벽한 장소입니다.
+            </p>
+
+            <!-- 4-3. 본문 내 사진 2장 -->
+            <div class="body-images-container">
+                <div class="body-image" style="background-image: url('/images/monthly-magazine1-2.png');"></div>
+                <div class="body-image" style="background-image: url('/images/monthly-magazine1-3.png');"></div>
+            </div>
+
+            <!-- 4-4. 본문 내용 2 -->
+            <p class="content-paragraph">
+                울창한 숲길을 따라 걷다 보면 맑은 공기와 새소리가 마음을 정화시켜 줍니다. <br/>
+                다양한 식물과 야생화를 감상하며 진정한 휴식을 경험해 보세요.
+            </p>
+
+            <!-- 4-5. 크게 버튼 -->
+            <a href="/attractions/4" class="magazine-cta-link">
+                <div class="cta-image" style="background-image: url('/images/monthly-magazine1-3.png');"></div>
+                <h2 class="cta-title">남매지</h2>
+                <p class="cta-address">경산북도 경산시 동부동 643</p>
+                <p class="cta-info-item"><strong>가격</strong> 무료</p>
+                <p class="cta-info-item"><strong>교통</strong> 무료주차장, 임당역 도보 20분</p>
+            </a>
+        </section>
+
+        <!-- 4-6. 구분선 및 관련 글 -->
+        <div class="divider"></div>
+
+        <section class="related-articles-section">
+            <div class="related-article-item">
+                <div class="related-article-image" style="background-image: url('/images/related-article1.png');"></div>
+                <div class="related-article-text">
+                    <h3 class="related-article-title">테이블 노트 03. 장군 찜닭</h3>
+                    <p class="related-article-snippet">영남대 앞 불향 가득 들어간 제육볶음 맛집!</p>
+                </div>
+            </div>
+            <div class="related-article-item">
+                <div class="related-article-image" style="background-image: url('/images/related-article2.png');"></div>
+                <div class="related-article-text">
+                    <h3 class="related-article-title">이번 달 캘린더 25.09</h3>
+                    <p class="related-article-snippet">여름의 마무리, 가을의 시작. 어떤 행사가 기다릴지.</p>
+                </div>
+            </div>
+            <div class="related-article-item">
+                <div class="related-article-image" style="background-image: url('/images/related-article3.png');"></div>
+                <div class="related-article-text">
+                    <h3 class="related-article-title">테이블노트 01. 고운라멘</h3>
+                    <p class="related-article-snippet">라멘을 보다 고급스럽게, 맛있게</p>
+                </div>
+            </div>
+            <div class="related-article-item">
+                <div class="related-article-image" style="background-image: url('/images/related-article4.png');"></div>
+                <div class="related-article-text">
+                    <h3 class="related-article-title">길 위에서 01. 남매지</h3>
+                    <p class="related-article-snippet">드넓은 호수, 그 옆에서 잠시 느끼는 여유</p>
+                </div>
+            </div>
+            <div class="related-article-item">
+                <div class="related-article-image" style="background-image: url('/images/related-article5.png');"></div>
+                <div class="related-article-text">
+                    <h3 class="related-article-title">테이블 노트 02. 연화 반점</h3>
+                    <p class="related-article-snippet">현지의 마제소바를 맛있게 먹는 특별한 방법으로 즐겨보세요.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div th:replace="~{/fragments/footer :: footerFragment}"></div>
+</div>
+</body>
+</html>

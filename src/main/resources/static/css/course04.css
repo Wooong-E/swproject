@@ -1,0 +1,208 @@
+/* --- Global & Layout --- */
+body {
+    font-family: 'Inter-Bold', Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+}
+
+.screen {
+    width: 375px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px; 
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+/* --- Progress Bar --- */
+.progress-bar-container {
+    width: 375px;
+    height: 8px;
+    background-color: #D9D9D9;
+    margin-top: 10px;
+}
+
+.progress-bar-inner {
+    width: 180px; /* STEP 4 */
+    height: 8px;
+    background-color: #A1A1A1;
+}
+
+/* --- Content --- */
+.content-wrapper {
+    width: 100%;
+    display: flex;
+    padding: 0 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 50px;
+    gap: 10px; 
+}
+
+.step-text, .prompt-text, .sub-prompt-text {
+    font-weight: 700;
+    color: #000;
+}
+
+.step-text { font-size: 15px; }
+.prompt-text { font-size: 20px; }
+.sub-prompt-text { font-size: 14px; color: #A1A1A1; font-weight: 500; }
+
+/* --- Date Selection --- */
+.date-selection-group {
+    width: 100%; /* 좌우 20px씩 빼줌 */
+    padding: 0 20px;
+    margin-top: 35px;
+}
+
+.date-selection-group + .date-selection-group {
+    margin-top: 30px;
+}
+
+.date-label {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.date-input-container {
+    width: 343px;
+    height: 48px;
+    border: 1px solid #F1F1F1;
+    background-color: #F9F9F9; /* 약간의 배경색 추가 */
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+.date-input {
+    border: none;
+    background: none;
+    font-size: 16px;
+    font-weight: 500;
+    flex-grow: 1;
+}
+
+.calendar-button {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.calendar-button img {
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Main Next Button --- */
+.main-next-button-container {
+    width: 100%;      /* 화면 전체 */
+    padding: 0 20px;  /* 좌우 여백 */
+    margin-top: 80px;
+    margin-bottom: 30px;
+    box-sizing: border-box; /* 중요 */
+}
+
+#main-selection-complete-button {
+    width: 100%;      /* 컨테이너 폭 전체, 좌우 padding 반영 */
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    box-sizing: border-box; /* 중요 */
+}
+
+#main-selection-complete-button:disabled {
+    background-color: #F1F1F1;
+    color: #B0B0B0;
+    cursor: not-allowed;
+}
+
+#main-selection-complete-button:enabled {
+    background-color: #515151;
+    color: white;
+}
+
+/* --- Calendar Pop-up (Bottom Sheet) --- */
+.calendar-popup {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    box-shadow: 0 -4px 16px rgba(0,0,0,0.1);
+    transform: translateY(100%);
+    transition: transform 0.3s ease-out;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.calendar-popup.open {
+    transform: translateY(0);
+}
+
+.popup-header {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* flatpickr container will be placed here by JS */
+.calendar-container .flatpickr-calendar {
+    box-shadow: none;
+}
+
+/* Customizing flatpickr */
+.flatpickr-day.selected {
+    background: #515151;
+    border-color: #515151;
+    border-radius: 12px; /* 둥근 정사각형 */
+}
+
+.popup-confirm-button {
+    width: 100%;
+    height: 50px;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.popup-confirm-button:disabled {
+    background-color: #F1F1F1;
+    color: #B0B0B0;
+    cursor: not-allowed;
+}
+
+.popup-confirm-button:enabled {
+    background-color: #515151;
+    color: white;
+}

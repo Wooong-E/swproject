@@ -1,0 +1,239 @@
+/* Custom Header Styles */
+.custom-detail-header {
+    display: flex;
+    justify-content: center; /* Center Ro:D */
+    align-items: center;
+    width: 100%;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    position: relative;
+    border-bottom: 1px solid #eee; /* Similar to header.css */
+    background-color: #ffffff;
+    height: 56px; /* Adjust height as needed */
+}
+
+.custom-detail-header .back-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 24px; /* Adjust size as needed */
+    height: 24px;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.custom-detail-header .back-button img {
+    width: 100%;
+    height: 100%;
+}
+
+.custom-detail-header .header-rod-text {
+    font-family: 'Inter-Bold', Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 20px;
+    margin: 0;
+}
+
+/* --- Base Layout --- */
+.screen {
+  background-color: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.screen .report-main, /* This is the <main> element */
+footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
+  width: 375px;
+  flex-shrink: 0;
+}
+
+.screen .report-main {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 0 0 30px;
+}
+
+.main-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    padding: 20px 15px 0;
+}
+
+#report-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 0 15px;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.section-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Type Buttons */
+.type-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.type-button {
+    flex: 1;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: #888;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.type-button.active {
+    background-color: #fff;
+    border-color: #333;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Input and Textarea */
+.input-wrapper {
+    position: relative;
+}
+
+.title-input, .content-textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    color: #333;
+}
+
+.title-input::placeholder, .content-textarea::placeholder {
+    color: #aaa;
+}
+
+.content-textarea {
+    height: 200px;
+    resize: vertical;
+}
+
+.char-counter {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 12px;
+    color: #aaa;
+}
+
+/* Image Attachment */
+.image-attachment {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#image-upload {
+    display: none; /* Hide the actual file input */
+}
+
+.image-upload-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #888;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.image-upload-label img {
+    width: 24px;
+    height: 24px;
+}
+
+.image-preview-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.preview-image-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.delete-image-button {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    padding: 0;
+}
+
+.image-upload-caption {
+    font-size: 12px;
+    color: #888;
+    text-align: center;
+    margin-top: -10px;
+}
+
+/* Save Button */
+.save-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.save-button:hover {
+    background-color: #555;
+}

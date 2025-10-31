@@ -1,0 +1,56 @@
+/* course07.css - Absolute Centering Method */
+
+body {
+    font-family: 'Inter-Bold', Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.screen {
+    width: 375px;
+    min-height: 100vh;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    width: 100%;
+    flex-grow: 1; /* Keep this so main fills the space between header and footer */
+    position: relative; /* This is the key for absolute positioning of its child */
+}
+
+#course07-form {
+    /* The form itself doesn't need special positioning styles */
+}
+
+.progress-bar {
+    width: 375px;
+    height: 8px;
+    background-color: #A1A1A1;
+}
+
+/* New, robust centering logic */
+.loading-content {
+    position: absolute;
+    width: 100%; /* Let it take the full width for centering text */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* This perfectly centers the element */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* This creates the vertical padding the user wanted */
+}
+
+.plane-image {
+    width: 100px;
+    height: auto;
+}
+
+.loading-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+}

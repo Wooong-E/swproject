@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리뷰 상세</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <link rel="stylesheet" th:href="@{/css/review-detail.css}"/>
+    <link rel="stylesheet" th:href="@{/css/place-detail.css}"/>
+</head>
+<body>
+    <div class="detail-screen">
+        <div th:replace="~{/fragments/header-back :: headerBackFragment}"></div>
+
+        <div class="review-text-container">
+            <section class="review-header">
+                <div class="review-title-date">
+                    <h1 th:text="${review.title}">리뷰 제목</h1>
+                    <p class="review-date" th:text="${#temporals.format(review.created, 'yyyy.MM.dd')}">2024.07.28</p>
+                </div>
+                <div class="review-rating-detail">
+                    <th:block th:each="i : ${#numbers.sequence(1, 5)}">
+                        <img th:if="${i <= review.grade}" src="/images/star_filled.svg" alt="별점" class="star-icon-large" />
+                        <img th:if="${i > review.grade}" src="/images/star_empty.svg" alt="별점" class="star-icon-large" />
+                    </th:block>
+                </div>
+            </section>
+        </div>
+
+        <main class="review-detail-container">
+            <section class="review-images-section">
+                <!-- Main Image -->
+                <div class="main-image-container">
+                    <!-- This inner div is for centering the image -->
+                    <div class="image-centering-wrapper">
+                        <div th:if="${#lists.isEmpty(imageUrls)}" class="main-image-placeholder"></div>
+                        <img th:if="${not #lists.isEmpty(imageUrls)}" id="main-review-image" th:src="${imageUrls[0]}" alt="리뷰 메인 이미지" />
+                    </div>
+                </div>
+
+                <!-- Thumbnails -->
+                <div th:if="${#lists.size(imageUrls) > 1}" class="thumbnail-images-container">
+                    <th:block th:each="i : ${#numbers.sequence(0, 3)}">
+                        <div class="thumbnail-wrapper">
+                            <img th:if="${i < #lists.size(imageUrls) - 1}" 
+                                 th:src="${imageUrls[i+1]}" 
+                                 alt="리뷰 썸네일" 
+                                 class="thumbnail-image" 
+                                 onclick="swapImage(this)"/>
+                            <div th:unless="${i < #lists.size(imageUrls) - 1}" class="thumbnail-placeholder"></div>
+                        </div>
+                    </th:block>
+                </div>
+            </section>
+        </main>
+
+        <!-- Structurally separated text content -->
+        <div class="review-text-container">
+            <section class="review-hashtags">
+                <span th:if="${review.fhash != null}" class="hashtag" th:text="${review.fhash}">#해시태그1</span>
+                <span th:if="${review.shash != null}" class="hashtag" th:text="${review.shash}">#해시태그2</span>
+            </section>
+
+            <section class="review-content">
+                <p th:text="${review.content}">리뷰 본문 내용입니다.</p>
+            </section>
+        </div>
+
+    </div>
+
+    <script th:src="@{/js/review-detail.js}"></script>
+</body>
+</html>

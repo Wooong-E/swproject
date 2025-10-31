@@ -4,6 +4,7 @@ import com.example.swproject.dto.UserLoginDTO;
 import com.example.swproject.dto.UserSignupDTO;
 import com.example.swproject.service.UserService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/users")
+@Slf4j
 public class UserController {
 
     private final UserService userService;
@@ -24,7 +26,7 @@ public class UserController {
     // 회원가입 폼 화면
     @GetMapping("/signup")
     public String signupForm(Model model) {
-        model.addAttribute("userSignupDTO", new UserSignupDTO(null, null, null, null, null, null, null, null, null));
+        model.addAttribute("UserSignupDTO", new UserSignupDTO(null, null, null, null, null, null, null, null, null));
         return "signup"; // src/main/resources/templates/signup.html
     }
 
@@ -51,12 +53,12 @@ public class UserController {
     // 로그인 폼 화면
     @GetMapping("/login")
     public String loginForm(Model model) {
-        model.addAttribute("userLoginDTO", new UserLoginDTO(null, null));
+        model.addAttribute("UserLoginDTO",new UserLoginDTO(null,null));
         return "login"; // src/main/resources/templates/login.html
     }
 
     // 로그인 처리
-    @PostMapping("/login")
+    /*@PostMapping("/login")
     public String login(@Valid @ModelAttribute UserLoginDTO userLoginDTO,
                         BindingResult bindingResult,
                         Model model) {
@@ -72,7 +74,8 @@ public class UserController {
             return "redirect:/"; // 로그인 성공 후 홈 화면
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
+            log.info("error={}", e.getMessage());
             return "login";
         }
-    }
+    }*/
 }

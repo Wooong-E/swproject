@@ -1,0 +1,193 @@
+/* --- Global --- */
+body {
+    font-family: 'Inter-Bold', Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.screen {
+    width: 375px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px; 
+    box-sizing: border-box;
+}
+
+/* --- Progress Bar --- */
+.progress-bar-container {
+    width: 375px;
+    height: 8px;
+    background-color: #D9D9D9;
+    margin-top: 10px;
+}
+
+.progress-bar-inner {
+    width: 250px; /* STEP 5 */
+    height: 8px;
+    background-color: #A1A1A1;
+}
+
+/* --- Content --- */
+.content-wrapper {
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 왼쪽 정렬 */
+    margin-top: 50px;
+    gap: 10px; 
+}
+
+.step-text {
+    font-size: 15px;
+    font-weight: 700;
+    color: #000;
+}
+
+.prompt-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+}
+
+.sub-prompt-text {
+    width: 201px;
+    height: 18px;
+    font-size: 14px; /* 임의의 사이즈 */
+    font-weight: 500; /* Bold가 아닌 일반 폰트가 더 나을 수 있음 */
+    color: #A1A1A1;
+}
+
+/* --- Liked Places List --- */
+.liked-places-list-container {
+    width: 100%;          /* 화면 전체 */
+    padding: 0 20px;      /* 좌우 20px 여백 */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-sizing: border-box; /* 패딩을 폭에 포함 */
+}
+
+.liked-places-list-container h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.place-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between place cards */
+    justify-content: space-between; /* Distribute items evenly */
+}
+
+.place-card {
+    width: calc(50% - 5px); /* Two cards per row with 10px gap */
+    height: 180px; /* Fixed height for consistency */
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Align content to bottom */
+}
+
+.place-card.selected {
+    border: 4px solid #000000; /* Visual feedback for selection */
+    transform: translateY(-3px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.place-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.place-info {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+    color: white;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.place-info h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.place-info p {
+    font-size: 10px;
+    margin: 0;
+    opacity: 0.8;
+}
+
+.place-actions {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 3;
+}
+
+.heart-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.heart-icon {
+    width: 24px;
+    height: 24px;
+    filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.5)); /* Make icon stand out */
+}
+
+/* --- Create Course Button --- */
+.create-course-button-container {
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#create-course-button {
+    width: 343px;
+    height: 50px;
+    background-color: #515151;
+    border: none;
+    border-radius: 5px; /* Half of height for oval shape */
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* The button is always enabled as per requirement, so no disabled state */
+/* #create-course-button:disabled {
+    background-color: #F1F1F1;
+    cursor: not-allowed;
+    color: #B0B0B0;
+} */
