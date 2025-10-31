@@ -99,16 +99,16 @@ public class ReviewRepository {
     Map<String, Map<Long, Long>> combinedCounts = new HashMap<>();
 
     for (Tuple tuple : fReviewCount) {
-      String category = tuple.get(place.category);
-      Long placeId = tuple.get(place.id);
+      String category = tuple.get(0,String.class);
+      Long placeId = tuple.get(1,Long.class);
       Long count = tuple.get(2, Long.class);
 
       combinedCounts.computeIfAbsent(category, k -> new HashMap<>()).put(placeId, count);
     }
 
     for (Tuple tuple : sReviewCount) {
-      String category = tuple.get(place.category);
-      Long placeId = tuple.get(place.id);
+      String category = tuple.get(0,String.class);
+      Long placeId = tuple.get(1,Long.class);
       Long count = tuple.get(2, Long.class);
 
       combinedCounts.computeIfAbsent(category, k -> new HashMap<>()).merge(placeId, count, Long::sum);

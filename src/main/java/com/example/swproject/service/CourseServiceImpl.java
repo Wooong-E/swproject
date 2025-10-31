@@ -34,6 +34,15 @@ public class CourseServiceImpl implements CourseService {
     public List<Place> recommendCourses(String fhash, String shash, List<Long> excludePlaceIds) {
         List<Long> recommendedPlaceIds = reviewRepository.findTop2EqualHash(fhash, shash);
 
+        if(recommendedPlaceIds.isEmpty()) {
+            System.out.println("데이터없음");
+        }
+        else{
+            for(Long id : recommendedPlaceIds) {
+                System.out.println(id);
+            }
+        }
+
         // If excludePlaceIds is not null, filter the recommendedPlaceIds
         if (excludePlaceIds != null && !excludePlaceIds.isEmpty()) {
             recommendedPlaceIds = recommendedPlaceIds.stream()

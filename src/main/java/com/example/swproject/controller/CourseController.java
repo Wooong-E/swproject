@@ -135,7 +135,17 @@ public class CourseController {
         model.addAttribute("endDate", endDate.format(java.time.format.DateTimeFormatter.ISO_DATE));
         model.addAttribute("selectedPlaceIds", placeIds);
 
+
         List<Place> recommendedPlaces = courseService.recommendCourses(fhash, shash, placeIds);
+        if(recommendedPlaces.isEmpty()) {
+            System.out.println("데이터없음");
+        }
+        else{
+            for(Place place : recommendedPlaces) {
+                System.out.println(place.getId());
+            }
+        }
+
         model.addAttribute("recommendedPlaces", recommendedPlaces);
 
         return "courses/course06";
