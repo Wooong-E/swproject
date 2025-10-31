@@ -43,7 +43,7 @@
                 <div class="category-section">
                     <h2>명소 추천</h2>
                     <div class="place-list">
-                        <div th:each="place : ${recommendedPlaces}" th:if="${place.category == 'attraction'}" class="place-card" th:data-place-id="${place.id}">
+                        <div th:each="place : ${recommendedPlaces}" th:if="${place.category == '명소'}" class="place-card" th:data-place-id="${place.id}">
                             <h3 th:text="${place.name}">장소 이름</h3>
                             <p class="category" th:text="${place.category}">명소</p>
                             <p class="hashtags"></p>
@@ -56,7 +56,7 @@
                 <div class="category-section">
                     <h2>맛집 추천</h2>
                     <div class="place-list">
-                        <div th:each="place : ${recommendedPlaces}" th:if="${place.category == 'restaurant'}" class="place-card" th:data-place-id="${place.id}">
+                        <div th:each="place : ${recommendedPlaces}" th:if="${place.category == '맛집'}" class="place-card" th:data-place-id="${place.id}">
                             <h3 th:text="${place.name}">장소 이름</h3>
                             <p class="category" th:text="${place.category}">맛집</p>
                             <p class="hashtags"></p>
@@ -69,7 +69,7 @@
                 <div class="category-section">
                     <h2>카페 추천</h2>
                     <div class="place-list">
-                        <div th:each="place : ${recommendedPlaces}" th:if="${place.category == 'cafe'}" class="place-card" th:data-place-id="${place.id}">
+                        <div th:each="place : ${recommendedPlaces}" th:if="${place.category == '카페'}" class="place-card" th:data-place-id="${place.id}">
                             <h3 th:text="${place.name}">장소 이름</h3>
                             <p class="category" th:text="${place.category}">카페</p>
                             <p class="hashtags"></p>
