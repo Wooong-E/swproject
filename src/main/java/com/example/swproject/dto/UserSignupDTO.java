@@ -1,6 +1,9 @@
 package com.example.swproject.dto;
 
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.Value;
 
 import java.io.Serializable;
@@ -8,7 +11,9 @@ import java.io.Serializable;
 /**
  * DTO for {@link com.example.swproject.domain.User}
  */
-@Value
+@Data
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class UserSignupDTO implements Serializable {
 
   @NotBlank(message = "아이디는 필수 입력값입니다.")
