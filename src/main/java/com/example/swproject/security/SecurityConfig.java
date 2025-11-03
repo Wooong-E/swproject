@@ -33,6 +33,7 @@ public class SecurityConfig {
                 .usernameParameter("loginId")
                 .passwordParameter("loginPw")
                 .defaultSuccessUrl("/", true)
+                .failureUrl("/users/login?error")
                 .permitAll()
             )
                 .logout(logout -> logout
