@@ -112,12 +112,16 @@
 }
 
 .hashtag {
-    background-color: #F1F1F1;
-    color: black;
-    padding: 10px 20px;
-    border-radius: 22px;
-    font-size: 15px;
-    font-weight: 900; /* Bolder font */
+    background-color: #00809D;
+    color: white;
+    border-radius: 15px;
+    font-size: 14px;
+    width: 120px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }
 
 .review-content {

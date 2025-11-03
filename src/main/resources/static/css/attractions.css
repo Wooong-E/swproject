@@ -153,6 +153,7 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
 .rating-score {
     font-size: 12px;
     font-weight: 600;
+    color: #00809D;
 }
 
 .stars-wrapper {

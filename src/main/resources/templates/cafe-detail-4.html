@@ -47,7 +47,7 @@
 
             <!-- Menu Section -->
             <section class="menu-section">
-                <h3 class="menu-title">메뉴</h3>
+                <h3 class="menu-title">대표 메뉴</h3>
                 <div class="menu-carousel">
                     <div class="menu-card">
                         <img src="/images/cafes/cafe_4/menu_1.jpg" alt="카페 메뉴 이미지" class="menu-image" />
@@ -72,20 +72,6 @@
                 </div>
             </section>
 
-            <!-- Star Rating Section -->
-            <section class="details-section">
-                <div class="detail-item rating-display">
-                    <strong>평균 별점</strong>
-                    <div class="stars-wrapper">
-                        <div th:each="i : ${#numbers.sequence(1, 5)}" class="star-container">
-                            <img th:src="@{/images/star_empty.svg}" alt="Empty Star"/>
-                            <img th:if="${averageGrade > (i - 1)}" th:src="@{/images/star_filled.svg}" alt="Filled Star"
-                                 th:style="'clip-path: inset(0 ' + (100 - (*{i <= averageGrade} ? 100 : (*{averageGrade - (i-1)} * 100))) + '% 0 0);'"/>
-                        </div>
-                    </div>
-                    <span class="rating-score" th:text="${#numbers.formatDecimal(averageGrade, 1, 1)}">0.0</span>
-                </div>
-            </section>
 
             <!-- Address and Transportation -->
             <section class="details-section">
