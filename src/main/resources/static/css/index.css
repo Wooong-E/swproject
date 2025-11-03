@@ -207,18 +207,18 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
     color: #ffffff;
     font-family: 'Inter-Regular', Helvetica;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 10px; /* Reduced font size */
 }
 
 .plan-box-user-course-count {
-    width: 24px;
-    height: 24px;
+    width: 16px; /* Reduced size */
+    height: 16px; /* Reduced size */
     background-color: #ffffff;
-    border-radius: 12px;
+    border-radius: 8px; /* Reduced size */
     color: #00809D;
     font-family: 'Inter-Bold', Helvetica;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 10px; /* Reduced font size */
     display: flex;
     justify-content: center;
     align-items: center;
