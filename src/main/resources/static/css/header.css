@@ -227,8 +227,23 @@ header[th\:fragment="headerFragment"] {
     font-family: 'Inter-Bold', Helvetica;
     font-weight: 700;
     color: #000000;
-    font-size: 16px;
+    font-size: 14px; /* Reduced font size */
     margin-bottom: 10px;
+}
+
+/* ... other styles ... */
+
+#sidebar nav .div-wrapper a.div {
+  position: relative;
+  width: fit-content;
+  font-family: 'Inter-Regular', Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 16px; /* Increased font size */
+  letter-spacing: 0;
+  line-height: normal;
+  text-decoration: none;
+  display: block;
 }
 
 .logged-in-section {
