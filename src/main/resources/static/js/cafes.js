@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentMainCategory = 'taste';
     let currentTasteSubCategory = '감성';
     let currentMoodSubCategory = '';
+    let likedPlaceIds = new Set();
 
     const createRatingHTML = (grade) => {
         if (grade === null || grade === undefined) return '';
@@ -33,7 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="stars-wrapper">${starsHTML}</div>
             </div>
         `;
-/*=======
+    }
+
 
 
     const fetchLikedPlaces = () => {
@@ -46,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => {
                 console.error('Error fetching liked places:', error);
             });
->>>>>>> feature/service_1*/
     };
 
     const createPlaceCard = (place) => {

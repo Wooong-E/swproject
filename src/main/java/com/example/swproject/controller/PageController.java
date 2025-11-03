@@ -2,11 +2,9 @@ package com.example.swproject.controller;
 
 import com.example.swproject.domain.Place;
 import com.example.swproject.domain.User;
-import com.example.swproject.dto.UserStatsDto;
+import com.example.swproject.dto.*;
 import com.example.swproject.service.UserStatsService;
-import com.example.swproject.dto.ReviewSummaryDto;
 import com.example.swproject.domain.Place;
-import com.example.swproject.dto.PlaceDto;
 import com.example.swproject.dto.ReviewSummaryDto;
 import com.example.swproject.service.CourseService;
 import com.example.swproject.service.PlaceService;
@@ -103,7 +101,7 @@ public class PageController {
         return "cafes";
     }
 
-    @GetMapping("/monthly-magazine")
+/*    @GetMapping("/monthly-magazine")
     public String showMonthlyMagazinePage(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
         addLoginStatusToModel(model);
         model.addAttribute("currentPage", "monthly-magazine");
@@ -131,7 +129,7 @@ public class PageController {
         model.addAttribute("totalPages", totalPages);
 
         return "monthly-magazine";
-    }
+    }*/
 
 
     @GetMapping("/monthly-magazine/1")
@@ -277,14 +275,6 @@ public class PageController {
         model.addAttribute("totalPages", totalPages);
 
         return "monthly-magazine";
-    }
-
-
-    @GetMapping("/monthly-magazine/1")
-    public String showMonthlyMagazineDetailPage(Model model) {
-        addLoginStatusToModel(model);
-        model.addAttribute("currentPage", "monthly-magazine"); // To highlight the monthly-magazine link in header
-        return "monthly-magazine-detail";
     }
 
     @GetMapping("/api/places/summary")
