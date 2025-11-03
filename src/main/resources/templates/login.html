@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>G:DO 로그인</title>
@@ -14,7 +14,7 @@
     <h1 class="welcome-message">G:DO에 어서오세요!</h1>
     <form th:action="@{/users/login}" th:object="${UserLoginDTO}" method="post" class="login-form">
         <div th:if="${param.error}" class="error-message-top">
-            <p style="color:red">아이디 또는 비밀번호가 올바르지 않습니다.</p>
+            <p style="color:red"> 아이디 또는 비밀번호가 올바르지 않습니다.</p>
         </div>
 
         <input type="text" th:field="*{loginId}" placeholder="아이디 입력" required class="input-field">

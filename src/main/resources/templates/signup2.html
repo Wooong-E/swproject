@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>G:DO 회원가입 - 2단계</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/global.css}">
+  <link rel="stylesheet" th:href="@{/css/signup.css}">
+</head>
+<body>
+
+<div class="signup-container">
+
+  <a href="javascript:history.back()" class="back-button">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+  </a>
+
+  <div class="progress-indicator three-steps">
+    <div class="step active"></div> <div class="step active"></div> <div class="step"></div>        </div>
+
+  <form th:action="@{/users/signup/step3}" th:object="${userSignupDTO}" method="post" id="signup-form-step2">
+    <input type="hidden" th:field="*{name}">
+
+    <h1 class="page-title">당신의 정보를 알려주세요</h1>
+
+    <section class="selection-section">
+      <p class="section-title">어느 나라 사람인가요?</p>
+      <div class="tag-group country-tags">
+        <input type="radio" th:field="*{country}" id="country-kr" value="대한민국" class="tag-input">
+        <label for="country-kr" class="tag-label">대한민국</label>
+
+        <input type="radio" th:field="*{country}" id="country-us" value="United States" class="tag-input">
+        <label for="country-us" class="tag-label">United States</label>
+
+        <input type="radio" th:field="*{country}" id="country-jp" value="日本" class="tag-input">
+        <label for="country-jp" class="tag-label">日本</label>
+
+        <input type="radio" th:field="*{country}" id="country-etc" value="Other" class="tag-input">
+        <label for="country-etc" class="tag-label">Other</label>
+      </div>
+    </section>
+
+    <section class="selection-section">
+      <p class="section-title">어떤 종교를 갖고 계신가요?</p>
+      <div class="tag-group religion-tags">
+        <input type="radio" th:field="*{religion}" id="religion-none" value="무교 / None" class="tag-input">
+        <label for="religion-none" class="tag-label">무교 / None</label>
+
+        <input type="radio" th:field="*{religion}" id="religion-christian" value="기독교 / Protestant" class="tag-input">
+        <label for="religion-christian" class="tag-label">기독교 / Protestant</label>
+
+        <input type="radio" th:field="*{religion}" id="religion-other" value="기타 / Other" class="tag-input">
+        <label for="religion-other" class="tag-label">기타 / Other</label>
+      </div>
+    </section>
+
+    <button type="submit" class="action-btn next-step-btn">다음으로</button>
+
+  </form>
+</div>
+
+</body>
+</html>
