@@ -1,6 +1,6 @@
 /* --- Global --- */
 body {
-    font-family: 'Inter-Bold', Helvetica, sans-serif;
+    
     display: flex;
     justify-content: center;
 }
@@ -82,7 +82,7 @@ main {
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    font-family: 'Inter-Bold', Helvetica, sans-serif;
+    
     font-weight: 700;
 }
 
@@ -100,7 +100,7 @@ main {
     height: 50px;
     border: none;
     border-radius: 5px;
-    font-family: 'Inter-Bold', Helvetica, sans-serif;
+    
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;

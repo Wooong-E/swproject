@@ -37,7 +37,7 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
 }
 
 .course-start-section h2 {
-    font-family: 'Inter-Bold', Helvetica;
+    
     font-size: 18px;
     font-weight: 700;
     color: #333;
@@ -45,7 +45,7 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
 }
 
 .start-button {
-    font-family: 'Inter-Bold', Helvetica;
+    
     background-color: #F1F1F1;
     border: none;
     border-radius: 50px; /* For the oval shape */

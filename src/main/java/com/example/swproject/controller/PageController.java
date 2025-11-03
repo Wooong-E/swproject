@@ -1,10 +1,15 @@
 package com.example.swproject.controller;
 
 import com.example.swproject.dto.ReviewSummaryDto;
+import com.example.swproject.domain.Place;
+import com.example.swproject.dto.PlaceDto;
+import com.example.swproject.dto.ReviewSummaryDto;
+import com.example.swproject.service.PlaceService;
 import com.example.swproject.service.ReviewService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +38,22 @@ public class PageController {
         private String snippet;
     }
 
-    private final ReviewService reviewService;
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    public static class PlaceSummaryDto {
+        private Long id;
+        private String name;
+        private String category;
+        private Double averageGrade;
+    }
 
-    public PageController(ReviewService reviewService) {
+    private final ReviewService reviewService;
+    private final PlaceService placeService;
+
+    public PageController(ReviewService reviewService, PlaceService placeService) {
         this.reviewService = reviewService;
+        this.placeService = placeService;
     }
 
     private void addLoginStatusToModel(Model model) {
@@ -77,44 +95,6 @@ public class PageController {
         addLoginStatusToModel(model);
         model.addAttribute("currentPage", "cafes");
         return "cafes";
-    }
-
-    @GetMapping("/monthly-magazine")
-    public String showMonthlyMagazinePage(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
-        addLoginStatusToModel(model);
-        model.addAttribute("currentPage", "monthly-magazine");
-
-        final int TOTAL_ITEMS = 30;
-        final int ITEMS_PER_PAGE = 6;
-
-        List<MagazineItemDto> allItems = IntStream.rangeClosed(1, TOTAL_ITEMS)
-                .mapToObj(i -> new MagazineItemDto(
-                        "/images/monthly-magazine" + i + ".png",
-                        "월간매거진_제목" + i,
-                        "월간매거진_본문" + i
-                ))
-                .collect(Collectors.toList());
-
-        int totalPages = (int) Math.ceil((double) TOTAL_ITEMS / ITEMS_PER_PAGE);
-        int currentPage = Math.max(1, Math.min(page, totalPages));
-
-        int start = (currentPage - 1) * ITEMS_PER_PAGE;
-        int end = Math.min(start + ITEMS_PER_PAGE, TOTAL_ITEMS);
-        List<MagazineItemDto> pageItems = allItems.subList(start, end);
-
-        model.addAttribute("magazineItems", pageItems);
-        model.addAttribute("currentPage", currentPage);
-        model.addAttribute("totalPages", totalPages);
-
-        return "monthly-magazine";
-    }
-
-
-    @GetMapping("/monthly-magazine/1")
-    public String showMonthlyMagazineDetailPage(Model model) {
-        addLoginStatusToModel(model);
-        model.addAttribute("currentPage", "monthly-magazine"); // To highlight the monthly-magazine link in header
-        return "monthly-magazine-detail";
     }
 
 
@@ -203,6 +183,64 @@ public class PageController {
         }
         return "cafe-detail-1"; // Default or error page
     }
+
+
+    @GetMapping("/monthly-magazine")
+    public String showMonthlyMagazinePage(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+        addLoginStatusToModel(model);
+        model.addAttribute("currentPage", "monthly-magazine");
+
+        final int TOTAL_ITEMS = 30;
+        final int ITEMS_PER_PAGE = 6;
+
+        List<MagazineItemDto> allItems = IntStream.rangeClosed(1, TOTAL_ITEMS)
+                .mapToObj(i -> new MagazineItemDto(
+                        "/images/monthly-magazine" + i + ".png",
+                        "월간매거진_제목" + i,
+                        "월간매거진_본문" + i
+                ))
+                .collect(Collectors.toList());
+
+        int totalPages = (int) Math.ceil((double) TOTAL_ITEMS / ITEMS_PER_PAGE);
+        int currentPage = Math.max(1, Math.min(page, totalPages));
+
+        int start = (currentPage - 1) * ITEMS_PER_PAGE;
+        int end = Math.min(start + ITEMS_PER_PAGE, TOTAL_ITEMS);
+        List<MagazineItemDto> pageItems = allItems.subList(start, end);
+
+        model.addAttribute("magazineItems", pageItems);
+        model.addAttribute("pageNum", currentPage);
+        model.addAttribute("totalPages", totalPages);
+
+        return "monthly-magazine";
+    }
+
+
+    @GetMapping("/monthly-magazine/1")
+    public String showMonthlyMagazineDetailPage(Model model) {
+        addLoginStatusToModel(model);
+        model.addAttribute("currentPage", "monthly-magazine"); // To highlight the monthly-magazine link in header
+        return "monthly-magazine-detail";
+    }
+
+    @GetMapping("/api/places/summary")
+    @ResponseBody
+    public ResponseEntity<List<PlaceSummaryDto>> getPlacesSummary() {
+        List<Place> allPlaces = placeService.findAllPlaces();
+        List<PlaceSummaryDto> summaries = allPlaces.stream()
+                .map(place -> {
+                    Double averageGrade = reviewService.getAverageGrade(place.getId());
+                    return new PlaceSummaryDto(
+                            place.getId(),
+                            place.getName(),
+                            place.getCategory(),
+                            averageGrade != null ? averageGrade : 0.0
+                    );
+                })
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(summaries);
+    }
+
     //todo:이쪽 서상범 추가 리뷰 상세보기 위해서
     @GetMapping("/reviews/{placeId}/{orderId}")
     public String showReviewDetail(@PathVariable Long placeId,  @PathVariable Long orderId, Model model) {

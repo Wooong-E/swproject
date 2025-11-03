@@ -55,7 +55,7 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
 }
 
 .custom-detail-header .header-rod-text {
-    font-family: 'Inter-Bold', Helvetica;
+    
     font-weight: 700;
     color: #000000;
     font-size: 20px;

@@ -82,7 +82,7 @@
     border: none;
     cursor: pointer;
     padding: 5px;
-    font-family: 'Inter-Bold', Helvetica, sans-serif;
+    
     font-size: 14px;
 }
 
@@ -109,6 +109,9 @@
 
 .pagination-container .page-number-btn.active {
     color: #000;
+    background-color: #ffffff;
     font-weight: bold;
-    text-decoration: underline;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 12px;
 }

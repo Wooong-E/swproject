@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
+    <link rel="icon" href="/images/logo.png" type="image/png">
     <title>Ro:D - 월간매거진</title>
     <link rel="stylesheet" th:href="@{/css/global.css}" />
     <link rel="stylesheet" th:href="@{/css/header.css}" />
@@ -12,7 +13,7 @@
 <body>
 <div class="screen">
     <main class="magazine-main">
-        <div th:replace="~{/fragments/header :: headerFragment(currentPage=${currentPage})}"></div>
+        <div th:replace="~{/fragments/header :: headerFragment}"></div>
         <div class="magazine-list">
             <th:block th:each="item, iterStat : ${magazineItems}">
                 <button th:if="${iterStat.index == 0 and currentPage == 1}"
@@ -40,9 +41,9 @@
             <th:block th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
                 <a th:href="@{/monthly-magazine(page=${pageNumber})}"
                    class="page-number-btn"
-                   th:classappend="${pageNumber == currentPage} ? 'active'"
+                   th:classappend="${pageNumber == pageNum} ? 'active'"
                    th:text="${pageNumber}"
-                   th:aria-current="${pageNumber == currentPage} ? 'page'">
+                   th:aria-current="${pageNumber == pageNum} ? 'page'">
                 </a>
             </th:block>
 

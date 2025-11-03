@@ -26,36 +26,41 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
 
 /* --- Category Buttons --- */
 .category-section {
-    padding: 0 16px;
+    padding: 0;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 5px; /* Changed from 10px */
+    margin-top: -10px; /* Removes gap from header */
 }
 
 .main-category-buttons {
     display: flex;
-    justify-content: flex-start; /* Changed from space-between */
+    justify-content: flex-start;
+    gap: 10px;
     width: 100%;
-    padding-bottom: 10px;
-    gap: 20px; /* Added gap */
+    padding: 10px 10px 0 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+    background-color: #00809D;
+    box-sizing: border-box;
 }
 
 .main-category-button {
-    background: none;
+    background: transparent;
     border: none;
     cursor: pointer;
-    padding: 0;
+    padding: 8px 12px;
     font-family: 'Inter-Regular', Helvetica;
-    font-size: 11px; /* Changed from 14px */
-    color: #888888;
-    /* Removed flex-grow: 1; text-align: center; */
+    font-size: 11px;
+    color: #ffffff;
+    border-radius: 12px 12px 0 0;
 }
 
 .main-category-button.active {
     color: #000000;
+    background-color: #ffffff;
     font-weight: 600;
-    /* Removed border-bottom: 2px solid #000000; */
 }
 
 .sub-category-buttons {
@@ -86,10 +91,12 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
 }
 
 .sub-category-button.active {
-    background-color: #000000;
+    background-color: #00809D;
     color: #ffffff;
-    border-color: #000000;
+    border: none;
     font-weight: 500;
+    border-radius: 18px;
+    padding: 5px 12px;
 }
 
 /* --- Attractions List --- */
@@ -145,7 +152,7 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
 }
 
 .text-wrapper-3 {
-  font-family: 'Inter-SemiBold', Helvetica;
+  
   font-weight: 600;
   font-size: 12px;
   color: #000000;
@@ -159,4 +166,46 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+
+
+.star-container {
+    position: relative;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+}
+
+.star-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Rating Display on Card --- */
+.rating-display {
+    display: flex;
+    align-items: center;
+    gap: 4px; /* Smaller gap for card view */
+    margin-top: 4px; /* Space above the rating */
+    color: #00809D;
+}
+
+.rating-score {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.stars-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1px; /* Tighter spacing for small stars */
+}
+
+.rating-star-icon {
+    width: 12px;
+    height: 12px;
 }

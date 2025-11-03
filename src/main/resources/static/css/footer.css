@@ -34,7 +34,7 @@
 }
 
 #main-footer nav button {
-    font-family: 'Inter', sans-serif;
+    
     font-weight: 400;
     font-size: 13px;
     color: #555;
@@ -90,7 +90,7 @@
 #main-footer .text-wrapper-6, 
 #main-footer .text-wrapper-4,
 #main-footer .text-wrapper-3 { /* .text-wrapper-3 is a misnamed label */
-    font-family: 'Inter', sans-serif;
+    
     font-weight: 700;
     font-size: 13px;
     color: #333;
@@ -100,7 +100,7 @@
 /* All VALUES (e.g., 주식회사 로:드, a@a.com) */
 #main-footer .text-wrapper-7, 
 #main-footer .text-wrapper-5 { 
-    font-family: 'Inter', sans-serif;
+    
     font-weight: 400;
     font-size: 13px;
     color: #555;

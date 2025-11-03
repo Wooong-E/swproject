@@ -106,7 +106,13 @@ public class ReviewService {
 
     @Transactional(readOnly = true)
     public Double getAverageGrade(Long placeId) {
-        return reviewRepository.findAvgGrade(placeId);
+        Double avg = reviewRepository.findAvgGrade(placeId);
+        // null 방지 + 소수점 한 자리 반올림
+        if (avg == null) {
+            return 0.0;
+        } else {
+            return Math.round(avg * 10) / 10.0;
+        }
     }
 
     // 각 장소에 있는 리뷰들을 가져와서, 보여주기 위한 매서드.

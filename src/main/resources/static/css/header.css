@@ -8,7 +8,6 @@ header[th\:fragment="headerFragment"] {
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    padding-bottom: 8px;
     position: relative; /* Add this for sidebar positioning context */
 }
 
@@ -24,11 +23,9 @@ header[th\:fragment="headerFragment"] {
 
 /* --- Header Elements --- */
 
-.header-top-bar .text-wrapper-9 {
-    font-family: 'Inter-Bold', Helvetica;
-    font-weight: 700;
-    color: #000000;
-    font-size: 20px;
+.header-logo {
+    height: 24px;
+    width: auto;
 }
 
 .header-top-bar .mingcute-menu-line {
@@ -56,6 +53,7 @@ header[th\:fragment="headerFragment"] {
     margin: 0;
     display: flex;
     width: 100%;
+    justify-content: space-around; /* ADDED FOR OPTION B */
 }
 
 #main-top-nav > li {
@@ -66,8 +64,10 @@ header[th\:fragment="headerFragment"] {
 }
 
 #main-top-nav .text-wrapper-10 {
-    padding: 8px 5px;
-    font-family: 'Inter', sans-serif;
+    display: block;
+    text-align: center;
+    padding: 8px 0;
+    
     font-weight: 500;
     font-size: 13px;
     text-decoration: none;
@@ -83,10 +83,7 @@ header[th\:fragment="headerFragment"] {
     border-radius: 8px;
 }
 
-#main-top-nav .text-wrapper-10.active {
-    border-bottom: 1px solid #000 !important;
-    font-weight: 700 !important;
-}
+
 
 
 /* --- Sidebar Styles (AI-Generated Design Adaptation) --- */
@@ -125,7 +122,7 @@ header[th\:fragment="headerFragment"] {
 #sidebar .sidebar-header .text-wrapper {
   font-size: 20px;
   font-weight: 700;
-  font-family: 'Inter-Bold', Helvetica;
+  
   min-height: 24px; /* AI min-height */
   min-width: 46px; /* AI min-width */
 }
@@ -171,7 +168,7 @@ header[th\:fragment="headerFragment"] {
   /* Adapting AI's h2.OOO to our button.login-button */
   position: relative;
   width: fit-content;
-  font-family: 'Inter-Bold', Helvetica;
+  
   font-weight: 700;
   color: #000000;
   font-size: 15px;
@@ -216,7 +213,7 @@ header[th\:fragment="headerFragment"] {
 #sidebar nav .div-wrapper a.div {
   position: relative;
   width: fit-content;
-  font-family: 'Inter-Regular', Helvetica;
+  
   font-weight: 400;
   color: #000000;
   font-size: 13px;
@@ -238,3 +235,42 @@ header[th\:fragment="headerFragment"] {
 #sidebar nav.overlap-group .vector {
   display: none; /* AI hides this */
 }
+
+/* --- Combined Active Nav Link Styles (Option B) --- */
+#main-top-nav > li:nth-child(1) .text-wrapper-10.active,
+#main-top-nav > li:nth-child(2) .text-wrapper-10.active,
+#main-top-nav > li:nth-child(3) .text-wrapper-10.active {
+    background-color: #00809D;
+    color: #ffffff !important;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    padding: 8px 20px;
+}
+
+#main-top-nav > li:nth-child(4) .text-wrapper-10.active {
+    background-color: #00809D;
+    color: #ffffff !important;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    padding: 8px 8px;
+}
+
+#main-top-nav > li:nth-child(5) .text-wrapper-10.active {
+    background-color: #00809D;
+    color: #ffffff !important;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    padding: 8px 5px;
+}
+
+/* --- Underline bar for courses/magazine pages --- */
+header.courses-page::after,
+header.monthly-magazine-page::after {
+    content: '';
+    display: block;
+    width: 375px;
+    height: 14px;
+    background-color: #00809D;
+}
+
+

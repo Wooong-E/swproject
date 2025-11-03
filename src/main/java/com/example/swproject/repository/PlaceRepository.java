@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -27,6 +28,14 @@ public class PlaceRepository {
 
   public Optional<Place> findById(Long id) {
     return placeRepository.findById(id);
+  }
+
+  public List<Place> findByCategory(String category) {
+    return placeRepository.findByCategory(category);
+  }
+
+  public List<Place> findAll() {
+    return placeRepository.findAll();
   }
 
 }

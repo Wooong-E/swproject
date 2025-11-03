@@ -10,4 +10,7 @@ public class AttractionDto {
     private String location;
     private String category;
     private String main_image;
+    private Double averageGrade;
+    private String tasteCategory;
+    private String moodCategory;
 }

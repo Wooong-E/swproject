@@ -2,7 +2,7 @@
 
 /* This body style centers the entire .screen container */
 body {
-    font-family: 'Inter-Bold', Helvetica, sans-serif;
+    
     display: flex;
     justify-content: center;
 }
