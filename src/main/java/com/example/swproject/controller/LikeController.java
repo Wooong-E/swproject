@@ -22,6 +22,7 @@ public class LikeController {
         this.likeService = likeService;
     }
 
+
     @PostMapping("/{placeId}/toggle")
     public ResponseEntity<?> toggleLike(@PathVariable Long placeId, @AuthenticationPrincipal User user) {
         if (user == null) {
