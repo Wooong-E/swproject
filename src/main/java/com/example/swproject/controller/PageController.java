@@ -155,6 +155,7 @@ public class PageController {
         if (user != null) {
             recommendedCourseNth = courseService.findNthByCourseName(user, "자연힐링코스");
         }
+
         model.addAttribute("isRecommendedCourseSaved", recommendedCourseNth != null);
         model.addAttribute("recommendedCourseNth", recommendedCourseNth);
 
