@@ -33,18 +33,7 @@
         <label>종교:</label>
         <input type="text" th:field="*{religion}" placeholder="종교 입력">
     </div>
-    <div>
-        <label>전화번호:</label>
-        <input type="text" th:field="*{phone}" placeholder="전화번호 입력">
-    </div>
-    <div>
-        <label>직업:</label>
-        <input type="text" th:field="*{job}" placeholder="직업 입력">
-    </div>
-    <div>
-        <label>나이:</label>
-        <input type="number" th:field="*{age}" placeholder="나이 입력">
-    </div>
+
 
     <div th:if="${errorMessage}" style="color: red;">
         <p th:text="${errorMessage}"></p>
