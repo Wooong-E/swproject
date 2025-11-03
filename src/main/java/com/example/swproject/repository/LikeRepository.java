@@ -2,6 +2,7 @@ package com.example.swproject.repository;
 
 import com.example.swproject.domain.Like;
 import com.example.swproject.domain.Place;
+import com.example.swproject.domain.User;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,10 @@ public class LikeRepository {
     queryFactory.delete(like)
         .where(like.place.id.eq(placeId), like.user.id.eq(userId))
         .execute();
+  }
+
+  public long countByUser(User user) {
+    return likeRepository.countByUser(user);
   }
 
 }

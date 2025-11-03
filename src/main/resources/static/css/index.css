@@ -150,3 +150,108 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
   outline: 2px solid #4a90e2;
   outline-offset: 2px;
 }
+
+/* --- Plan Section --- */
+.plan-section {
+    display: flex;
+    gap: 10px;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+.plan-box-login {
+    width: 100px;
+    height: 100px;
+    background-color: #00809D;
+    border-radius: 15px;
+    display: flex;
+    justify-content: flex-start; /* Align to top-left */
+    align-items: flex-start; /* Align to top-left */
+    padding: 15px; /* Add padding */
+}
+
+.plan-box-login-text {
+    color: #ffffff;
+    font-family: 'Inter-Bold', Helvetica;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.5; /* Increase line spacing */
+    text-align: left; /* Ensure text is left-aligned */
+}
+
+.plan-box-user {
+    width: 100px;
+    height: 100px;
+    background-color: #00809D;
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.plan-box-user-name {
+    color: #ffffff;
+    font-family: 'Inter-Bold', Helvetica;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.plan-box-user-course {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.plan-box-user-course-text {
+    color: #ffffff;
+    font-family: 'Inter-Regular', Helvetica;
+    font-weight: 400;
+    font-size: 10px; /* Reduced font size */
+}
+
+.plan-box-user-course-count {
+    width: 16px; /* Reduced size */
+    height: 16px; /* Reduced size */
+    background-color: #ffffff;
+    border-radius: 8px; /* Reduced size */
+    color: #00809D;
+    font-family: 'Inter-Bold', Helvetica;
+    font-weight: 700;
+    font-size: 10px; /* Reduced font size */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.plan-box-schedule {
+    flex-grow: 1;
+    border: 1px solid #000000;
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.plan-box-schedule-title {
+    font-family: 'Inter-SemiBold', Helvetica;
+    font-weight: 600;
+    font-size: 14px;
+    color: #000000;
+}
+
+.plan-box-schedule-status {
+    font-family: 'Inter-Regular', Helvetica;
+    font-weight: 400;
+    font-size: 14px;
+    color: #888;
+}
+
+.plan-box-schedule-dday {
+    font-family: 'Inter-Bold', Helvetica;
+    font-weight: 700;
+    font-size: 24px; /* Increased font size */
+    color: #000000;
+    align-self: flex-end;
+}

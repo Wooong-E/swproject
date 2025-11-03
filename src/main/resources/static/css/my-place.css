@@ -52,8 +52,8 @@ footer[th\:fragment="footerFragment"] {
 }
 
 .category-button.active {
-    background-color: #333;
-    border-color: #333;
+    background-color: #00809D;
+    border-color: #00809D;
     color: #fff;
     font-weight: 600;
 }

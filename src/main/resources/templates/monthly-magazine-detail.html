@@ -9,6 +9,8 @@
     <link rel="stylesheet" th:href="@{/css/place-detail.css}" />
     <link rel="stylesheet" th:href="@{/css/footer.css}" />
     <link rel="stylesheet" th:href="@{/css/monthly-magazine-detail.css}" />
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
 <div class="screen">
@@ -40,14 +42,27 @@
                 다양한 식물과 야생화를 감상하며 진정한 휴식을 경험해 보세요.
             </p>
 
-            <!-- 4-5. 크게 버튼 -->
-            <a href="/attractions/4" class="magazine-cta-link">
-                <div class="cta-image" style="background-image: url('/images/monthly-magazine1-3.png');"></div>
-                <h2 class="cta-title">남매지</h2>
-                <p class="cta-address">경산북도 경산시 동부동 643</p>
-                <p class="cta-info-item"><strong>가격</strong> 무료</p>
-                <p class="cta-info-item"><strong>교통</strong> 무료주차장, 임당역 도보 20분</p>
-            </a>
+            <!-- 4-5. 추천 코스 -->
+            <section class="recommended-course-section" th:if="${recommendedCoursePlaces != null and not #lists.isEmpty(recommendedCoursePlaces)}">
+                <h2 class="section-title">추천 코스</h2>
+                <ul class="course-list">
+                    <li class="course-item">
+                        <div class="course-link">
+                            <div class="course-name" th:text="${recommendedCourseName}">코스 이름</div>
+                            <div class="course-dates" th:text="${#temporals.format(recommendedCourseStartDate, 'yy.MM.dd')} + ' ~ ' + ${#temporals.format(recommendedCourseEndDate, 'yy.MM.dd')}"></div>
+                        </div>
+                        <button type="button" class="bookmark-button"
+                                th:data-course-name="${recommendedCourseName}"
+                                th:data-start-date="${#temporals.format(recommendedCourseStartDate, 'yyyy-MM-dd')}"
+                                th:data-end-date="${#temporals.format(recommendedCourseEndDate, 'yyyy-MM-dd')}"
+                                th:data-place-ids="${#strings.listJoin(recommendedCoursePlaces.![id], ',')}"
+                                th:data-saved="${isRecommendedCourseSaved}"
+                                th:data-nth="${recommendedCourseNth}">
+                            <img th:src="${isRecommendedCourseSaved} ? '/images/book_filled.png' : '/images/book.png'" alt="북마크" class="book-icon" />
+                        </button>
+                    </li>
+                </ul>
+            </section>
         </section>
 
         <!-- 4-6. 구분선 및 관련 글 -->
@@ -95,5 +110,6 @@
 
     <div th:replace="~{/fragments/footer :: footerFragment}"></div>
 </div>
+<script th:src="@{/js/monthly-magazine-detail.js}"></script>
 </body>
 </html>

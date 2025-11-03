@@ -59,7 +59,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void saveCourse(String courseName, String startAddress, LocalDateTime startDate, LocalDateTime endDate, List<Long> placeIds, User user) {
+    public Long saveCourse(String courseName, String startAddress, LocalDateTime startDate, LocalDateTime endDate, List<Long> placeIds, User user) {
         // 1. 새로운 nth 값 계산
         Long maxNth = courseRepository.findMaxNth(user.getId());
         long newNth;
@@ -88,6 +88,7 @@ public class CourseServiceImpl implements CourseService {
 
             courseRepository.save(course);
         });
+        return newNth;
     }
 
     @Override
@@ -103,6 +104,18 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void deleteCourse(User user, Long nth){
         courseRepository.delete(user.getId(),nth);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Long findNthByCourseName(User user, String courseName) {
+        List<List<Course>> allCourses = getAllCourses(user);
+        for (List<Course> courseGroup : allCourses) {
+            if (!courseGroup.isEmpty() && courseGroup.get(0).getName().equals(courseName)) {
+                return courseGroup.get(0).getNth();
+            }
+        }
+        return null;
     }
 
 }

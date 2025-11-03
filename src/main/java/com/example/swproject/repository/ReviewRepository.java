@@ -1,6 +1,7 @@
 package com.example.swproject.repository;
 
 import com.example.swproject.domain.Review;
+import com.example.swproject.domain.User;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -130,6 +131,10 @@ public class ReviewRepository {
     });
 
     return finalResult;
+  }
+
+  public long countByUser(User user) {
+    return reviewRepository.countByUser(user);
   }
 
 }

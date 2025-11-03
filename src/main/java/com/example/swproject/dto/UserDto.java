@@ -34,13 +34,4 @@ public class UserDto implements Serializable {
   @Size(max = 30)
   String religion;
 
-  @NotNull
-  @Size(max = 30)
-  String phone;
-
-  @NotNull
-  @Size(max = 30)
-  String job;
-
-  Long age;
 }
