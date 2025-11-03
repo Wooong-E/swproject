@@ -224,7 +224,7 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
 .save-button {
     width: 100%;
     padding: 15px;
-    background-color: #333;
+    background-color: #00809D;
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -235,5 +235,5 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
 }
 
 .save-button:hover {
-    background-color: #555;
+    background-color: #00667A; /* Slightly darker shade for hover */
 }

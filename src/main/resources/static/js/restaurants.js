@@ -39,6 +39,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentMainCategory = 'taste';
     let currentTasteSubCategory = '로컬'; // Default for restaurants
     let currentMoodSubCategory = ''; // Initially empty, will be set if mood is selected
+    let likedPlaceIds = new Set();
+
+    const fetchLikedPlaces = () => {
+        if (!isLoggedIn) return Promise.resolve();
+        return fetch('/api/likes/mine')
+            .then(response => response.json())
+            .then(data => {
+                likedPlaceIds = new Set(data.map(String));
+            })
+            .catch(error => {
+                console.error('Error fetching liked places:', error);
+            });
+    };
 
     const createPlaceCard = (place) => {
         const article = document.createElement('article');
@@ -51,10 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
             contentWrapper.href = `/restaurants/${place.id - 6}`; // Adjust ID for detail page links (7 -> 1, 8 -> 2, etc.)
         }
 
+        const isLiked = likedPlaceIds.has(String(place.id));
+        const heartIconSrc = isLiked ? '/images/tabler_heart_filled.svg' : '/images/tabler_heart.svg';
+
         contentWrapper.innerHTML = `
             <img src="${place.imageUrl}" alt="${place.name}" class="place-image">
-            <button class="img-2" type="button" aria-label="${place.name} 찜하기">
-                <img src="/images/tabler_heart.svg" alt="" />
+            <button class="img-2 like-button" type="button" aria-label="${place.name} 찜하기">
+                <img src="${heartIconSrc}" alt="" />
             </button>
         `;
 
@@ -67,6 +83,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
         article.appendChild(contentWrapper);
         article.innerHTML += textContent;
+
+        const likeButton = article.querySelector('.like-button');
+        likeButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (!isLoggedIn) {
+                window.location.href = '/users/login';
+                return;
+            }
+
+            const placeId = place.id;
+            const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+            const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+            fetch(`/api/likes/${placeId}/toggle`, {
+                method: 'POST',
+                headers: {
+                    [csrfHeader]: csrfToken
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const icon = likeButton.querySelector('img');
+                if (data.liked) {
+                    icon.src = '/images/tabler_heart_filled.svg';
+                    likedPlaceIds.add(String(placeId));
+                } else {
+                    icon.src = '/images/tabler_heart.svg';
+                    likedPlaceIds.delete(String(placeId));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
 
         return article;
     };
@@ -158,5 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initial render
-    renderRestaurants();
+    fetchLikedPlaces().then(() => {
+        renderRestaurants();
+    });
 });

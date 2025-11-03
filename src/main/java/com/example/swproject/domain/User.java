@@ -52,19 +52,6 @@ public class User implements UserDetails {
   @Column(name = "religion", length = 30)
   private String religion;
 
-  @Size(max = 30)
-  @NotNull
-  @Column(name = "phone", nullable = false, length = 30)
-  private String phone;
-
-  @Size(max = 30)
-  @NotNull
-  @Column(name = "job", nullable = false, length = 30)
-  private String job;
-
-  @Column(name = "age", columnDefinition = "int UNSIGNED not null")
-  private Long age;
-
   @OneToMany(mappedBy="user")
   List<UsersBadge> badges = new ArrayList<UsersBadge>();
 
