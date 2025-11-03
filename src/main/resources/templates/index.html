@@ -21,6 +21,37 @@
                 <div class="ellipse-2" aria-label="페이지 3"></div>
             </div>
         </section>
+        <!-- New section starts here -->
+        <section class="plan-section" th:if="${isLoggedIn}">
+            <div class="plan-box-user">
+                <p class="plan-box-user-name" th:text="|${userName}님|"></p>
+                <div class="plan-box-user-course">
+                    <p class="plan-box-user-course-text">여행 코스</p>
+                    <div class="plan-box-user-course-count" th:text="${userStats.courseCount}">0</div>
+                </div>
+            </div>
+            <div class="plan-box-schedule" th:if="${userStats.nearestCourseDate != null}">
+                <p class="plan-box-schedule-title">다음 여행 일정</p>
+                <p class="plan-box-schedule-status" th:text="${userStats.nearestCourseDate}"></p>
+                <p class="plan-box-schedule-dday" th:text="|D - ${userStats.dDay}|"></p>
+            </div>
+            <div class="plan-box-schedule" th:if="${userStats.nearestCourseDate == null}">
+                <p class="plan-box-schedule-title">다음 여행 일정</p>
+                <p class="plan-box-schedule-status">일정 없음</p>
+                <p class="plan-box-schedule-dday">D - 0</p>
+            </div>
+        </section>
+        <section class="plan-section" th:unless="${isLoggedIn}">
+            <div class="plan-box-login">
+                <p class="plan-box-login-text">로그인<br>해주세요</p>
+            </div>
+            <div class="plan-box-schedule">
+                <p class="plan-box-schedule-title">다음 여행 일정</p>
+                <p class="plan-box-schedule-status">일정 없음</p>
+                <p class="plan-box-schedule-dday">D - 0</p>
+            </div>
+        </section>
+        <!-- New section ends here -->
         <section class="frame-13">
             <header class="frame-14">
                 <h2 class="text-wrapper-11">이런 곳은 어때요?</h2>

@@ -233,7 +233,7 @@ public class CourseController {
                                                                     @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
                                                                     @RequestParam List<Long> placeIds, @AuthenticationPrincipal User user) {
         try {
-            courseService.saveCourse(courseName, startAddress, LocalDateTime.of(startDate, LocalTime.MIDNIGHT), LocalDateTime.of(endDate, LocalTime.MIDNIGHT), placeIds, user);
+            Long newNth = courseService.saveCourse(courseName, startAddress, LocalDateTime.of(startDate, LocalTime.MIDNIGHT), LocalDateTime.of(endDate, LocalTime.MIDNIGHT), placeIds, user);
             return org.springframework.http.ResponseEntity.ok("코스가 성공적으로 저장되었습니다.");
         } catch (Exception e) {
             return org.springframework.http.ResponseEntity.status(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR).body("코스 저장 중 오류가 발생했습니다.");
@@ -294,5 +294,38 @@ public class CourseController {
             courseService.deleteCourse(user, nth);
         }
         return "redirect:/my-courses";
+    }
+
+    @PostMapping("/courses/save-recommended")
+    @ResponseBody
+    public org.springframework.http.ResponseEntity<String> saveRecommendedCourse(@RequestParam String courseName,
+                                                                    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                                                    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+                                                                    @RequestParam List<Long> placeIds,
+                                                                    @AuthenticationPrincipal User user) {
+        if (user == null) {
+            return org.springframework.http.ResponseEntity.status(org.springframework.http.HttpStatus.UNAUTHORIZED).body("User not logged in");
+        }
+        try {
+            Long newNth = courseService.saveCourse(courseName, "경북 경산시 대학로 지하 270", LocalDateTime.of(startDate, LocalTime.MIDNIGHT), LocalDateTime.of(endDate, LocalTime.MIDNIGHT), placeIds, user);
+            return org.springframework.http.ResponseEntity.ok(newNth.toString());
+        } catch (Exception e) {
+            return org.springframework.http.ResponseEntity.status(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR).body("Error saving course");
+        }
+    }
+
+    @PostMapping("/courses/delete-recommended")
+    @ResponseBody
+    public org.springframework.http.ResponseEntity<String> deleteRecommendedCourse(@RequestParam Long nth,
+                                                                    @AuthenticationPrincipal User user) {
+        if (user == null) {
+            return org.springframework.http.ResponseEntity.status(org.springframework.http.HttpStatus.UNAUTHORIZED).body("User not logged in");
+        }
+        try {
+            courseService.deleteCourse(user, nth);
+            return org.springframework.http.ResponseEntity.ok("Course deleted successfully");
+        } catch (Exception e) {
+            return org.springframework.http.ResponseEntity.status(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting course");
+        }
     }
 }

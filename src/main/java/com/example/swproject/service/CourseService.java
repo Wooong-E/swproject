@@ -11,11 +11,13 @@ import java.util.List;
 public interface CourseService {
     List<Place> recommendCourses(String fhash, String shash, List<Long> excludePlaceIds);
 
-    void saveCourse(String courseName, String startAddress, LocalDateTime startDate, LocalDateTime endDate, List<Long> placeIds, User user);
+    Long saveCourse(String courseName, String startAddress, LocalDateTime startDate, LocalDateTime endDate, List<Long> placeIds, User user);
 
     List<List<Course>> getAllCourses(User user);
 
     List<Course> getCourse(User user, Long nth);
 
     void deleteCourse(User user, Long nth);
+
+    Long findNthByCourseName(User user, String courseName);
 }

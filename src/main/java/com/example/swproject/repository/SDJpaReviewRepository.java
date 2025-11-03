@@ -1,11 +1,9 @@
 package com.example.swproject.repository;
 
 import com.example.swproject.domain.Review;
+import com.example.swproject.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
 public interface SDJpaReviewRepository extends JpaRepository<Review, Long> {
-
-  List<Review> findReviewByPlaceId(Long placeId);
+    long countByUser(User user);
 }
