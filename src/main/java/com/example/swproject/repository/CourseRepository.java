@@ -110,4 +110,11 @@ public class CourseRepository {
         .fetchOne();
   }
 
+  public Course findNearestCourse(Long userId) {
+    return queryFactory.selectFrom(course)
+        .where(course.user.id.eq(userId))
+        .orderBy(course.startdate.asc()) // Order by ascending to get the oldest course
+        .fetchFirst();
+  }
+
 }

@@ -13,4 +13,12 @@ public class UserStatsDto {
     private long likedPlacesCount;
     private long courseCount;
     private long reviewCount;
+    private String nearestCourseDate;
+    private Long dDay;
+
+    public UserStatsDto(long likedPlacesCount, long courseCount, long reviewCount) {
+        this.likedPlacesCount = likedPlacesCount;
+        this.courseCount = courseCount;
+        this.reviewCount = reviewCount;
+    }
 }
