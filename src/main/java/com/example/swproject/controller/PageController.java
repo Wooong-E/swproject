@@ -2,6 +2,8 @@ package com.example.swproject.controller;
 
 import com.example.swproject.domain.Place;
 import com.example.swproject.domain.User;
+import com.example.swproject.dto.UserStatsDto;
+import com.example.swproject.service.UserStatsService;
 import com.example.swproject.dto.ReviewSummaryDto;
 import com.example.swproject.service.CourseService;
 import com.example.swproject.service.PlaceService;
@@ -42,10 +44,13 @@ public class PageController {
     private final PlaceService placeService;
     private final CourseService courseService;
 
-    public PageController(ReviewService reviewService, PlaceService placeService, CourseService courseService) {
+    private final UserStatsService userStatsService;
+
+    public PageController(ReviewService reviewService, PlaceService placeService, CourseService courseService, UserStatsService userStatsService) {
         this.reviewService = reviewService;
         this.placeService = placeService;
         this.courseService = courseService;
+        this.userStatsService = userStatsService;
     }
 
     private void addLoginStatusToModel(Model model) {
@@ -55,9 +60,13 @@ public class PageController {
         if (isLoggedIn) {
             Object principal = authentication.getPrincipal();
             if (principal instanceof com.example.swproject.domain.User) {
-                model.addAttribute("userName", ((com.example.swproject.domain.User) principal).getName());
+                User user = (com.example.swproject.domain.User) principal;
+                model.addAttribute("userName", user.getName());
+                UserStatsDto userStats = userStatsService.getUserStats(user);
+                model.addAttribute("userStats", userStats);
             } else {
                 model.addAttribute("userName", authentication.getName()); // fallback
+                model.addAttribute("userStats", new UserStatsDto(0, 0, 0)); // fallback
             }
         }
     }

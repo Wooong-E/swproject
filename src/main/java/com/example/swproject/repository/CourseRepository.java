@@ -103,4 +103,11 @@ public class CourseRepository {
         .execute();
   }
 
+  public Long countNthByUserId(Long userId) {
+    return queryFactory.select(course.nth.countDistinct())
+        .from(course)
+        .where(course.user.id.eq(userId))
+        .fetchOne();
+  }
+
 }
