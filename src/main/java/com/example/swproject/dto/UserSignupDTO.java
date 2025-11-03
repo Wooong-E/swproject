@@ -38,16 +38,4 @@ public class UserSignupDTO implements Serializable {
   @Size(max = 30, message = "종교 정보는 30자 이하여야 합니다.")
   String religion;
 
-  @NotBlank(message = "전화번호는 필수 입력값입니다.")
-  @Pattern(regexp = "^[0-9]{10,15}$", message = "전화번호는 숫자 10~15자리여야 합니다.")
-  String phone;
-
-  @NotBlank(message = "직업은 필수 입력값입니다.")
-  @Size(max = 30, message = "직업은 30자 이하여야 합니다.")
-  String job;
-
-  @NotNull(message = "나이는 필수 입력값입니다.")
-  @Min(value = 1, message = "나이는 1세 이상이어야 합니다.")
-  @Max(value = 120, message = "나이는 120세 이하이어야 합니다.")
-  Long age;
 }

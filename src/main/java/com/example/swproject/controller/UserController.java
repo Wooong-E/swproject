@@ -26,7 +26,7 @@ public class UserController {
     // 회원가입 폼 화면
     @GetMapping("/signup")
     public String signupForm(Model model) {
-        model.addAttribute("UserSignupDTO", new UserSignupDTO(null, null, null, null, null, null, null, null, null));
+        model.addAttribute("UserSignupDTO", new UserSignupDTO(null, null, null, null, null, null));
         return "signup"; // src/main/resources/templates/signup.html
     }
 
