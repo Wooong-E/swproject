@@ -32,7 +32,56 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding-top: 20px;
+    padding: 20px 20px 20px 20px; /* Add padding-bottom */
+    background-color: #FFFFFF; /* Add background color */
+    border-bottom-left-radius: 10px; /* Round bottom-left corner */
+    border-bottom-right-radius: 10px; /* Round bottom-right corner */
+    position: relative; /* For z-index */
+    z-index: 2; /* Bring to front */
+}
+
+.featured-event-section {
+    background-color: #000000;
+    border-bottom-left-radius: 10px; /* Round only bottom corners */
+    border-bottom-right-radius: 10px; /* Round only bottom corners */
+    padding: 30px 20px 20px 20px; /* Increased padding-top */
+    margin-top: -20px; /* Increased negative margin to pull up more */
+    position: relative; /* For z-index */
+    z-index: 1; /* Keep behind date section */
+    display: flex;
+    flex-direction: column;
+}
+
+.featured-event-image {
+    width: 80%;
+    max-width: 200px;
+    margin: 0 auto 20px auto; /* Top, auto-sides, bottom */
+    display: block;
+}
+
+.event-divider {
+    width: 100%;
+    border: none;
+    height: 1px;
+    background-color: #444; /* Light horizontal line */
+    margin-bottom: 20px;
+}
+
+.featured-event-details {
+    width: 100%;
+    text-align: left;
+    color: #FFFFFF;
+}
+
+.event-main-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 15px 0; /* More space below title */
+}
+
+.event-sub-text {
+    font-size: 14px;
+    margin: 2px 0;
 }
 
 .event-title {
