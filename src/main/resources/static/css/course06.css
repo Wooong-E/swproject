@@ -24,16 +24,24 @@ main {
 
 /* --- Progress Bar --- */
 .progress-bar-container {
-    width: 375px;
-    height: 8px;
-    background-color: #D9D9D9;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
     margin-top: 10px;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
-.progress-bar-inner {
-    width: 320px; /* STEP 6 */
+.progress-segment {
+    width: calc(100% / 6);
     height: 8px;
-    background-color: #A1A1A1;
+    background-color: #D9D9D9;
+    border-radius: 4px;
+}
+
+.progress-segment.filled {
+    background-color: #00809D;
 }
 
 .step-text {
