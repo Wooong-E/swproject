@@ -119,12 +119,9 @@ header[th\:fragment="headerFragment"] {
   flex-shrink: 0;
 }
 
-#sidebar .sidebar-header .text-wrapper {
-  font-size: 20px;
-  font-weight: 700;
-  
-  min-height: 24px; /* AI min-height */
-  min-width: 46px; /* AI min-width */
+.sidebar-logo {
+    height: 24px;
+    width: auto;
 }
 
 #sidebar .close-button {

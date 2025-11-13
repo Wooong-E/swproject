@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (remainingPlaces.length === 0) {
             alert('코스에 포함된 장소가 없습니다. 장소를 1개 이상 포함해주세요.');
             event.preventDefault(); // Stop form submission
+            window.location.href = '/'; // Redirect to main page
         }
     });
 });
