@@ -20,8 +20,8 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
     /* This container holds the header and the main content sections */
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Space between sections inside main */
-    padding-bottom: 30px; /* Add some space at the bottom of the main content */
+    /* gap: 20px; Space between sections inside main */
+    /* padding-bottom: 30px; Add some space at the bottom of the main content */
     flex-grow: 1; /* Make main content area grow */
 }
 
@@ -34,19 +34,20 @@ footer[th\:fragment="footerFragment"] { /* This is the <footer> element */
     text-align: center;
     flex-grow: 1; /* Make section fill available vertical space */
     padding: 40px 20px;
+    background-color: #00809D;
 }
 
 .course-start-section h2 {
     
     font-size: 18px;
     font-weight: 700;
-    color: #333;
+    color: #FFFFFF;
     margin-bottom: 40px;
 }
 
 .start-button {
     
-    background-color: #F1F1F1;
+    background-color: #FFFFFF;
     border: none;
     border-radius: 50px; /* For the oval shape */
     padding: 24px 35px; /* Increased vertical padding */
