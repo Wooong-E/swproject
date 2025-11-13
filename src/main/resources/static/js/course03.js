@@ -12,10 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!clickedButton) return;
 
-            // 모든 버튼의 비활성 스타일 초기화
+            // 모든 버튼의 비활성 스타일 및 선택 스타일 초기화
             selectionButtons.forEach(button => {
                 button.classList.remove('inactive');
+                button.classList.remove('selected');
             });
+
+            // 클릭된 버튼에 선택 스타일 적용
+            clickedButton.classList.add('selected');
 
             // 클릭된 버튼을 제외한 나머지 버튼에 비활성 스타일 적용
             selectionButtons.forEach(button => {

@@ -111,10 +111,19 @@ main {
     height: 24px;
     font-size: 17px; /* 임의의 사이즈 */
     font-weight: 700;
-    color: #000000;
+    color: #000000; /* Default text color */
     text-align: center;
     line-height: 24px;
     transition: color 0.3s;
+}
+
+/* Selected state */
+.mood-button.selected {
+    background-color: #00809D;
+}
+
+.mood-button.selected span {
+    color: #FFFFFF;
 }
 
 /* 비활성 상태의 버튼 텍스트 색상 */
