@@ -74,7 +74,7 @@
 }
 
 .event-main-title {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     margin: 0 0 15px 0; /* More space below title */
 }
@@ -82,6 +82,27 @@
 .event-sub-text {
     font-size: 14px;
     margin: 2px 0;
+}
+
+.recent-stories-header {
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    margin-top: 30px;
+}
+
+.recent-stories-header h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+    margin: 0 0 10px 0;
+    text-align: left;
+}
+
+.recent-stories-header hr {
+    border: 0;
+    height: 1px;
+    background-color: #000000;
 }
 
 .event-title {

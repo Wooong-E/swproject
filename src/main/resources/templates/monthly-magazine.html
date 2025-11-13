@@ -34,6 +34,11 @@
             </div>
         </div>
 
+        <div class="recent-stories-header">
+            <h3>최근 이야기</h3>
+            <hr>
+        </div>
+
         <div class="magazine-list">
             <th:block th:each="item, iterStat : ${magazineItems}">
                 <a th:if="${iterStat.index == 0 and pageNum == 1}"
