@@ -221,6 +221,13 @@ public class PageController {
         addLoginStatusToModel(model);
         model.addAttribute("currentPage", "monthly-magazine");
 
+        // Add current date components to the model
+        LocalDate today = LocalDate.now();
+        model.addAttribute("currentYear", today.getYear());
+        model.addAttribute("currentMonth", today.getMonth().toString().substring(0, 3)); // e.g., OCT
+        model.addAttribute("currentDayOfWeek", today.getDayOfWeek().toString().substring(0, 3)); // e.g., MON
+        model.addAttribute("currentDayOfMonth", today.getDayOfMonth());
+
         final int TOTAL_ITEMS = 30;
         final int ITEMS_PER_PAGE = 6;
 

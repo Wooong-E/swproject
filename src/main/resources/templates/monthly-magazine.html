@@ -14,6 +14,16 @@
 <div class="screen">
     <main class="magazine-main">
         <div th:replace="~{/fragments/header :: headerFragment}"></div>
+
+        <div class="event-date-section">
+            <div class="event-title">이 달의 이벤트</div>
+            <div class="date-display">
+                <div class="date-year-month" th:text="${currentYear} + ' ' + ${currentMonth}">2025 OCT</div>
+                <div class="date-day-of-week" th:text="${currentDayOfWeek}">MON</div>
+                <div class="date-day" th:text="${currentDayOfMonth}">20</div>
+            </div>
+        </div>
+
         <div class="magazine-list">
             <th:block th:each="item, iterStat : ${magazineItems}">
                 <a th:if="${iterStat.index == 0 and pageNum == 1}"

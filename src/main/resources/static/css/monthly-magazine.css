@@ -21,10 +21,47 @@
 }
 
 .magazine-list,
-.pagination-container {
+.pagination-container,
+.event-date-section {
     padding: 0 20px; /* Side padding for content only */
     box-sizing: border-box;
     width: 100%;
+}
+
+.event-date-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 20px;
+}
+
+.event-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.date-display {
+    text-align: right;
+}
+
+.date-year-month {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+}
+
+.date-day-of-week {
+    font-size: 21px; /* 1.5 times bigger than year-month */
+    color: #000000;
+    font-weight: bold; /* Bold day of week */
+    margin-top: 5px; /* Space between year/month and day of week */
+}
+
+.date-day {
+    font-size: 120px; /* Significantly larger */
+    font-weight: bold;
+    line-height: 1;
+    margin-top: 15px; /* Space between day of week and day of month */
 }
 
 .magazine-list {
