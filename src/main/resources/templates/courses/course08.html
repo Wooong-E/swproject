@@ -43,6 +43,7 @@
                 <!-- Each li will be a flex container -->
                 <li th:each="place : ${selectedPlaces}" class="place-item">
                     <div class="place-info">
+                        <span class="place-color-dot"></span>
                         <span class="place-name" th:text="${place.name}"></span>
                                                 <span class="place-category">
                             <th:block th:switch="${place.category}">
