@@ -16,14 +16,14 @@
         <div th:replace="~{/fragments/header :: headerFragment}"></div>
         <div class="magazine-list">
             <th:block th:each="item, iterStat : ${magazineItems}">
-                <a th:if="${iterStat.index == 0 and currentPage == 1}"
+                <a th:if="${iterStat.index == 0 and pageNum == 1}"
                    th:href="@{/monthly-magazine/1}"
                    class="magazine-item">
                     <div class="item-image" th:style="'background-image: url(' + @{${item.imageUrl}} + ');'"></div>
                     <h3 class="item-title" th:text="${item.title}">월간매거진_제목</h3>
                     <p class="item-snippet" th:text="${item.snippet}">월간매거진_본문</p>
                 </a>
-                <div th:unless="${iterStat.index == 0 and currentPage == 1}"
+                <div th:unless="${iterStat.index == 0 and pageNum == 1}"
                      class="magazine-item disabled">
                     <div class="item-image" th:style="'background-image: url(' + @{${item.imageUrl}} + ');'"></div>
                     <h3 class="item-title" th:text="${item.title}">월간매거진_제목</h3>

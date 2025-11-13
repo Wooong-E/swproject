@@ -240,7 +240,7 @@ public class PageController {
         List<MagazineItemDto> pageItems = allItems.subList(start, end);
 
         model.addAttribute("magazineItems", pageItems);
-        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("pageNum", currentPage);
         model.addAttribute("totalPages", totalPages);
 
         return "monthly-magazine";
