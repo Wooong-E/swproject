@@ -183,10 +183,10 @@ main {
 #create-course-button {
     width: 343px;
     height: 50px;
-    background-color: #515151;
+    background-color: #00809D;
     border: none;
-    border-radius: 5px; /* Half of height for oval shape */
-    color: white;
+    border-radius: 25px;
+    color: #FFFFFF;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;

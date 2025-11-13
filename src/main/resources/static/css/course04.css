@@ -130,7 +130,7 @@ main {
 #main-selection-complete-button {
     width: 100%;      /* 컨테이너 폭 전체, 좌우 padding 반영 */
     height: 50px;
-    border-radius: 5px;
+    border-radius: 25px;
     border: none;
     font-size: 16px;
     font-weight: 700;
@@ -145,8 +145,8 @@ main {
 }
 
 #main-selection-complete-button:enabled {
-    background-color: #515151;
-    color: white;
+    background-color: #00809D;
+    color: #FFFFFF;
 }
 
 /* --- Calendar Pop-up (Bottom Sheet) --- */

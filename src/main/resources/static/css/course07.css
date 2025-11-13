@@ -24,11 +24,7 @@ main {
     /* The form itself doesn't need special positioning styles */
 }
 
-.progress-bar {
-    width: 375px;
-    height: 8px;
-    background-color: #A1A1A1;
-}
+
 
 /* New, robust centering logic */
 .loading-content {

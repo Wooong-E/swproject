@@ -131,7 +131,7 @@ main {
     max-width: 343px;
     height: 50px;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
@@ -144,6 +144,6 @@ main {
 }
 
 #selection-complete-button:enabled {
-    background-color: #515151;
-    color: white;
+    background-color: #00809D;
+    color: #FFFFFF;
 }
