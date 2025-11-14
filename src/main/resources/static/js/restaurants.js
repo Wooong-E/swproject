@@ -151,15 +151,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const fetchAndPrepareData = () => {
         restaurantListContainer.innerHTML = '<p>불러오는 중...</p>';
         const mockData = [
-            { id: 7, name: '왕이모네식당', address: '경북 경산시 진량읍 대구대로 60길 5-10 포시즌', tasteCategory: '가성비', moodCategory: '모임/회식', imageUrl: '/images/restaurants/restaurant_1.jpg', hasDetailPage: true, category: '맛집', averageGrade: 0.0 },
-            { id: 8, name: '자인식육식당', address: '경북 경산시 자인면 일연로 56', tasteCategory: '로컬', moodCategory: '모임/회식', imageUrl: '/images/restaurants/restaurant_2.jpg', hasDetailPage: true, category: '맛집', averageGrade: 0.0 },
-            { id: 9, name: '돈우리', address: '경북 경산시 청운로 37 봉명빌', tasteCategory: '가성비', moodCategory: '모임/회식', imageUrl: '/images/restaurant_fusion.jpg', hasDetailPage: true, category: '맛집', averageGrade: 0.0 },
-            { id: 10, name: '장군제육', address: '경북 경산시 청운 1로 6-1 라온빌', tasteCategory: '로컬', moodCategory: '모임/회식', imageUrl: '/images/restaurant_japanese.jpg', hasDetailPage: true, category: '맛집', averageGrade: 0.0 },
+            { id: 7, name: '왕이모네식당', address: '경북 경산시 진량읍 대구대로 60길 5-10 포시즌', tasteCategory: '가성비', moodCategory: '모임/회식', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Restaurant+Image', hasDetailPage: true, category: '맛집', averageGrade: 0.0 },
+            { id: 8, name: '자인식육식당', address: '경북 경산시 자인면 일연로 56', tasteCategory: '로컬', moodCategory: '모임/회식', imageUrl: '/images/restaurants/delicious/local/1.svg', hasDetailPage: true, category: '맛집', averageGrade: 0.0 },
+            { id: 9, name: '돈우리', address: '경북 경산시 청운로 37 봉명빌', tasteCategory: '가성비', moodCategory: '모임/회식', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Restaurant+Image', hasDetailPage: true, category: '맛집', averageGrade: 0.0 },
+            { id: 10, name: '장군제육', address: '경북 경산시 청운 1로 6-1 라온빌', tasteCategory: '로컬', moodCategory: '모임/회식', imageUrl: '/images/restaurants/delicious/local/2.svg', hasDetailPage: true, category: '맛집', averageGrade: 0.0 },
             { id: 11, name: '듬성 경산하양 본점', address: '경북 경산시 하양읍 대학로295길 6-9', tasteCategory: '트렌디', moodCategory: '데이트', imageUrl: '/images/restaurant_chinese.jpg', hasDetailPage: true, category: '맛집', averageGrade: 0.0 },
-            { id: 12, name: '마당닭갈비', address: '경북 경산시 남산면 하대2길 32-17', tasteCategory: '로컬', moodCategory: '모임/회식', imageUrl: '/images/restaurant_vietnamese.jpg', hasDetailPage: true, category: '맛집', averageGrade: 0.0 },
-            { id: 301, name: '남산식육식당', address: '경북 경산시 남산면 남산1로 100', tasteCategory: '로컬', moodCategory: '비지니스', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Restaurant+Image', category: '맛집', averageGrade: 5.0 },
-            { id: 302, name: '대보식육식당', address: '경북 경산시 경안로 100', tasteCategory: '로컬', moodCategory: '모임/회식', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Restaurant+Image', category: '맛집', averageGrade: 5.0 },
-            { id: 303, name: '촌순두부청국장전문', address: '경북 경산시 대학로 100', tasteCategory: '로컬', moodCategory: '비지니스', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Restaurant+Image', category: '맛집', averageGrade: 5.0 },
+            { id: 12, name: '마당닭갈비', address: '경북 경산시 남산면 하대2길 32-17', tasteCategory: '로컬', moodCategory: '모임/회식', imageUrl: '/images/restaurants/delicious/local/3.svg, hasDetailPage: true, category: '맛집', averageGrade: 0.0 },
+            { id: 301, name: '남산식육식당', address: '경북 경산시 남산면 남산1로 100', tasteCategory: '로컬', moodCategory: '비지니스', imageUrl: '/images/restaurants/delicious/local/4.svg', category: '맛집', averageGrade: 5.0 },
+            { id: 302, name: '대보식육식당', address: '경북 경산시 경안로 100', tasteCategory: '로컬', moodCategory: '모임/회식', imageUrl: '/images/restaurants/delicious/local/5.svg', category: '맛집', averageGrade: 5.0 },
+            { id: 303, name: '촌순두부청국장전문', address: '경북 경산시 대학로 100', tasteCategory: '로컬', moodCategory: '비지니스', imageUrl: '/images/restaurants/delicious/local/6.svg', category: '맛집', averageGrade: 5.0 },
             { id: 304, name: '꽃돼지식당 경산점', address: '경북 경산시 대학로 100-1', tasteCategory: '트렌디', moodCategory: '데이트', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Restaurant+Image', category: '맛집', averageGrade: 5.0 },
             { id: 305, name: '김숙성 경산점', address: '경북 경산시 대학로 100-2', tasteCategory: '트렌디', moodCategory: '혼밥', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Restaurant+Image', category: '맛집', averageGrade: 5.0 },
             { id: 306, name: '분보남보 경산', address: '경북 경산시 대학로 100-3', tasteCategory: '트렌디', moodCategory: '모임/회식', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Restaurant+Image', category: '맛집', averageGrade: 5.0 },
