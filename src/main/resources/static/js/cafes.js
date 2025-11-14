@@ -150,12 +150,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const fetchAndPrepareData = () => {
         cafeListContainer.innerHTML = '<p>불러오는 중...</p>';
         const mockData = [
-            { id: 13, name: '섬섬밀밀', address: '경북 경산시 진량읍 대구대로 346', tasteCategory: '디저트', moodCategory: '힐링', imageUrl: '/images/cafes/cafe_1.jpg', hasDetailPage: true, category: '카페', averageGrade: 0.0 },
-            { id: 14, name: '파라글로우', address: '경북 경산시 진량읍 공단 7로3 2층', tasteCategory: '브런치', moodCategory: '친구/모임', imageUrl: '/images/cafes/cafe_2.jpg', hasDetailPage: true, category: '카페', averageGrade: 0.0 },
-            { id: 15, name: '브라우니', address: '경북 경산시 청운로 14-3', tasteCategory: '디저트', moodCategory: '데이트', imageUrl: '/images/cafe_book.jpg', hasDetailPage: true, category: '카페', averageGrade: 0.0 },
-            { id: 16, name: '플라플로', address: '경북 경산시 대학로 281-1 7층', tasteCategory: '디저트', moodCategory: '혼공', imageUrl: '/images/cafe_dessert.jpg', hasDetailPage: true, category: '카페', averageGrade: 0.0 },
-            { id: 17, name: '하말', address: '경북 경산시 와촌면 대한길 13', tasteCategory: '디저트', moodCategory: '데이트', imageUrl: '/images/cafe_rooftop.jpg', hasDetailPage: true, category: '카페', averageGrade: 0.0 },
-            { id: 18, name: '우주주택', address: '경북 경산시 하양읍 가마실길 26', tasteCategory: '테마', moodCategory: '친구/모임', imageUrl: '/images/cafe_pet.jpg', hasDetailPage: true, category: '카페', averageGrade: 0.0 },
+            { id: 13, name: '섬섬밀밀', address: '경북 경산시 진량읍 대구대로 346', tasteCategory: '디저트', moodCategory: '힐링', imageUrl: '/images/cafes/dessert/13.svg', hasDetailPage: true, category: '카페', averageGrade: 0.0 },
+            { id: 14, name: '파라글로우', address: '경북 경산시 진량읍 공단 7로3 2층', tasteCategory: '브런치', moodCategory: '친구/모임', imageUrl: '/images/cafes/brunch/7.svg', hasDetailPage: true, category: '카페', averageGrade: 0.0 },
+            { id: 15, name: '브라우니', address: '경북 경산시 청운로 14-3', tasteCategory: '디저트', moodCategory: '데이트', imageUrl: '/images/cafes/dessert/14.svg', hasDetailPage: true, category: '카페', averageGrade: 0.0 },
+            { id: 16, name: '플라플로', address: '경북 경산시 대학로 281-1 7층', tasteCategory: '디저트', moodCategory: '혼공', imageUrl: '/images/cafes/dessert/15.svg', hasDetailPage: true, category: '카페', averageGrade: 0.0 },
+            { id: 17, name: '하말', address: '경북 경산시 와촌면 대한길 13', tasteCategory: '디저트', moodCategory: '데이트', imageUrl: '/images/cafes/dessert/16.svg', hasDetailPage: true, category: '카페', averageGrade: 0.0 },
+            { id: 18, name: '우주주택', address: '경북 경산시 하양읍 가마실길 26', tasteCategory: '테마', moodCategory: '친구/모임', imageUrl: '/images/cafes/theme/19.svg', hasDetailPage: true, category: '카페', averageGrade: 0.0 },
             { id: 201, name: '마고 포레스트', address: '경북 경산시 와촌면 계당길 100', tasteCategory: '감성', moodCategory: '힐링', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Cafe+Image', category: '카페', averageGrade: 5.0 },
             { id: 202, name: '안포레', address: '경북 경산시 와촌면 계당길 100-10', tasteCategory: '감성', moodCategory: '데이트', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Cafe+Image', category: '카페', averageGrade: 5.0 },
             { id: 203, name: '서상카페', address: '경북 경산시 서상길 10-1', tasteCategory: '감성', moodCategory: '혼공', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Cafe+Image', category: '카페', averageGrade: 5.0 },
