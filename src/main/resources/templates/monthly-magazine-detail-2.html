@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="icon" href="/images/logo.png" type="image/png">
+    <title>Ro:D - 월간매거진 상세</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}" />
+    <link rel="stylesheet" th:href="@{/css/place-detail.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <link rel="stylesheet" th:href="@{/css/monthly-magazine-detail.css}" />
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+<div class="screen">
+    <div th:replace="~{/fragments/header-back :: headerBackFragment}"></div>
+
+    <main class="magazine-detail-main">
+        <div class="main-image-container" style="background-image: url('/images/magazine/bmarket/bmarket1.png');">
+            <div class="image-text">경산<br/>별찌야시장</div>
+        </div>
+
+        <section class="content-section">
+            <h1 class="content-title">별빛 아래, 한국 문화를 경험하다!<br/>개발자 갱의 야시장 탐방기</h1>
+
+            <div class="body-images-container">
+                <div class="body-image" style="background-image: url('/images/magazine/bmarket/bmarket2.png');"></div>
+            </div>
+
+            <p class="content-paragraph">
+                안녕하세요. 경산에 거주 중인 개발자 갱입니다.<br/>
+                이번 달에는 함께 개발 중인 동이와 진이와 함께 <br/>
+                경산의 별찌야시장을 다녀왔습니다.
+            </p>
+            <p class="content-paragraph">
+                별찌야시장은 경산공설시장에서 <br/>
+                전통시장 활성화를 위해 진행된 행사입니다.<br/>
+                행사는 9월 2일부터 28일까지 이어졌으며, <br/>
+                이 기간 동안 야시장은 매주 수요일부터 일요일까지 <br/>
+                주 5일간 운영되었습니다.<br/>
+                ‘가족의 날’, ‘문화의 날’ 등 매일 다른 테마로 <br/>
+                방문객을 맞이하며 시장을 다채롭게 꾸몄습니다.<br/>
+                시장 안에는 다양한 음식 매대와 플리마켓, <br/>
+                인생네컷 부스 등이 운영되어<br/>
+                방문객들에게 풍성한 먹거리와 <br/>
+                즐길 거리를 제공했습니다.
+            </p>
+
+            <div class="body-images-container">
+                <div class="body-image" style="background-image: url('/images/magazine/bmarket/bmarket3.png');"></div>
+            </div>
+
+            <p class="content-paragraph">
+                제가 방문한 날은 ‘문화의 날’이었습니다.<br/>
+                야시장이 열리기 전인 오후 5시에 도착해 <br/>
+                먼저 경산공설시장을 둘러보았는데, <br/>
+                생각보다 사람이 많았습니다.<br/>
+                특히 ‘개미분식집’이라는 곳은 손님들로 붐비고 있었는데, <br/>
+                저도 호기심에 떡볶이를 맛보았습니다.<br/>
+                맛은 평범했지만, 앉아서 먹을 수 있는 공간이 있어 <br/>
+                인기가 많았던 것 같습니다.
+            </p>
+
+            <div class="body-images-container">
+                <div class="body-image" style="background-image: url('/images/magazine/bmarket/bmarket4.png');"></div>
+                <div class="body-image" style="background-image: url('/images/magazine/bmarket/bmarket5.png');"></div>
+            </div>
+
+            <p class="content-paragraph">
+                시장 한쪽에는 ‘명화사우나’라는 독특한 콘셉트의 <br/>
+                팝업스토어가 마련되어 있었습니다.<br/>
+                이는 유튜버 랄랄의 부캐인 <br/>
+                ‘이명화’를 주제로 한 공간으로,<br/>
+                세대 구분 없이 누구나 즐길 수 있는 복고풍 굿즈와 <br/>
+                포토존이 구성되어 있었습니다.<br/>
+                저와 친구들도 이곳에서 무료로 사진을 찍으며 <br/>
+                즐거운 추억을 남길 수 있었습니다.
+            </p>
+
+            <div class="body-images-container">
+                <div class="body-image" style="background-image: url('/images/magazine/bmarket/bmarket6.png');"></div>
+                <div class="body-image" style="background-image: url('/images/magazine/bmarket/bmarket7.png');"></div>
+            </div>
+
+            <p class="content-paragraph">
+                해가 지고 6시가 넘자 시장은 점점 더 활기를 띠었습니다.<br/>
+                저희는 테이블에 자리를 잡고 주변 음식점에서 <br/>
+                다양한 음식을 포장해와 함께 나누어 먹었습니다.<br/>
+                조금씩 여러 가지 음식을 맛볼 수 있다는 점이 <br/>
+                시장의 큰 매력이었습니다.<br/>
+                이후 무대에서는 공연이 시작되었고, <br/>
+                자유로운 분위기 속에서 신청곡을 받거나 <br/>
+                선물 추첨도 진행되었습니다.<br/>
+                비록 선물을 받지는 못했지만, <br/>
+                선선한 날씨 속에서 맛있는 음식을 먹으며 <br/>
+                공연을 즐길 수 있어 충분히 만족스러운 시간이었습니다.
+            </p>
+            <p class="content-paragraph">
+                시장을 걷다 보면 자연스럽게 옛 추억이 떠오르고, <br/>
+                사람들과의 교류 속에서 따뜻한 정을 느낄 수 있습니다.<br/>
+                별찌야시장은 단순한 야시장이 아니라, <br/>
+                지역 주민과 방문객이 함께 어우러지는 <br/>
+                복합문화공간이었습니다.<br/>
+                경산을 찾는 분들이라면 <br/>
+                꼭 한 번 들러보시길 추천드립니다.
+            </p>
+
+            <section class="recommended-course-section" th:if="${recommendedCoursePlaces != null and not #lists.isEmpty(recommendedCoursePlaces)}">
+                <ul class="course-list">
+                    <li class="course-item">
+                        <div class="course-link">
+                            <div class="course-name">개발자 만두의 코스</div>
+                            <div class="course-dates" th:text="${#temporals.format(recommendedCourseStartDate, 'yy.MM.dd')} + ' ~ ' + ${#temporals.format(recommendedCourseEndDate, 'yy.MM.dd')}"></div>
+                        </div>
+                        <button type="button" class="bookmark-button"
+                                th:data-course-name="${recommendedCourseName}"
+                                th:data-start-date="${#temporals.format(recommendedCourseStartDate, 'yyyy-MM-dd')}"
+                                th:data-end-date="${#temporals.format(recommendedCourseEndDate, 'yyyy-MM-dd')}"
+                                th:data-place-ids="${#strings.listJoin(recommendedCoursePlaces.![id], ',')}"
+                                th:data-saved="${isRecommendedCourseSaved}"
+                                th:data-nth="${recommendedCourseNth}">
+                            <img th:src="${isRecommendedCourseSaved} ? '/images/book_filled.png' : '/images/book.png'" alt="북마크" class="book-icon" />
+                        </button>
+                    </li>
+                </ul>
+            </section>
+        </section>
+    </main>
+
+    <div th:replace="~{/fragments/footer :: footerFragment}"></div>
+</div>
+<script th:src="@{/js/monthly-magazine-detail.js}"></script>
+</body>
+</html>
