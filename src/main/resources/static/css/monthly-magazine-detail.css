@@ -28,6 +28,7 @@
     background-size: cover;
     background-position: center;
     margin-bottom: 15px; /* Space below main image */
+    position: relative;
 }
 
 /* Content Sections */
@@ -37,7 +38,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center align text */
+    align-items: flex-start; /* Center align text */
 }
 
 .content-title {
@@ -45,15 +46,18 @@
     font-weight: bold;
     color: #000;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
+    width: 100%;
+    align-self: center;
 }
 
 .content-paragraph {
     font-size: 13px;
     color: #333;
-    text-align: center;
+    text-align: left;
     line-height: 1.5;
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .body-images-container {
@@ -61,7 +65,7 @@
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .body-image {
@@ -197,6 +201,7 @@
     align-items: center;
     padding: 20px 0;
     border-bottom: 1px solid #f0f0f0;
+    width: 100%;
 }
 
 .course-item:last-child {
@@ -211,9 +216,9 @@
 }
 
 .course-name {
-    font-size: 18px; /* Increased font size */
+    font-size: 22px; /* Increased font size */
     font-weight: 600;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
 }
 
 .course-dates {
@@ -233,7 +238,28 @@
     height: 24px;
 }
 
+.content-paragraph b {
+    font-weight: bolder;
+}
+
 .recommended-course-section {
     width: 100%;
-    align-self: flex-start;
+}
+
+.image-text {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: white;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.image-text span {
+    display: block;
+}
+
+.image-text span:first-child {
+    margin-bottom: 10px; /* 간격 조절 */
 }
