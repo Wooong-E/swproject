@@ -80,14 +80,24 @@ public class MagazineController {
         model.addAttribute("currentDayOfMonth", today.getDayOfMonth());
 
         final int TOTAL_ITEMS = 30;
-        final int ITEMS_PER_PAGE = 6;
+        final int ITEMS_PER_PAGE = 3;
 
         List<MagazineItemDto> allItems = IntStream.rangeClosed(1, TOTAL_ITEMS)
-                .mapToObj(i -> new MagazineItemDto(
-                        "/images/monthly-magazine" + i + ".png",
-                        "월간매거진_제목" + i,
-                        "월간매거진_본문" + i
-                ))
+                .mapToObj(i -> {
+                    if (i == 1) {
+                        return new MagazineItemDto(
+                                "/images/magazine/main/starmain.png",
+                                "길 위에서 01. 경산 스타필드",
+                                "책, 커피, 여가를 한 번에! 경산 스타필드에서 보낸 하루"
+                        );
+                    } else {
+                        return new MagazineItemDto(
+                                "/images/monthly-magazine" + i + ".png",
+                                "월간매거진_제목" + i,
+                                "월간매거진_본문" + i
+                        );
+                    }
+                })
                 .collect(Collectors.toList());
 
         int totalPages = (int) Math.ceil((double) TOTAL_ITEMS / ITEMS_PER_PAGE);
