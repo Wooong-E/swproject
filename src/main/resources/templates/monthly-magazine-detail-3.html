@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="icon" href="/images/logo.png" type="image/png">
+    <title>Ro:D - 월간매거진 상세</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}" />
+    <link rel="stylesheet" th:href="@{/css/place-detail.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <link rel="stylesheet" th:href="@{/css/monthly-magazine-detail.css}" />
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+<div class="screen">
+    <div th:replace="~{/fragments/header-back :: headerBackFragment}"></div>
+
+    <main class="magazine-detail-main">
+        <div class="main-image-container" style="background-image: url('/images/magazine/market/for.png');">
+            <div class="image-text"><span id="image-lang-text">English</span></div>
+        </div>
+
+        <section class="content-section">
+            <!-- 언어 선택 버튼 -->
+            <div class="language-selector">
+                <button id="lang-en" class="lang-button active">English</button>
+                <button id="lang-zh" class="lang-button">中文</button>
+                <button id="lang-vi" class="lang-button">Tiếng Việt</button>
+                <button id="lang-ja" class="lang-button">日本語</button>
+            </div>
+
+            <h1 class="content-title" id="main-title">한국에서 01. 시장과 마트</h1>
+            <p class="content-paragraph" id="subtitle" style="text-align: center; font-weight: bold;">
+                시장과 마트에서 사용할 수 있는 <br/>
+                현지 예절 및 간단한 한국어 표현
+            </p>
+            <p class="content-paragraph" id="intro-text" style="text-align: center;">
+                Hello! <br/>
+                Here is a combined guide with useful etiquette <br/>
+                and Korean phrases for your visit to Gyeongsan.
+            </p>
+
+            <h2 class="content-title" id="etiquette-title" style="text-align: left; font-weight: bold;">예절 (Local Etiquette)</h2>
+            <p class="content-paragraph" id="etiquette-1">
+                Greetings: Politeness is key in Korea. <br/>
+                A simple "Hello" <br/>
+                안녕하세요 Annyeonghaseyo <br/>
+                and "Thank you" <br/>
+                감사합니다 Gamsahamnida <br/>
+                are highly appreciated.
+            </p>
+            <p class="content-paragraph" id="etiquette-2">
+                Queuing (Lining up): Please wait in line <br/>
+                when checking out at E-mart or waiting <br/>
+                for food at popular stalls in the night market.
+            </p>
+            <p class="content-paragraph" id="etiquette-3">
+                Paying: When giving or receiving money <br/>
+                or credit cards, especially to elders, <br/>
+                it is polite to use two hands, or to support <br/>
+                your right forearm with your left hand.
+            </p>
+            <p class="content-paragraph" id="etiquette-4">
+                Quiet Zones: The 2nd floor of Starfield Market is <br/>
+                a "Book Ground" and community lounge area <br/>
+                with a bookstore and Starbucks. <br/>
+                Please keep your voice low and be mindful of <br/>
+                others reading in these designated quiet spaces.
+            </p>
+            <p class="content-paragraph" id="etiquette-5">
+                Public Seating: After eating at the public tables <br/>
+                in the night market, please clean up <br/>
+                after yourself by disposing of all your trash <br/>
+                (containers, cans, etc.) in the designated bins.
+            </p>
+
+            <h2 class="content-title" id="phrases-title" style="text-align: left; font-weight: bold;">유용한 한국어 (Useful Korean Phrases)</h2>
+            <p class="content-paragraph" id="phrase-1-num" style="font-weight: bold; font-size: 20px;">01</p>
+            <p class="content-paragraph" id="phrase-1-text">
+                화장실 어디예요?<br/>
+                Pronunciation: Hwa-jang-shil eo-di-ye-yo?<br/>
+                Meaning: Where is the restroom?
+            </p>
+            <p class="content-paragraph" id="phrase-2-num" style="font-weight: bold; font-size: 20px;">02</p>
+            <p class="content-paragraph" id="phrase-2-text">
+                이거 얼마예요?<br/>
+                Pronunciation: I-geo eol-ma-ye-yo?<br/>
+                Meaning: How much is this?
+            </p>
+            <p class="content-paragraph" id="phrase-3-num" style="font-weight: bold; font-size: 20px;">03</p>
+            <p class="content-paragraph" id="phrase-3-text">
+                이거 하나 주세요.<br/>
+                Pronunciation: I-geo ha-na ju-se-yo.<br/>
+                Meaning: Please give me one of this.
+            </p>
+            <p class="content-paragraph" id="phrase-4-num" style="font-weight: bold; font-size: 20px;">04</p>
+            <p class="content-paragraph" id="phrase-4-text">
+                계산 부탁드립니다.<br/>
+                Pronunciation: Gye-san bu-tak-deu-rib-ni-da. <br/>
+                Kyeh-sahn boo-tahk-duh-reem-nee-dah.<br/>
+                Meaning: Check, please. / I'd like to pay.
+            </p>
+            <p class="content-paragraph" id="phrase-5-num" style="font-weight: bold; font-size: 20px;">05</p>
+            <p class="content-paragraph" id="phrase-5-text">
+                OO는 어디에 있는지 알려주실 수 있나요?<br/>
+                Pronunciation: OO-neun eo-di-e it-neun-ji <br/>
+                al-lyeo-ju-sil su in-na-yo?<br/>
+                Meaning:Could you tell me where OO is?
+            </p>
+            <p class="content-paragraph" id="phrase-examples" style="font-weight: bold;">
+                Examples  (예시)
+            </p>
+            <p class="content-paragraph" id="example-1">
+                야채는... <br/>
+                Ya-chae-neun...<br/>
+                Vegetables...
+            </p>
+            <p class="content-paragraph" id="example-2">
+                고기는... <br/>
+                Go-gi-neun...<br/>
+                Meat...
+            </p>
+            <p class="content-paragraph" id="example-3">
+                생활용품은... <br/>
+                Saeng-hwal-yong-pum-eun...<br/>
+                Household goods...
+            </p>
+        </section>
+    </main>
+
+    <div th:replace="~{/fragments/footer :: footerFragment}"></div>
+</div>
+<script th:src="@{/js/monthly-magazine-detail.js}"></script>
+
+<script th:src="@{/js/monthly-magazine-detail-3.js}"></script>
+</body>
+</html>

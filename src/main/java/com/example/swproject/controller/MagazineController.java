@@ -99,6 +99,13 @@ public class MagazineController {
                                 "길 위에서 02. 경산 별찌야시장",
                                 "별빛 아래, 한국 문화를 경험하다! 개발자 갱의 야시장 탐방기"
                         );
+                    } else if (i == 3) {
+                        return new MagazineItemDto(
+                                3L,
+                                "/images/magazine/main/smain.png",
+                                "한국에서 01. 시장과 마트",
+                                "시장과 마트에서 사용할 수 있는 현지 예절 및 간단한 한국어 표현"
+                        );
                     } else {
                         return new MagazineItemDto(
                                 (long) i,
@@ -173,6 +180,13 @@ public class MagazineController {
             model.addAttribute("recommendedCourseNth", recommendedCourseNth);
 
             return "monthly-magazine-detail-2";
+        } else if (id == 3) {
+            addLoginStatusToModel(model);
+            model.addAttribute("currentPage", "monthly-magazine");
+
+            // 추천 코스 관련 데이터는 이 페이지에서 사용하지 않으므로 추가하지 않음
+
+            return "monthly-magazine-detail-3";
         } else {
             return "redirect:/monthly-magazine";
         }
