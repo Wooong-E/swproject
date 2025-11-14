@@ -38,12 +38,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const detailUrl = `/${category}s/${place.id}`;
 
+            let imageUrl = `/images/restaurants/local/${place.id}.jpg`;
+            let placeName = place.name;
+
+            // temporary
+            if (place.id === 8) {
+                imageUrl = '/images/restaurants/detail/1/1.svg';
+                placeName = '자인식육식당';
+            } else if (place.id === 10) {
+                imageUrl = '/images/restaurants/detail/2/2.svg';
+                placeName = '장군제육';
+            } else if (place.id === 12) {
+                imageUrl = '/images/restaurants/detail/3/3.svg';
+                placeName = '마당닭갈비';
+            }
+
             // 이미지, 정보, 하트 버튼을 포함하는 HTML 구조 생성
             item.innerHTML = `
                 <a href="${detailUrl}" class="like-item-link">
-                    <img src="/images/attractions/attraction_${place.id}.jpg" alt="${place.name}" class="like-item-image">
+                    <img src="${imageUrl}" alt="${placeName}" class="like-item-image">
                     <div class="like-item-info">
-                        <h3 class="like-item-title">${place.name}</h3>
+                        <h3 class="like-item-title">${placeName}</h3>
                         <p class="like-item-address">${place.address}</p>
                     </div>
                 </a>

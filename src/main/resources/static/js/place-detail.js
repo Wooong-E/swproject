@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     likeButton.setAttribute('aria-pressed', 'true');
                     likeButton.setAttribute('aria-label', `${attractionTitle} 찜 해제하기`);
                 } else {
-                    heartIcon.src = '/images/tabler_heart.svg';
+                    heartIcon.src = '/images/tabler_heart_black.svg';
                     likeButton.setAttribute('aria-pressed', 'false');
                     likeButton.setAttribute('aria-label', `${attractionTitle} 찜하기`);
                 }
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     likeButton.setAttribute('aria-pressed', 'true');
                     likeButton.setAttribute('aria-label', `${attractionTitle} 찜 해제하기`);
                 } else {
-                    heartIcon.src = '/images/tabler_heart.svg';
+                    heartIcon.src = '/images/tabler_heart_black.svg';
                     likeButton.setAttribute('aria-pressed', 'false');
                     likeButton.setAttribute('aria-label', `${attractionTitle} 찜하기`);
                 }

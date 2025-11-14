@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (filteredCafes.length === 0) {
-            cafeListContainer.innerHTML = '<p style="text-align: center; width: 100%;">해당 카테고리의 카페가 없습니다.</p>';
+            cafeListContainer.innerHTML = '<p style="text-align: center; width: 100%;">불러오는 중...</p>';
             return;
         }
 

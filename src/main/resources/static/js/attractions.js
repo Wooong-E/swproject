@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const filteredAttractions = allAttractions.filter(attraction => attraction.category === currentSubCategory);
 
         if (filteredAttractions.length === 0) {
-            attractionListContainer.innerHTML = '<p style="text-align: center; width: 100%;">해당 카테고리의 명소가 없습니다.</p>';
+            attractionListContainer.innerHTML = '<p style="text-align: center; width: 100%;">불러오는 중...</p>';
             return;
         }
 

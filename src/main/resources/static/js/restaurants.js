@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (filteredRestaurants.length === 0) {
-            restaurantListContainer.innerHTML = '<p style="text-align: center; width: 100%;">해당 카테고리의 맛집이 없습니다.</p>';
+            restaurantListContainer.innerHTML = '<p style="text-align: center; width: 100%;">불러오는 중...</p>';
             return;
         }
 
