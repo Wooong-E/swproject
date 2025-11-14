@@ -125,11 +125,9 @@ public class MagazineController {
         model.addAttribute("currentPage", "monthly-magazine"); // To highlight the monthly-magazine link in header
 
         List<Place> recommendedPlaces = new ArrayList<>();
-        placeService.findById(1L).ifPresent(recommendedPlaces::add);
-        placeService.findById(7L).ifPresent(recommendedPlaces::add);
-        placeService.findById(14L).ifPresent(recommendedPlaces::add);
+        placeService.findById(3L).ifPresent(recommendedPlaces::add);
 
-        model.addAttribute("recommendedCourseName", "자연힐링코스");
+        model.addAttribute("recommendedCourseName", "개발자 갱의 코스");
         model.addAttribute("recommendedCourseHashtags", List.of("#힐링여행", "#나혼자"));
         model.addAttribute("recommendedCourseStartDate", LocalDate.of(2025, 12, 3));
         model.addAttribute("recommendedCourseEndDate", LocalDate.of(2025, 12, 4));
@@ -138,7 +136,7 @@ public class MagazineController {
 
         Long recommendedCourseNth = null;
         if (user != null) {
-            recommendedCourseNth = courseService.findNthByCourseName(user, "자연힐링코스");
+            recommendedCourseNth = courseService.findNthByCourseName(user, "개발자 갱의 코스");
         }
 
         model.addAttribute("isRecommendedCourseSaved", recommendedCourseNth != null);
