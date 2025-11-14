@@ -34,6 +34,7 @@ public class MagazineController {
     @Setter
     @AllArgsConstructor
     public static class MagazineItemDto {
+        private Long id;
         private String imageUrl;
         private String title;
         private String snippet;
@@ -86,12 +87,21 @@ public class MagazineController {
                 .mapToObj(i -> {
                     if (i == 1) {
                         return new MagazineItemDto(
+                                1L,
                                 "/images/magazine/main/starmain.png",
                                 "길 위에서 01. 경산 스타필드",
                                 "책, 커피, 여가를 한 번에! 경산 스타필드에서 보낸 하루"
                         );
+                    } else if (i == 2) {
+                        return new MagazineItemDto(
+                                2L,
+                                "/images/magazine/main/bmain.png",
+                                "길 위에서 02. 경산 별찌야시장",
+                                "별빛 아래, 한국 문화를 경험하다! 개발자 갱의 야시장 탐방기"
+                        );
                     } else {
                         return new MagazineItemDto(
+                                (long) i,
                                 "/images/monthly-magazine" + i + ".png",
                                 "월간매거진_제목" + i,
                                 "월간매거진_본문" + i
@@ -116,32 +126,55 @@ public class MagazineController {
 
     @GetMapping("/{id}")
     public String showMonthlyMagazineDetailPage(@PathVariable Long id, Model model, @AuthenticationPrincipal User user) {
-        // For now, we only have content for id=1
-        if (id != 1) {
+        if (id == 1) {
+            addLoginStatusToModel(model);
+            model.addAttribute("currentPage", "monthly-magazine"); // To highlight the monthly-magazine link in header
+
+            List<Place> recommendedPlaces = new ArrayList<>();
+            placeService.findById(3L).ifPresent(recommendedPlaces::add);
+
+            model.addAttribute("recommendedCourseName", "개발자 갱의 코스");
+            model.addAttribute("recommendedCourseHashtags", List.of("#힐링여행", "#나혼자"));
+            model.addAttribute("recommendedCourseStartDate", LocalDate.of(2025, 12, 3));
+            model.addAttribute("recommendedCourseEndDate", LocalDate.of(2025, 12, 4));
+            model.addAttribute("recommendedCoursePlaces", recommendedPlaces);
+            model.addAttribute("recommendedCourseStartAddress", "경북 경산시 대학로 지하 270");
+
+            Long recommendedCourseNth = null;
+            if (user != null) {
+                recommendedCourseNth = courseService.findNthByCourseName(user, "개발자 갱의 코스");
+            }
+
+            model.addAttribute("isRecommendedCourseSaved", recommendedCourseNth != null);
+            model.addAttribute("recommendedCourseNth", recommendedCourseNth);
+
+            return "monthly-magazine-detail";
+        } else if (id == 2) {
+            addLoginStatusToModel(model);
+            model.addAttribute("currentPage", "monthly-magazine");
+
+            List<Place> recommendedPlaces = new ArrayList<>();
+            placeService.findById(3L).ifPresent(recommendedPlaces::add); // 임시로 '경산 스타필드' 사용
+
+            model.addAttribute("recommendedCourseName", "개발자 만두의 코스");
+            model.addAttribute("recommendedCourseHashtags", List.of("#야시장", "#데이트"));
+            model.addAttribute("recommendedCourseStartDate", LocalDate.of(2025, 11, 30));
+            model.addAttribute("recommendedCourseEndDate", LocalDate.of(2025, 12, 8));
+            model.addAttribute("recommendedCoursePlaces", recommendedPlaces);
+            model.addAttribute("recommendedCourseStartAddress", "경북 경산시 대학로 지하 270");
+            model.addAttribute("recommendedCourseEndAddress", "경상북도 경산시 경안로31길 19");
+
+            Long recommendedCourseNth = null;
+            if (user != null) {
+                recommendedCourseNth = courseService.findNthByCourseName(user, "개발자 만두의 코스");
+            }
+
+            model.addAttribute("isRecommendedCourseSaved", recommendedCourseNth != null);
+            model.addAttribute("recommendedCourseNth", recommendedCourseNth);
+
+            return "monthly-magazine-detail-2";
+        } else {
             return "redirect:/monthly-magazine";
         }
-
-        addLoginStatusToModel(model);
-        model.addAttribute("currentPage", "monthly-magazine"); // To highlight the monthly-magazine link in header
-
-        List<Place> recommendedPlaces = new ArrayList<>();
-        placeService.findById(3L).ifPresent(recommendedPlaces::add);
-
-        model.addAttribute("recommendedCourseName", "개발자 갱의 코스");
-        model.addAttribute("recommendedCourseHashtags", List.of("#힐링여행", "#나혼자"));
-        model.addAttribute("recommendedCourseStartDate", LocalDate.of(2025, 12, 3));
-        model.addAttribute("recommendedCourseEndDate", LocalDate.of(2025, 12, 4));
-        model.addAttribute("recommendedCoursePlaces", recommendedPlaces);
-        model.addAttribute("recommendedCourseStartAddress", "경북 경산시 대학로 지하 270");
-
-        Long recommendedCourseNth = null;
-        if (user != null) {
-            recommendedCourseNth = courseService.findNthByCourseName(user, "개발자 갱의 코스");
-        }
-
-        model.addAttribute("isRecommendedCourseSaved", recommendedCourseNth != null);
-        model.addAttribute("recommendedCourseNth", recommendedCourseNth);
-
-        return "monthly-magazine-detail";
     }
 }
