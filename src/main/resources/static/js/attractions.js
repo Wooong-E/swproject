@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 6, name: '대부잠수교', address: '경북 경산시 남천면 대부리', category: '포토스팟', imageUrl: '/images/attractions/photospot/14.svg', hasDetailPage: true, averageGrade: 0.0 },
 
         // New Dummy Attractions (no detail pages) - These will retain their default averageGrade
-        { id: 101, name: '팔공산 국립공원 (갓바위)', address: '경북 경산시 와촌면 갓바위로 100', category: '자연', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Attraction+Image', averageGrade: 5.0 },
-        { id: 102, name: '삼성산', address: '경북 경산시 남산면 삼성산길 100', category: '자연', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Attraction+Image', averageGrade: 5.0 },
-        { id: 103, name: '백자산', address: '경북 경산시 남산면 백자산길 100', category: '자연', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Attraction+Image', averageGrade: 5.0 },
-        { id: 104, name: '환성산', address: '경북 경산시 와촌면 환성산길 100', category: '자연', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Attraction+Image', averageGrade: 5.0 },
+        { id: 101, name: '팔공산 국립공원 (갓바위)', address: '경북 경산시 와촌면 갓바위로 100', category: '자연', imageUrl: '/images/attractions/natural/3.svg', averageGrade: 5.0 },
+        { id: 102, name: '삼성산', address: '경북 경산시 남산면 삼성산길 100', category: '자연', imageUrl: '/images/attractions/natural/4.svg', averageGrade: 5.0 },
+        { id: 103, name: '백자산', address: '경북 경산시 남산면 백자산길 100', category: '자연', imageUrl: '/images/attractions/natural/5.svg', averageGrade: 5.0 },
+        { id: 104, name: '환성산', address: '경북 경산시 와촌면 환성산길 100', category: '자연', imageUrl: '/images/attractions/natural/6.svg', averageGrade: 5.0 },
         { id: 105, name: '경산시립박물관', address: '경북 경산시 박물관로 100', category: '역사문화', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Attraction+Image', averageGrade: 5.0 },
         { id: 106, name: '임당유적', address: '경북 경산시 임당동 100', category: '역사문화', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Attraction+Image', averageGrade: 5.0 },
         { id: 107, name: '경산향교', address: '경북 경산시 향교길 100', category: '역사문화', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Attraction+Image', averageGrade: 5.0 },
