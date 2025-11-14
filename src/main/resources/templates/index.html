@@ -15,14 +15,15 @@
     <main class="div">
         <div th:replace="~{/fragments/header :: headerFragment}"></div>
 
-        <section class="overlap" aria-label="메인 배너">
-            <div class="frame-12" role="group" aria-label="페이지 인디케이터">
-                <div class="ellipse" aria-label="현재 페이지"></div>
-                <div class="ellipse-2" aria-label="페이지 2"></div>
-                <div class="ellipse-2" aria-label="페이지 3"></div>
-            </div>
-        </section>
-        <!-- New section starts here -->
+                    <section class="overlap" aria-label="메인 배너" style="background-image: url('/images/home/home1.png'); background-size: cover; background-position: center;">
+                        <div class="image-text-overlay">
+                            <p class="issue-number">길 위에서 02호</p>
+                            <h2 class="magazine-title">별찌야시장</h2>
+                        </div>
+                        <a href="/monthly-magazine/2" class="magazine-arrow" aria-label="월간 매거진 상세 페이지 2로 이동">
+                            &gt;
+                        </a>
+                    </section>        <!-- New section starts here -->
         <section class="plan-section" th:if="${isLoggedIn}">
             <div class="plan-box-user">
                 <p class="plan-box-user-name" th:text="|${userName}님|"></p>
