@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     let allAttractions = [
         // Existing Attractions (with detail pages) - These will have their averageGrade updated from API
-        { id: 1, name: '자인 계정숲', address: '경북 경산시 자인면 계정길 5', category: '자연', imageUrl: '/images/attractions/attraction_1.jpg', hasDetailPage: true, averageGrade: 0.0 },
-        { id: 2, name: '대구대학교 늘푸른테마 공원', address: '경북 경산시 진량읍 대구대로 201', category: '자연', imageUrl: '/images/attractions/attraction_2.jpg', hasDetailPage: true, averageGrade: 0.0 },
-        { id: 3, name: '경산 스타필드', address: '경북 경산시 하양읍 대경로 1590', category: '테마파크·체험', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Attraction+Image', hasDetailPage: true, averageGrade: 0.0 },
-        { id: 4, name: '남매지', address: '경북 경산시 계양동', category: '포토스팟', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Attraction+Image', hasDetailPage: true, averageGrade: 0.0 },
-        { id: 5, name: '삼성현역사문화공원', address: '경북 경산시 남산면 삼성현로 915-1', category: '역사문화', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Attraction+Image', hasDetailPage: true, averageGrade: 0.0 },
-        { id: 6, name: '대부잠수교', address: '경북 경산시 남천면 대부리', category: '포토스팟', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Attraction+Image', hasDetailPage: true, averageGrade: 0.0 },
+        { id: 1, name: '자인 계정숲', address: '경북 경산시 자인면 계정길 5', category: '자연', imageUrl: '/images/attractions/natural/1.svg', hasDetailPage: true, averageGrade: 0.0 },
+        { id: 2, name: '대구대학교 늘푸른테마 공원', address: '경북 경산시 진량읍 대구대로 201', category: '자연', imageUrl: '/images/attractions/natural/2.svg', hasDetailPage: true, averageGrade: 0.0 },
+        { id: 3, name: '경산 스타필드', address: '경북 경산시 하양읍 대경로 1590', category: '테마파크·체험', imageUrl: '/images/attractions/themepark/25.svg', hasDetailPage: true, averageGrade: 0.0 },
+        { id: 4, name: '남매지', address: '경북 경산시 계양동', category: '포토스팟', imageUrl: '/images/attractions/photospot/13.svg', hasDetailPage: true, averageGrade: 0.0 },
+        { id: 5, name: '삼성현역사문화공원', address: '경북 경산시 남산면 삼성현로 915-1', category: '역사문화', imageUrl: '/images/attractions/history/7.svg', hasDetailPage: true, averageGrade: 0.0 },
+        { id: 6, name: '대부잠수교', address: '경북 경산시 남천면 대부리', category: '포토스팟', imageUrl: '/images/attractions/photospot/14.svg', hasDetailPage: true, averageGrade: 0.0 },
 
         // New Dummy Attractions (no detail pages) - These will retain their default averageGrade
         { id: 101, name: '팔공산 국립공원 (갓바위)', address: '경북 경산시 와촌면 갓바위로 100', category: '자연', imageUrl: 'https://via.placeholder.com/400x250/cccccc/ffffff?text=Attraction+Image', averageGrade: 5.0 },
