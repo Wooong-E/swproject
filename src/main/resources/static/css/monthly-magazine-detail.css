@@ -288,3 +288,27 @@
     background-color: #00809D; /* 활성화된 버튼 배경색 */
     font-weight: 600;
 }
+
+/* Custom Detail Header Styles */
+.custom-detail-header {
+    position: relative; /* 스크롤 시 고정되지 않도록 */
+    width: 375px; /* 메인 콘텐츠와 동일한 너비 */
+    margin: 0 auto; /* 중앙 정렬 */
+    height: 44px;
+    background-color: #ffffff;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    /* padding: 0 16px; 제거 */
+}
+
+.custom-detail-header .back-button {
+    margin-right: auto; /* 뒤로가기 버튼을 왼쪽으로 */
+}
+
+.custom-detail-header .logo {
+}
+
+.custom-detail-header .logo img {
+    height: 24px; /* 로고 이미지 크기 조정 */
+}

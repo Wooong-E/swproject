@@ -59,7 +59,7 @@ const translations = {
 
     "vi": {
         "main-title": "한국에서 01. 시장과 마트",
-        "subtitle": "시장과 마트에서 사용할 수 있는 현지 예절 및 간단한 한국어 표현",
+        "subtitle": "시장과 마트에서 사용할 수 있는\n 현지 예절 및 간단한 한국어 표현",
         "intro-text": "Xin chào! Đây là tổng hợp các mẹo du lịch và văn hóa hữu ích tại Gyeongsan.",
         "etiquette-title": "예절 (Văn hóa địa phương)",
         "etiquette-1": "Chào hỏi: Người Hàn Quốc rất coi trọng lời chào. Một lời chào đơn giản \n안녕하세요 Annyeonghaseyo và lời cảm ơn \n감사합니다 Gamsahamnida sẽ luôn được đón nhận nồng nhiệt.",
