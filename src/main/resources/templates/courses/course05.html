@@ -54,11 +54,37 @@
                         <h2 th:text="${categoryEntry.key == 'attraction' ? '명소' : (categoryEntry.key == 'restaurant' ? '맛집' : '카페')}">카테고리</h2>
                         <div class="place-list">
                             <div th:each="place : ${categoryEntry.value}" class="place-card" th:data-place-id="${place.id}" th:data-place-category="${place.category}">
-                                <img th:src="@{${'/images/' + place.category + 's/' + (place.category == 'attraction' ? 'attraction_' + place.id : (place.category == 'restaurant' ? 'restaurant_' + (place.id - 6) : 'cafe_' + (place.id - 12))) + '.jpg'}}" alt="장소 이미지" class="place-image">
-                                <div class="place-info">
-                                    <h3 th:text="${place.name}">장소 이름</h3>
-                                    <p th:text="${place.address}">장소 주소</p>
-                                </div>
+                                <!--/* Temporary display logic */-->
+                                <th:block th:switch="${place.id}">
+                                    <th:block th:case="8">
+                                        <img th:src="@{/images/restaurants/detail/1/1.svg}" alt="자인식육식당" class="place-image">
+                                        <div class="place-info">
+                                            <h3 th:text="'자인식육식당'">장소 이름</h3>
+                                            <p th:text="${place.address}">장소 주소</p>
+                                        </div>
+                                    </th:block>
+                                    <th:block th:case="10">
+                                        <img th:src="@{/images/restaurants/detail/2/2.svg}" alt="장군제육" class="place-image">
+                                        <div class="place-info">
+                                            <h3 th:text="'장군제육'">장소 이름</h3>
+                                            <p th:text="${place.address}">장소 주소</p>
+                                        </div>
+                                    </th:block>
+                                    <th:block th:case="12">
+                                        <img th:src="@{/images/restaurants/detail/3/3.svg}" alt="마당닭갈비" class="place-image">
+                                        <div class="place-info">
+                                            <h3 th:text="'마당닭갈비'">장소 이름</h3>
+                                            <p th:text="${place.address}">장소 주소</p>
+                                        </div>
+                                    </th:block>
+                                    <th:block th:case="*">
+                                        <img th:src="@{${'/images/' + place.category + 's/' + (place.category == 'attraction' ? 'attraction_' + place.id : (place.category == 'restaurant' ? 'restaurant_' + (place.id - 6) : 'cafe_' + (place.id - 12))) + '.jpg'}}" alt="장소 이미지" class="place-image">
+                                        <div class="place-info">
+                                            <h3 th:text="${place.name}">장소 이름</h3>
+                                            <p th:text="${place.address}">장소 주소</p>
+                                        </div>
+                                    </th:block>
+                                </th:block>
                                 <div class="place-actions">
                                     <button class="heart-button" type="button" aria-label="찜하기" th:data-place-id="${place.id}">
                                         <img src="/images/tabler_heart_filled.svg" alt="찜됨" class="heart-icon" />
