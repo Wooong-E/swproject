@@ -98,7 +98,7 @@ public class PageController {
         //별점 평균을 구하는 코드
         Double averageGrade = reviewService.getAverageGrade(id);
         model.addAttribute("averageGrade", averageGrade != null ? averageGrade : 0.0);
-        //
+
         model.addAttribute("id", id); // For template selection
         model.addAttribute("placeId", id); // For correct linking
 
